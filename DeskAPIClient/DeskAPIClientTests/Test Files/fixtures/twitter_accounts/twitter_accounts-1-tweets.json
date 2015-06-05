@@ -1,0 +1,1654 @@
+{
+    "total_entries": 64,
+    "page": 1,
+    "_links": {
+        "self": {
+            "href": "/api/v2/twitter_accounts/1/tweets?page=1&per_page=50",
+            "class": "page"
+        },
+        "first": {
+            "href": "/api/v2/twitter_accounts/1/tweets?page=1&per_page=50",
+            "class": "page"
+        },
+        "last": {
+            "href": "/api/v2/twitter_accounts/1/tweets?page=2&per_page=50",
+            "class": "page"
+        },
+        "previous": null,
+        "next": {
+            "href": "/api/v2/twitter_accounts/1/tweets?page=2&per_page=50",
+            "class": "page"
+        }
+    },
+    "_embedded": {
+        "entries": [{
+                    "id": 45,
+                    "body": "@desktest12 Television northern through dyes where dog related plants mug high beer video elephant hello basketball habitats infection fat a",
+                    "direction": "out",
+                    "status": "failed",
+                    "created_at": "2014-11-12T20:47:59Z",
+                    "updated_at": "2015-01-13T14:25:55Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "retweet",
+                    "to": null,
+                    "from": "desktest12",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/45",
+                    "class": "tweet"
+                    },
+                    "sent_by": {
+                    "href": "/api/v2/users/10",
+                    "class": "user"
+                    },
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": {
+                    "href": "/api/v2/users/10",
+                    "class": "user"
+                    },
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 50,
+                    "body": "@desktest12 Television northern through dyes where dog related plants mug high beer video elephant hello basketball habitats infection fat a",
+                    "direction": "out",
+                    "status": "pending",
+                    "created_at": "2014-12-16T14:33:15Z",
+                    "updated_at": "2014-12-28T23:32:48Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "retweet",
+                    "to": null,
+                    "from": "desktest12",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/50",
+                    "class": "tweet"
+                    },
+                    "sent_by": {
+                    "href": "/api/v2/users/10",
+                    "class": "user"
+                    },
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 57,
+                    "body": "@desktest12 Television northern through dyes where dog related plants mug high beer video elephant hello basketball habitats infection fat a",
+                    "direction": "out",
+                    "status": "failed",
+                    "created_at": "2015-01-13T00:17:53Z",
+                    "updated_at": "2015-01-13T02:29:53Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "retweet",
+                    "to": null,
+                    "from": "desktest12",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/57",
+                    "class": "tweet"
+                    },
+                    "sent_by": {
+                    "href": "/api/v2/users/10",
+                    "class": "user"
+                    },
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 59,
+                    "body": "test from api",
+                    "direction": "out",
+                    "status": "pending",
+                    "created_at": "2015-01-13T00:23:05Z",
+                    "updated_at": "2015-01-13T13:32:46Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "desktest12",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/59",
+                    "class": "tweet"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 60,
+                    "body": "test from api",
+                    "direction": "out",
+                    "status": "pending",
+                    "created_at": "2015-01-13T00:23:36Z",
+                    "updated_at": "2015-01-13T13:32:47Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "desktest12",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/60",
+                    "class": "tweet"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 61,
+                    "body": "test from api",
+                    "direction": "out",
+                    "status": "pending",
+                    "created_at": "2015-01-13T00:23:45Z",
+                    "updated_at": "2015-01-13T13:32:47Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "desktest12",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/61",
+                    "class": "tweet"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 62,
+                    "body": "@desktest12 Television northern through dyes where dog related plants mug high beer video elephant hello basketball habitats infection fat a",
+                    "direction": "out",
+                    "status": "pending",
+                    "created_at": "2015-01-13T14:25:18Z",
+                    "updated_at": "2015-01-13T14:29:58Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "retweet",
+                    "to": null,
+                    "from": "desktest12",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/62",
+                    "class": "tweet"
+                    },
+                    "sent_by": {
+                    "href": "/api/v2/users/10",
+                    "class": "user"
+                    },
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 63,
+                    "body": "test from api",
+                    "direction": "out",
+                    "status": "pending",
+                    "created_at": "2015-01-13T14:25:43Z",
+                    "updated_at": "2015-01-13T14:26:35Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "desktest12",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/63",
+                    "class": "tweet"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 64,
+                    "body": "@desktest12 Television northern through dyes where dog related plants mug high beer video elephant hello basketball habitats infection fat a",
+                    "direction": "out",
+                    "status": "pending",
+                    "created_at": "2015-01-13T14:25:44Z",
+                    "updated_at": "2015-01-13T14:29:59Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "retweet",
+                    "to": null,
+                    "from": "desktest12",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/64",
+                    "class": "tweet"
+                    },
+                    "sent_by": {
+                    "href": "/api/v2/users/10",
+                    "class": "user"
+                    },
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 65,
+                    "body": "test from api",
+                    "direction": "out",
+                    "status": "pending",
+                    "created_at": "2015-01-13T14:25:54Z",
+                    "updated_at": "2015-01-13T14:26:35Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "desktest12",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/65",
+                    "class": "tweet"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 66,
+                    "body": "@desktest12 Television northern through dyes where dog related plants mug high beer video elephant hello basketball habitats infection fat a",
+                    "direction": "out",
+                    "status": "pending",
+                    "created_at": "2015-01-13T14:25:55Z",
+                    "updated_at": "2015-01-13T14:29:59Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "retweet",
+                    "to": null,
+                    "from": "desktest12",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/66",
+                    "class": "tweet"
+                    },
+                    "sent_by": {
+                    "href": "/api/v2/users/10",
+                    "class": "user"
+                    },
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 67,
+                    "body": "test from api",
+                    "direction": "out",
+                    "status": "pending",
+                    "created_at": "2015-01-13T14:26:37Z",
+                    "updated_at": "2015-01-13T14:27:48Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "desktest12",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/67",
+                    "class": "tweet"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 21,
+                    "body": "@desktest12Theater animal disturb everyone torch southern history coffee explore sports is magnifying ships cars automobile rabbit history v",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:45Z",
+                    "updated_at": "2014-11-07T00:36:45Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/21",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/31",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 22,
+                    "body": "@desktest12Ship northern door cat eastern rejected wheel geography what western chess rabbit animation coughing addled the active rejected a",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:45Z",
+                    "updated_at": "2014-11-07T00:36:45Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/22",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/32",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 23,
+                    "body": "@desktest12 Water crazy whale my addled space automobile are dead roar geography my motorcycle motorcycle comics eastern bats everyone is be",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:45Z",
+                    "updated_at": "2014-11-07T00:36:45Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/23",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/33",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 24,
+                    "body": "@desktest12 Problems animation the outstanding message going low animal space flowers whale habitats chess leaves grape everyone magic my ah",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:46Z",
+                    "updated_at": "2014-11-07T00:36:46Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/24",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/34",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 25,
+                    "body": "@desktest12 Plants basketball southern bark where leaf agree variety  Message magnifiedbadminton related tall reject fish leaf outstanding m",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:46Z",
+                    "updated_at": "2014-11-07T00:36:46Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/25",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/35",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 26,
+                    "body": "@desktest12 Mirror frog kitten coconut comedy video doing soil gorilla cup zombie wheel ground almond bicycle buck movies nose video high be",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:47Z",
+                    "updated_at": "2014-11-07T00:36:47Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/26",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/36",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 27,
+                    "body": "@desktest12Almond northern mug through message buck mug bark mug cold mirror zombies infection tigers badminton exploration disturbed world",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:47Z",
+                    "updated_at": "2014-11-07T00:36:47Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/27",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/37",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 28,
+                    "body": "@desktest12 Animation variety addled cages leaves coughing bicycle plants high doing crazy ship dog cup whale puppy games zombies glass cat.",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:48Z",
+                    "updated_at": "2014-11-07T00:36:48Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/28",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/38",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 29,
+                    "body": "@desktest12 Northern exploration problems soil video geography possess the geography trees short television leaves coconut related badminton",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:48Z",
+                    "updated_at": "2014-11-07T00:36:48Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/29",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/39",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 30,
+                    "body": "@desktest12 Comics lion low native history theater tigers where telescope orange bats zombies northern fish active geography rejected glass.",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:48Z",
+                    "updated_at": "2014-11-07T00:36:48Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/30",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/40",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 31,
+                    "body": "@desktest12 Movies problems a northern door are doors viral whale northern badminton company through door torch games northern leaves comics",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:48Z",
+                    "updated_at": "2014-11-07T00:36:48Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/31",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/41",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 1,
+                    "body": "@desktest12 Television northern through dyes where dog related plants mug high beer video elephant hello basketball habitats infection fat a",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:38Z",
+                    "updated_at": "2014-12-16T14:33:16Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/1",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/11",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": {
+                    "href": "/api/v2/users/10",
+                    "class": "user"
+                    },
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 2,
+                    "body": "@desktest12 Habitats reject horror agreed company puppy eastern leaves comics on ships doors torch is basketball my bear mouth almond my you",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:39Z",
+                    "updated_at": "2014-11-07T00:36:39Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/2",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/12",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 3,
+                    "body": "@desktest12 Possess is flowers exploration pen native automobile tigers active mirror bark glass southern active ship beer glass related dog",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:39Z",
+                    "updated_at": "2014-11-07T00:36:39Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/3",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/13",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 32,
+                    "body": "@desktest12 Are pencil outstanding where addled addled world is cold name tires flowers animation tires cat crazy organic horror southern be",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:49Z",
+                    "updated_at": "2014-11-07T00:36:49Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/32",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/42",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 33,
+                    "body": "@desktest12 Whale agree bats telescope disturbed fungus whale cloud recommended a cloud short coconut bacteria almond puppy nose the door be",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:49Z",
+                    "updated_at": "2014-11-07T00:36:49Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/33",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/43",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 34,
+                    "body": "@desktest12 Cars eastern viral variety animal trees games eastern telescope company active theater are soil disturbed where books bear pen a",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:49Z",
+                    "updated_at": "2014-11-07T00:36:49Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/34",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/44",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 4,
+                    "body": "@desktest12 Torch fat orange ground bats tennis kitten agree glass lip water mail native recommended problems name is hello tires disturb be",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:39Z",
+                    "updated_at": "2014-11-07T00:36:39Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/4",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/14",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 5,
+                    "body": "@desktest12 Thanks so much for your taking the time to share your feedback with us.",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:40Z",
+                    "updated_at": "2014-11-07T00:36:40Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/5",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/15",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 6,
+                    "body": "@desktest12 World cages apple western mouth cages southern cup northern mug cages magic magnifying rejected zombies bark walked high mouth a",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:40Z",
+                    "updated_at": "2014-11-07T00:36:40Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/6",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/16",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 7,
+                    "body": "@desktest12 Thanks so much for your taking the time to share your feedback with us.",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:40Z",
+                    "updated_at": "2014-11-07T00:36:40Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/7",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/17",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 8,
+                    "body": "@desktest12 Cat reject pencil video native animal ship is kitten variety trees soy plants possess automobile cars is western books through a",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:41Z",
+                    "updated_at": "2014-11-07T00:36:41Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/8",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/18",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 9,
+                    "body": "@desktest12 Automobile bear ships motorcycle variety whale western explore agree where crazy bear horror problems ground high mail native be",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:41Z",
+                    "updated_at": "2014-11-07T00:36:41Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/9",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/19",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 10,
+                    "body": "@desktest12 Tigers disturbed beer ground company coughing history badminton television leaves dog television magnifying juice ticket books a",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:41Z",
+                    "updated_at": "2014-11-07T00:36:41Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/10",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/20",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 11,
+                    "body": "@desktest12 Tires chess northern basketball habitats bats whale torch rabbit are pen mouth flowers history leaf is bacteria cold possess the",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:42Z",
+                    "updated_at": "2014-11-07T00:36:42Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/11",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/21",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 12,
+                    "body": "@desktest12 Cages water southern viral trees ship reject whale what are comics bacteria television animal soy company reject comics movies a",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:42Z",
+                    "updated_at": "2014-11-07T00:36:42Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/12",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/22",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 13,
+                    "body": "@desktest12 On basketball company leaves ground geography agreed pen books tall how basketball organic lion organic frog hi kitten movies be",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:42Z",
+                    "updated_at": "2014-11-07T00:36:42Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/13",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/23",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 35,
+                    "body": "@desktest12 Through magic lion fish ship addled bacteria hello video dyes to doing short geography deer elephant kitten book bacteria beer a",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:49Z",
+                    "updated_at": "2014-11-07T00:36:49Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/35",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/45",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 14,
+                    "body": "@desktest12 Telescope southern roar hello apple hi what plants hello pencil northern my flowers trees juice chess soil swimming southern cat",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:42Z",
+                    "updated_at": "2014-11-07T00:36:42Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/14",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/24",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 15,
+                    "body": "@desktest12 Fish dog problems dog western tall recommended chess are leaves lip coffee mug history kitten you torch how a puppy buck video a",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:43Z",
+                    "updated_at": "2014-11-07T00:36:43Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/15",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/25",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 16,
+                    "body": "@desktest12  Agree tigers magnifying high dyes elephant wheel beer cold cars cars addled doing video sports leaves walked through world bact",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:43Z",
+                    "updated_at": "2014-11-07T00:36:43Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/16",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/26",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 17,
+                    "body": "@desktest12 Short my addled geography zombies organic disturbed is rejected a walked mug whale puppy coconut water recommended mug lion vari",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:43Z",
+                    "updated_at": "2014-11-07T00:36:43Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/17",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/27",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 36,
+                    "body": "@desktest12 Infection crazy fungus telescope soy magic everyone high movies almond recommended movies automobile eastern bicycle basketball",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:50Z",
+                    "updated_at": "2014-11-07T00:36:50Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/36",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/46",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 37,
+                    "body": "@desktest12 To the cages elephant fish exploration internet northern ship bats comics kitten wheel is company dead is where amphibian leaf b",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:50Z",
+                    "updated_at": "2014-11-07T00:36:50Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/37",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/47",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 38,
+                    "body": "@desktest12 Movies cage animal disturb leaves coconut chess how going is the glass company doing crazy disturb leaf company name high soy do",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:50Z",
+                    "updated_at": "2014-11-07T00:36:50Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/38",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/48",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 18,
+                    "body": "@desktest12 Thanks so much for your taking the time to share your feedback with us.",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:44Z",
+                    "updated_at": "2014-11-07T00:36:44Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "mention",
+                    "to": null,
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/18",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/28",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 39,
+                    "body": "@desktest12 Lion cage cars trees you dyes deer whale western book is mail leaves fungus horror problems comics walked mirror active rejected",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:51Z",
+                    "updated_at": "2014-11-07T00:36:51Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/39",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/49",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }, {
+                    "id": 40,
+                    "body": "@desktest12 Bark motorcycle torch space dog zombies infection everyone history coughing bacteria animation lion western walked tigers bear b",
+                    "direction": "in",
+                    "status": "received",
+                    "created_at": "2014-11-07T00:36:51Z",
+                    "updated_at": "2014-11-07T00:36:51Z",
+                    "erased_at": null,
+                    "sent_at": null,
+                    "type": "dm",
+                    "to": "desktest12",
+                    "from": "deskamzad",
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1/tweets/40",
+                    "class": "tweet"
+                    },
+                    "case": {
+                    "href": "/api/v2/cases/50",
+                    "class": "case"
+                    },
+                    "customer": {
+                    "href": "/api/v2/customers/10",
+                    "class": "customer"
+                    },
+                    "sent_by": null,
+                    "twitter_account": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "erased_by": null,
+                    "retweeted_by": null,
+                    "favorited_by": null
+                    }
+                    }]
+    }
+}

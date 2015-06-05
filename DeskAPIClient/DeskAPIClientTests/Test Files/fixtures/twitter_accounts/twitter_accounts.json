@@ -1,0 +1,68 @@
+{
+    "total_entries": 2,
+    "page": 1,
+    "_links": {
+        "self": {
+            "href": "/api/v2/twitter_accounts?page=1&per_page=50",
+            "class": "page"
+        },
+        "first": {
+            "href": "/api/v2/twitter_accounts?page=1&per_page=50",
+            "class": "page"
+        },
+        "last": {
+            "href": "/api/v2/twitter_accounts?page=1&per_page=50",
+            "class": "page"
+        },
+        "previous": null,
+        "next": null
+    },
+    "_embedded": {
+        "entries": [
+                    {
+                    "id": 1,
+                    "created_at": "2014-11-07T00:36:12Z",
+                    "updated_at": "2015-01-13T01:49:01Z",
+                    "can_dm": null,
+                    "is_following_user": null,
+                    "is_followed_by_user": null,
+                    "handle": "testhandle",
+                    "name": "Test User",
+                    "profile_image": "http://pbs.twimg.com/profile_images/496397041359024128/MYNHDtfD_normal.jpeg",
+                    "enabled": true,
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/1",
+                    "class": "twitter_account"
+                    },
+                    "tweets": {
+                    "href": "/api/v2/twitter_accounts/1/tweets",
+                    "class": "tweet"
+                    }
+                    }
+                    },
+                    {
+                    "id": 2,
+                    "created_at": "2014-11-25T23:38:56Z",
+                    "updated_at": "2015-01-03T00:44:37Z",
+                    "can_dm": null,
+                    "is_following_user": null,
+                    "is_followed_by_user": null,
+                    "handle": "testhandle2",
+                    "name": "test@example.com",
+                    "profile_image": "http://pbs.twimg.com/profile_images/537388417546330112/r-CZOU2N_normal.jpeg",
+                    "enabled": false,
+                    "_links": {
+                    "self": {
+                    "href": "/api/v2/twitter_accounts/2",
+                    "class": "twitter_account"
+                    },
+                    "tweets": {
+                    "href": "/api/v2/twitter_accounts/2/tweets",
+                    "class": "tweet"
+                    }
+                    }
+                    }
+                    ]
+    }
+}

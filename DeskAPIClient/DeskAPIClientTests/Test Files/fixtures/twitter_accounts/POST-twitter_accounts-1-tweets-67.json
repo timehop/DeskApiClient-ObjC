@@ -1,0 +1,27 @@
+{
+    "id": 67,
+    "body": "test from api",
+    "direction": "out",
+    "status": "pending",
+    "created_at": "2015-01-13T14:26:37Z",
+    "updated_at": "2015-01-13T14:26:37Z",
+    "erased_at": null,
+    "sent_at": null,
+    "type": "mention",
+    "to": null,
+    "from": "desktest12",
+    "_links": {
+        "self": {
+            "href": "/api/v2/twitter_accounts/1/tweets/67",
+            "class": "tweet"
+        },
+        "sent_by": null,
+        "twitter_account": {
+            "href": "/api/v2/twitter_accounts/1",
+            "class": "twitter_account"
+        },
+        "erased_by": null,
+        "retweeted_by": null,
+        "favorited_by": null
+    }
+}

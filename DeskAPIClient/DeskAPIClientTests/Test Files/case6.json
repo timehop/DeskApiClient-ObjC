@@ -1,0 +1,137 @@
+{
+    "id": 6,
+    "external_id": null,
+    "blurb": "testuser console  Nov  5 22:47 \r\ntestuser ttys000  Nov  5 22:47 \r\ntestuser ttys001  Nov  5 22:47 \r\ntestuser ttys002  Nov  5 22:47 \r\ntestuser ttys003  Nov  5 22:47 \r\ntestuser ttys004  Nov  5 22:47 ",
+    "priority": 4,
+    "locked_until": null,
+    "label_ids": [],
+    "active_at": "2014-11-12T19:06:21Z",
+    "changed_at": "2014-11-12T18:47:59Z",
+    "created_at": "2014-11-07T00:10:20Z",
+    "updated_at": "2014-11-12T19:11:39Z",
+    "first_opened_at": null,
+    "opened_at": null,
+    "first_resolved_at": null,
+    "resolved_at": null,
+    "status": "pending",
+    "description": null,
+    "language": null,
+    "received_at": "2014-11-07T00:10:20Z",
+    "type": "email",
+    "labels": [],
+    "subject": "Mobile testing (email1) Support Cases from macbooks",
+    "custom_fields": {
+        "color": null,
+        "date": null,
+        "type": null,
+        "number": null,
+        "true_false": null
+    },
+    "_links": {
+        "self": {
+            "href": "/api/v2/cases/6",
+            "class": "case"
+        },
+        "message": {
+            "href": "/api/v2/cases/6/message",
+            "class": "email"
+        },
+        "customer": {
+            "href": "/api/v2/customers/9",
+            "class": "customer"
+        },
+        "labels": {
+            "href": "/api/v2/cases/6/labels",
+            "class": "label"
+        },
+        "assigned_user": null,
+        "assigned_group": {
+            "href": "/api/v2/groups/1",
+            "class": "group"
+        },
+        "locked_by": null,
+        "history": {
+            "href": "/api/v2/cases/6/history",
+            "class": "history"
+        },
+        "case_links": {
+            "href": "/api/v2/cases/6/links",
+            "class": "case_link"
+        },
+        "macro_preview": {
+            "href": "/api/v2/cases/6/macros/preview",
+            "class": "macro_preview"
+        },
+        "replies": {
+            "href": "/api/v2/cases/6/replies",
+            "class": "reply",
+            "count": 2
+        },
+        "draft": {
+            "href": "/api/v2/cases/6/replies/draft",
+            "class": "reply"
+        },
+        "notes": {
+            "href": "/api/v2/cases/6/notes",
+            "class": "note",
+            "count": 0
+        },
+        "attachments": {
+            "href": "/api/v2/cases/6/attachments",
+            "class": "attachment",
+            "count": 47
+        }
+    },
+    "_embedded": {
+        "customer": {
+            "id": 9,
+            "first_name": "Test",
+            "last_name": "User",
+            "company": "Testuser Company",
+            "title": null,
+            "external_id": null,
+            "locked_until": null,
+            "created_at": "2014-11-06T23:54:47Z",
+            "updated_at": "2014-11-06T23:54:48Z",
+            "background": null,
+            "language": null,
+            "access_private_portal": true,
+            "access_company_cases": false,
+            "avatar": "http://www.gravatar.com/avatar/4ff561e01f5a9084d14585114975f5cc?default=404&rating=PG&size=50",
+            "uid": null,
+            "custom_fields": {
+                "list": null,
+                "text": null,
+                "size": null,
+                "date": null,
+                "true_false": null
+            },
+            "emails": [
+                       {
+                       "type": "home",
+                       "value": "testuser@example.com"
+                       }
+                       ],
+            "phone_numbers": [],
+            "addresses": [],
+            "_links": {
+                "self": {
+                    "href": "/api/v2/customers/9",
+                    "class": "customer"
+                },
+                "locked_by": null,
+                "company": {
+                    "href": "/api/v2/companies/5",
+                    "class": "company"
+                },
+                "facebook_user": null,
+                "twitter_user": null,
+                "cases": {
+                    "href": "/api/v2/customers/9/cases",
+                    "class": "case",
+                    "count": 331
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "color": "orange",
+    "name": "created from API",
+    "types": [
+              "case",
+              "macro"
+              ],
+    "enabled": true,
+    "description": null
+}

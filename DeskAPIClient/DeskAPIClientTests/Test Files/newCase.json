@@ -1,0 +1,19 @@
+{
+    "type": "email",
+    "subject": "Creating a case via the API",
+    "_links": {
+        "customer": {
+            "href": "/api/v2/customers/10",
+            "class": "customer"
+        }
+    },
+    "message": {
+        "direction": "in",
+        "to": "someone@example.com",
+        "from": "someone-else@example.com",
+        "cc": "alpha@example.com",
+        "bcc": "beta@example.com",
+        "subject": "Creating a case via the API",
+        "body": "Please assist me with this case"
+    }
+}

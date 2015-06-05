@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E2E2F2B9-4FD0-4976-B5CE-37D0F58A0E3F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>DeskAPIClient</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6C54B383-B487-4DC8-9155-F3608190BDDC</key>
+		<string>ssh://github.com/assistly/desk-api-client-objc.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>DeskAPIClient.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6C54B383-B487-4DC8-9155-F3608190BDDC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/assistly/desk-api-client-objc.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6C54B383-B487-4DC8-9155-F3608190BDDC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6C54B383-B487-4DC8-9155-F3608190BDDC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DeskAPIClient</string>
+		</dict>
+	</array>
+</dict>
+</plist>

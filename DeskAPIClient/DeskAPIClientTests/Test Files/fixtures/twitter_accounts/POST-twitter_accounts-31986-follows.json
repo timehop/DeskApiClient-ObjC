@@ -1,0 +1,1 @@
+{"handle":"foo","can_direct_message":true,"_links":{"self":{"href":"/api/v2/twitter_accounts/31986/follows/foo","class":"twitter_follow"},"twitter_account":{"href":"/api/v2/twitter_accounts/31986","class":"twitter_account"},"twitter_user":{"href":"/api/v2/twitter_users/8941720","class":"twitter_user"}}}

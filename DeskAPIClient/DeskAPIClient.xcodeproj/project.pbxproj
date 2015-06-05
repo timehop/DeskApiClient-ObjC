@@ -1,0 +1,1303 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		1C7B8DBE1A6425EC005ED4A8 /* Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 1C7B8DBF1A6425EC005ED4A8 /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildPhases = (
+				1C7B8DC41A642622005ED4A8 /* Build Framework */,
+			);
+			dependencies = (
+				1CA360C01A6558F6001F61C0 /* PBXTargetDependency */,
+			);
+			name = Framework;
+			productName = Framework;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		0151060FA7FE4EE4839EFBAB /* libPods-DeskAPIClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C379B08E1724939AF847EA7 /* libPods-DeskAPIClientTests.a */; };
+		1C07A54E1864C4DE008056B5 /* case41repliespageone.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C07A54D1864C4DE008056B5 /* case41repliespageone.json */; };
+		1C07A5571864DA5B008056B5 /* DSAPIETagCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C07A5561864DA5B008056B5 /* DSAPIETagCache.m */; };
+		1C1FF03917F12ABD00484D80 /* newCase.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C1FF03817F12ABD00484D80 /* newCase.json */; };
+		1C1FF03B17F1314C00484D80 /* updateCase.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C1FF03A17F1314C00484D80 /* updateCase.json */; };
+		1C1FF03D17F1E86D00484D80 /* newReply.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C1FF03C17F1E86D00484D80 /* newReply.json */; };
+		1C28760F17EBF27D004B4CBF /* DSAPILink.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28760E17EBF27D004B4CBF /* DSAPILink.m */; };
+		1C28761217EBF72B004B4CBF /* case6.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C28761117EBF72B004B4CBF /* case6.json */; };
+		1C28761517ED2F0C004B4CBF /* DSAPIResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28761417ED2F0C004B4CBF /* DSAPIResource.m */; };
+		1C28761A17F0748F004B4CBF /* case41replies.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C28761917F07388004B4CBF /* case41replies.json */; };
+		1C28762317F09AFF004B4CBF /* NSDictionary+DSAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28762217F09AFF004B4CBF /* NSDictionary+DSAPI.m */; };
+		1C2D68B3192F99720076A434 /* DSAPISiteSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2D68B2192F99720076A434 /* DSAPISiteSetting.m */; };
+		1C316D7417E9533900ACA543 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C316D7317E9533900ACA543 /* Foundation.framework */; };
+		1C316D7B17E9533900ACA543 /* DSAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C316D7A17E9533900ACA543 /* DSAPIClient.m */; };
+		1C316D8217E9533900ACA543 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C316D8117E9533900ACA543 /* XCTest.framework */; };
+		1C316D8317E9533900ACA543 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C316D7317E9533900ACA543 /* Foundation.framework */; };
+		1C316D8517E9533900ACA543 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C316D8417E9533900ACA543 /* UIKit.framework */; };
+		1C316D8E17E9533900ACA543 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C316D8C17E9533900ACA543 /* InfoPlist.strings */; };
+		1C316D9017E9533900ACA543 /* DSAPIClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C316D8F17E9533900ACA543 /* DSAPIClientTests.m */; };
+		1C399F8A1A6472A0004366DF /* DSAPIURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C399F881A6472A0004366DF /* DSAPIURLRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C399F8B1A6472A0004366DF /* DSAPIURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C399F891A6472A0004366DF /* DSAPIURLRequestSerialization.m */; };
+		1C399F8E1A64735D004366DF /* DSAPIURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C399F8C1A64735D004366DF /* DSAPIURLResponseSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C399F8F1A64735D004366DF /* DSAPIURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C399F8D1A64735D004366DF /* DSAPIURLResponseSerialization.m */; };
+		1C399F901A6474B2004366DF /* DSAPIRequestSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4DA76A180A338A00E3B7B2 /* DSAPIRequestSerializerTests.m */; };
+		1C399F911A6474CE004366DF /* DSAPIOAuthClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE54205180C475200550D35 /* DSAPIOAuthClientTests.m */; };
+		1C399F931A647FE3004366DF /* DSAPIResourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28761717ED2F27004B4CBF /* DSAPIResourceTests.m */; };
+		1C399F941A648C20004366DF /* DSAPICaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0EC9917F2456400901969 /* DSAPICaseTests.m */; };
+		1C399F951A648C20004366DF /* DSAPIInteractionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECC617F330B200901969 /* DSAPIInteractionTests.m */; };
+		1C399F961A648C20004366DF /* DSAPINoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECA417F32A1A00901969 /* DSAPINoteTests.m */; };
+		1C399F971A648C20004366DF /* DSAPIAttachmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECCB17F338A800901969 /* DSAPIAttachmentTests.m */; };
+		1C399F981A648C20004366DF /* DSAPIFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECCF17F378EF00901969 /* DSAPIFilterTests.m */; };
+		1C399F991A648C20004366DF /* DSAPIUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF4484717FDFD1B009FED5A /* DSAPIUserTests.m */; };
+		1C399F9A1A648C20004366DF /* DSAPIUserPreferenceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF4484C17FE056E009FED5A /* DSAPIUserPreferenceTests.m */; };
+		1C399F9B1A648C20004366DF /* DSAPILabelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC438D8182AE1CC00FB046C /* DSAPILabelTests.m */; };
+		1C399F9C1A648C20004366DF /* DSAPIGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C880A5C183137F9001075B8 /* DSAPIGroupTests.m */; };
+		1C399F9D1A648C20004366DF /* DSAPIMacroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA824391896FEB100C7DF54 /* DSAPIMacroTests.m */; };
+		1C399F9E1A648C20004366DF /* DSAPIETagCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C07A5581864DFC8008056B5 /* DSAPIETagCacheTests.m */; };
+		1C399F9F1A648C20004366DF /* DSAPICustomerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA5A0618A1868800B01729 /* DSAPICustomerTests.m */; };
+		1C399FA01A648C20004366DF /* DSAPIFacebookUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E125118ABB9C700666DE4 /* DSAPIFacebookUserTests.m */; };
+		1C399FA11A648C20004366DF /* DSAPITwitterUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E125318ABBA9000666DE4 /* DSAPITwitterUserTests.m */; };
+		1C399FA21A648C20004366DF /* DSAPICustomFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E128618AC000100666DE4 /* DSAPICustomFieldTests.m */; };
+		1C399FA31A648C20004366DF /* DSAPIMobileDeviceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3D462518F0F9B000389AEB /* DSAPIMobileDeviceTests.m */; };
+		1C399FA41A648C20004366DF /* DSAPITwitterAccountTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4575741922B5ED00C08B7A /* DSAPITwitterAccountTests.m */; };
+		1C399FA51A648C20004366DF /* DSAPISiteSettingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C2D68B4192F9C1E0076A434 /* DSAPISiteSettingTests.m */; };
+		1C399FA61A648C20004366DF /* DSAPIMailboxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE60127195895DF00DD8DF9 /* DSAPIMailboxTests.m */; };
+		1C399FA71A648C20004366DF /* DSAPIJobsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBC6FB1196B4B6E00E763E1 /* DSAPIJobsTests.m */; };
+		1C399FA81A648C20004366DF /* DSAPICompanyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C714CE1199E64F3000BAB60 /* DSAPICompanyTests.m */; };
+		1C399FA91A648C20004366DF /* DSAPITopicsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFFB06819B6126100683B6C /* DSAPITopicsTests.m */; };
+		1C399FAA1A648C20004366DF /* DSAPIArticleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2C4CC519B8EB1E00565E65 /* DSAPIArticleTests.m */; };
+		1C399FAB1A648C20004366DF /* DSAPISiteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4947431A11521200D81AF7 /* DSAPISiteTests.m */; };
+		1C399FAC1A648C20004366DF /* DSAPIBrandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0482A81A3209B700DBF660 /* DSAPIBrandTests.m */; };
+		1C399FAD1A648C20004366DF /* DSAPILinkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28760B17EBF25B004B4CBF /* DSAPILinkTests.m */; };
+		1C399FAE1A648C20004366DF /* DSAPIPageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C443E5118217880003F4B73 /* DSAPIPageTests.m */; };
+		1C399FB01A648CF0004366DF /* DSAPITestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C399FAF1A648CF0004366DF /* DSAPITestCase.m */; };
+		1C3D462418EF290400389AEB /* DSAPIMobileDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3D462318EF290400389AEB /* DSAPIMobileDevice.m */; };
+		1C3D462918F0FD8A00389AEB /* DSAPIMobileDeviceSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3D462818F0FD8A00389AEB /* DSAPIMobileDeviceSetting.m */; };
+		1C443E50182177E1003F4B73 /* DSAPIPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C443E4F182177E1003F4B73 /* DSAPIPage.m */; };
+		1C4575731922B2C300C08B7A /* DSAPITwitterAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4575721922B2C300C08B7A /* DSAPITwitterAccount.m */; };
+		1C46BBAE19254D6A00D812AE /* DSAPIPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C46BBAD19254D6A00D812AE /* DSAPIPermission.m */; };
+		1C4DA76D180A507100E3B7B2 /* DeskAPIAuth-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C4DA76C180A507100E3B7B2 /* DeskAPIAuth-Info.plist */; };
+		1C64C2341A44BB4E006C5755 /* twitter_accounts-31986-follows-desk.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C64C2331A44BB4E006C5755 /* twitter_accounts-31986-follows-desk.json */; };
+		1C64C2361A44BD8F006C5755 /* twitter_accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C64C2351A44BD8F006C5755 /* twitter_accounts.json */; };
+		1C64C2381A44BFD2006C5755 /* POST-twitter_accounts-31986-follows.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C64C2371A44BFD2006C5755 /* POST-twitter_accounts-31986-follows.json */; };
+		1C66A32C1A31FE2C00E694D2 /* DSAPIBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C66A32B1A31FE2C00E694D2 /* DSAPIBrand.m */; };
+		1C6E124918ABB66500666DE4 /* DSAPIFacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E124618ABB66500666DE4 /* DSAPIFacebookUser.m */; };
+		1C6E124A18ABB66500666DE4 /* DSAPITwitterUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E124818ABB66500666DE4 /* DSAPITwitterUser.m */; };
+		1C6E128518ABFF0600666DE4 /* DSAPICustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E128418ABFF0600666DE4 /* DSAPICustomField.m */; };
+		1C714CE0199E6377000BAB60 /* DSAPICompany.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C714CDF199E6377000BAB60 /* DSAPICompany.m */; };
+		1C7B8D901A642277005ED4A8 /* DSAPIModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0EC9E17F3105D00901969 /* DSAPIModels.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D911A642277005ED4A8 /* DSAPICase.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0EC8D17F23B7200901969 /* DSAPICase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D921A642277005ED4A8 /* DSAPICustomer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0EC9B17F3102400901969 /* DSAPICustomer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D931A642277005ED4A8 /* DSAPIFacebookUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6E124518ABB66500666DE4 /* DSAPIFacebookUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D941A642277005ED4A8 /* DSAPITwitterUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6E124718ABB66500666DE4 /* DSAPITwitterUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D951A642277005ED4A8 /* DSAPINote.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECA117F3293000901969 /* DSAPINote.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D961A642277005ED4A8 /* DSAPIInteraction.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECAB17F32FA500901969 /* DSAPIInteraction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D971A642277005ED4A8 /* DSAPIChatMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB117F32FF200901969 /* DSAPIChatMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D981A642277005ED4A8 /* DSAPITweet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB417F3302A00901969 /* DSAPITweet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D991A642277005ED4A8 /* DSAPIEmail.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECB717F3305300901969 /* DSAPIEmail.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D9A1A642277005ED4A8 /* DSAPICommunityAnswer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECBA17F3306300901969 /* DSAPICommunityAnswer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D9B1A642277005ED4A8 /* DSAPIFacebookComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECC017F3308400901969 /* DSAPIFacebookComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D9C1A642277005ED4A8 /* DSAPIPhoneCall.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECC317F3309100901969 /* DSAPIPhoneCall.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D9D1A642277005ED4A8 /* DSAPIAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECC817F3384900901969 /* DSAPIAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D9E1A642277005ED4A8 /* DSAPIFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF0ECD117F379B200901969 /* DSAPIFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8D9F1A642277005ED4A8 /* DSAPIUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF4484417FDFCA4009FED5A /* DSAPIUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DA01A642277005ED4A8 /* DSAPIUserPreference.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF4484917FE017E009FED5A /* DSAPIUserPreference.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DA11A642277005ED4A8 /* DSAPILabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CC438DA182AE36400FB046C /* DSAPILabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DA21A642277005ED4A8 /* DSAPIGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C880A6118313885001075B8 /* DSAPIGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DA31A642277005ED4A8 /* DSAPIMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CA824361896FD9E00C7DF54 /* DSAPIMacro.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DA41A642277005ED4A8 /* DSAPIMacroAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CA8243D18971FB900C7DF54 /* DSAPIMacroAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DA51A642277005ED4A8 /* DSAPICustomField.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6E128318ABFF0600666DE4 /* DSAPICustomField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DA61A642277005ED4A8 /* DSAPIMobileDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C3D462218EF290400389AEB /* DSAPIMobileDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DA71A642277005ED4A8 /* DSAPIMobileDeviceSetting.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C3D462718F0FD8A00389AEB /* DSAPIMobileDeviceSetting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DA81A642277005ED4A8 /* DSAPITwitterAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C4575711922B2C300C08B7A /* DSAPITwitterAccount.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DA91A642277005ED4A8 /* DSAPIPermission.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C46BBAC19254D6A00D812AE /* DSAPIPermission.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DAA1A642278005ED4A8 /* DSAPISiteSetting.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C2D68B1192F99720076A434 /* DSAPISiteSetting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DAB1A642278005ED4A8 /* DSAPIMailbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CE601241958827C00DD8DF9 /* DSAPIMailbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DAC1A642278005ED4A8 /* DSAPITwitterFollow.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CEA9A0D1961EA1E00D7473A /* DSAPITwitterFollow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DAD1A642278005ED4A8 /* DSAPIJob.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CBC6FAE196B4A8E00E763E1 /* DSAPIJob.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DAE1A642278005ED4A8 /* DSAPICompany.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C714CDE199E6377000BAB60 /* DSAPICompany.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DAF1A642278005ED4A8 /* DSAPITopic.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DFFB06519B60D1A00683B6C /* DSAPITopic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DB01A642278005ED4A8 /* DSAPIArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D2C4CC219B8D77200565E65 /* DSAPIArticle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DB11A642278005ED4A8 /* DSAPISite.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D4947421A114F9A00D81AF7 /* DSAPISite.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DB21A642278005ED4A8 /* DSAPIBilling.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CFCA36D1A23E0D3000D9F61 /* DSAPIBilling.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DB31A642278005ED4A8 /* DSAPIBrand.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C66A32A1A31FE2C00E694D2 /* DSAPIBrand.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DB41A642278005ED4A8 /* DSAPITypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CB814CE1889DFB300B4ECBF /* DSAPITypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DB51A642278005ED4A8 /* DSAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C316D7817E9533900ACA543 /* DSAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DB61A642278005ED4A8 /* DSAPIETagCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C07A5551864DA5B008056B5 /* DSAPIETagCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DB71A642278005ED4A8 /* DSAPILink.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C28760D17EBF27D004B4CBF /* DSAPILink.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DB81A642278005ED4A8 /* DSAPIPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C443E4E182177E1003F4B73 /* DSAPIPage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DB91A642278005ED4A8 /* DSAPIResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C28761317ED2F0C004B4CBF /* DSAPIResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DBA1A64229A005ED4A8 /* NSDictionary+DSAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C28762117F09AFF004B4CBF /* NSDictionary+DSAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8DBC1A6423A5005ED4A8 /* DeskAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C7B8DBB1A642351005ED4A8 /* DeskAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C7B8E0C1A64710A005ED4A8 /* DSAPITestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28762517F0CE04004B4CBF /* DSAPITestUtils.m */; };
+		1C880A6318313885001075B8 /* DSAPIGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C880A6218313885001075B8 /* DSAPIGroup.m */; };
+		1C94BC5D17EA2003003BA153 /* libDeskAPIClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C316D7017E9533900ACA543 /* libDeskAPIClient.a */; };
+		1CA360BA1A64B19F001F61C0 /* twitter_accounts-1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CA360B91A64B19F001F61C0 /* twitter_accounts-1.json */; };
+		1CA360C91A6562DB001F61C0 /* POST-twitter_accounts-1-tweets-67.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CA360C81A6562DB001F61C0 /* POST-twitter_accounts-1-tweets-67.json */; };
+		1CA360CB1A6563AF001F61C0 /* twitter_accounts-1-tweets.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CA360CA1A6563AF001F61C0 /* twitter_accounts-1-tweets.json */; };
+		1CA360CD1A6564B2001F61C0 /* twitter_accounts-1-tweets-45.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CA360CC1A6564B2001F61C0 /* twitter_accounts-1-tweets-45.json */; };
+		1CA824381896FD9E00C7DF54 /* DSAPIMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA824371896FD9E00C7DF54 /* DSAPIMacro.m */; };
+		1CA8243C189719E200C7DF54 /* newMacro.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CA8243B189719E200C7DF54 /* newMacro.json */; };
+		1CA8243F18971FB900C7DF54 /* DSAPIMacroAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA8243E18971FB900C7DF54 /* DSAPIMacroAction.m */; };
+		1CBC6FB0196B4A8E00E763E1 /* DSAPIJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CBC6FAF196B4A8E00E763E1 /* DSAPIJob.m */; };
+		1CC438DC182AE36400FB046C /* DSAPILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC438DB182AE36400FB046C /* DSAPILabel.m */; };
+		1CC438DE182AE8F000FB046C /* newLabel.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CC438DD182AE8F000FB046C /* newLabel.json */; };
+		1CC438E0182AE92E00FB046C /* updateLabel.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CC438DF182AE92E00FB046C /* updateLabel.json */; };
+		1CCA5A0918A189D600B01729 /* newCustomer.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CCA5A0818A189D600B01729 /* newCustomer.json */; };
+		1CCA5A0B18A18B7100B01729 /* updateCustomer.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CCA5A0A18A18B7100B01729 /* updateCustomer.json */; };
+		1CDBDF7A1A78191A00582BE2 /* DSAPIListProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBDF781A78191A00582BE2 /* DSAPIListProvider.h */; };
+		1CDBDF7B1A78191A00582BE2 /* DSAPIListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBDF791A78191A00582BE2 /* DSAPIListProvider.m */; };
+		1CDBDF7D1A781F7500582BE2 /* DSAPIListProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBDF7C1A781F7500582BE2 /* DSAPIListProviderTests.m */; };
+		1CDBDF801A78222B00582BE2 /* topics.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CDBDF7F1A78222B00582BE2 /* topics.json */; };
+		1CE2A2191ADEA7C90067F682 /* DSAPIPermissionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2A2181ADEA7C90067F682 /* DSAPIPermissionTests.m */; };
+		1CE601261958827C00DD8DF9 /* DSAPIMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE601251958827C00DD8DF9 /* DSAPIMailbox.m */; };
+		1CE9D56E1811CAA300DFAFCD /* casesWithMessages.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CE9D56D1811CAA300DFAFCD /* casesWithMessages.json */; };
+		1CEA9A0F1961EA1E00D7473A /* DSAPITwitterFollow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CEA9A0E1961EA1E00D7473A /* DSAPITwitterFollow.m */; };
+		1CEDA0C91A65652D0065C885 /* POST-twitter_accounts-1-tweets-45-retweet.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CEDA0C81A65652D0065C885 /* POST-twitter_accounts-1-tweets-45-retweet.json */; };
+		1CF0EC8F17F23B7200901969 /* DSAPICase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0EC8E17F23B7200901969 /* DSAPICase.m */; };
+		1CF0EC9D17F3102400901969 /* DSAPICustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0EC9C17F3102400901969 /* DSAPICustomer.m */; };
+		1CF0ECA317F3293000901969 /* DSAPINote.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECA217F3293000901969 /* DSAPINote.m */; };
+		1CF0ECA717F32D0C00901969 /* newNote.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CF0ECA617F32D0C00901969 /* newNote.json */; };
+		1CF0ECAD17F32FA500901969 /* DSAPIInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECAC17F32FA500901969 /* DSAPIInteraction.m */; };
+		1CF0ECB317F32FF200901969 /* DSAPIChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECB217F32FF200901969 /* DSAPIChatMessage.m */; };
+		1CF0ECB617F3302A00901969 /* DSAPITweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECB517F3302A00901969 /* DSAPITweet.m */; };
+		1CF0ECB917F3305300901969 /* DSAPIEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECB817F3305300901969 /* DSAPIEmail.m */; };
+		1CF0ECBC17F3306300901969 /* DSAPICommunityAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECBB17F3306300901969 /* DSAPICommunityAnswer.m */; };
+		1CF0ECC217F3308400901969 /* DSAPIFacebookComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECC117F3308400901969 /* DSAPIFacebookComment.m */; };
+		1CF0ECC517F3309100901969 /* DSAPIPhoneCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECC417F3309100901969 /* DSAPIPhoneCall.m */; };
+		1CF0ECCA17F3384900901969 /* DSAPIAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECC917F3384900901969 /* DSAPIAttachment.m */; };
+		1CF0ECCE17F33F4B00901969 /* newAttachment.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CF0ECCD17F33F4B00901969 /* newAttachment.json */; };
+		1CF0ECD317F379B200901969 /* DSAPIFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF0ECD217F379B200901969 /* DSAPIFilter.m */; };
+		1CF4484617FDFCA4009FED5A /* DSAPIUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF4484517FDFCA4009FED5A /* DSAPIUser.m */; };
+		1CF4484B17FE017E009FED5A /* DSAPIUserPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF4484A17FE017E009FED5A /* DSAPIUserPreference.m */; };
+		1CFCA36F1A23E0D3000D9F61 /* DSAPIBilling.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFCA36E1A23E0D3000D9F61 /* DSAPIBilling.m */; };
+		2D2C4CC419B8D77200565E65 /* DSAPIArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2C4CC319B8D77200565E65 /* DSAPIArticle.m */; };
+		2D4947411A114F5E00D81AF7 /* DSAPISite.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4947401A114F5E00D81AF7 /* DSAPISite.m */; };
+		2DFFB06719B60D1A00683B6C /* DSAPITopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFFB06619B60D1A00683B6C /* DSAPITopic.m */; };
+		3E223CA44C6A4C4380497DB7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B9E55B55FA489EA70BB35A /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1C316D8617E9533900ACA543 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C316D6817E9533900ACA543 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1C316D6F17E9533900ACA543;
+			remoteInfo = DeskAPIClient;
+		};
+		1CA360BF1A6558F6001F61C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C316D6817E9533900ACA543 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1C316D6F17E9533900ACA543;
+			remoteInfo = DeskAPIClient;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		035EC54787927BFFC627F045 /* Pods-DeskAPIClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1C0482A81A3209B700DBF660 /* DSAPIBrandTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIBrandTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C07A54D1864C4DE008056B5 /* case41repliespageone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = case41repliespageone.json; sourceTree = "<group>"; };
+		1C07A5551864DA5B008056B5 /* DSAPIETagCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIETagCache.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1C07A5561864DA5B008056B5 /* DSAPIETagCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIETagCache.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C07A5581864DFC8008056B5 /* DSAPIETagCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIETagCacheTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C1FF03817F12ABD00484D80 /* newCase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; lineEnding = 0; path = newCase.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		1C1FF03A17F1314C00484D80 /* updateCase.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = updateCase.json; sourceTree = "<group>"; };
+		1C1FF03C17F1E86D00484D80 /* newReply.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newReply.json; sourceTree = "<group>"; };
+		1C28760B17EBF25B004B4CBF /* DSAPILinkTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPILinkTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C28760D17EBF27D004B4CBF /* DSAPILink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPILink.h; sourceTree = "<group>"; };
+		1C28760E17EBF27D004B4CBF /* DSAPILink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPILink.m; sourceTree = "<group>"; };
+		1C28761117EBF72B004B4CBF /* case6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = case6.json; sourceTree = "<group>"; };
+		1C28761317ED2F0C004B4CBF /* DSAPIResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIResource.h; sourceTree = "<group>"; };
+		1C28761417ED2F0C004B4CBF /* DSAPIResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIResource.m; sourceTree = "<group>"; };
+		1C28761717ED2F27004B4CBF /* DSAPIResourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIResourceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C28761917F07388004B4CBF /* case41replies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = case41replies.json; sourceTree = "<group>"; };
+		1C28762117F09AFF004B4CBF /* NSDictionary+DSAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSDictionary+DSAPI.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1C28762217F09AFF004B4CBF /* NSDictionary+DSAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSDictionary+DSAPI.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C28762417F0CE04004B4CBF /* DSAPITestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPITestUtils.h; sourceTree = "<group>"; };
+		1C28762517F0CE04004B4CBF /* DSAPITestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPITestUtils.m; sourceTree = "<group>"; };
+		1C2D68B1192F99720076A434 /* DSAPISiteSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPISiteSetting.h; sourceTree = "<group>"; };
+		1C2D68B2192F99720076A434 /* DSAPISiteSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPISiteSetting.m; sourceTree = "<group>"; };
+		1C2D68B4192F9C1E0076A434 /* DSAPISiteSettingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPISiteSettingTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C316D7017E9533900ACA543 /* libDeskAPIClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDeskAPIClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C316D7317E9533900ACA543 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1C316D7717E9533900ACA543 /* DeskAPIClient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeskAPIClient-Prefix.pch"; sourceTree = "<group>"; };
+		1C316D7817E9533900ACA543 /* DSAPIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIClient.h; sourceTree = "<group>"; };
+		1C316D7A17E9533900ACA543 /* DSAPIClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIClient.m; sourceTree = "<group>"; };
+		1C316D8017E9533900ACA543 /* DeskAPIClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeskAPIClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C316D8117E9533900ACA543 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = System/Library/Frameworks/XCTest.framework; sourceTree = SDKROOT; };
+		1C316D8417E9533900ACA543 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1C316D8B17E9533900ACA543 /* DeskAPIClientTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DeskAPIClientTests-Info.plist"; sourceTree = "<group>"; };
+		1C316D8D17E9533900ACA543 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1C316D8F17E9533900ACA543 /* DSAPIClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIClientTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C399F881A6472A0004366DF /* DSAPIURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIURLRequestSerialization.h; sourceTree = "<group>"; };
+		1C399F891A6472A0004366DF /* DSAPIURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIURLRequestSerialization.m; sourceTree = "<group>"; };
+		1C399F8C1A64735D004366DF /* DSAPIURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIURLResponseSerialization.h; sourceTree = "<group>"; };
+		1C399F8D1A64735D004366DF /* DSAPIURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIURLResponseSerialization.m; sourceTree = "<group>"; };
+		1C399FAF1A648CF0004366DF /* DSAPITestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPITestCase.m; sourceTree = "<group>"; };
+		1C399FB11A64936B004366DF /* DSAPITestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSAPITestCase.h; sourceTree = "<group>"; };
+		1C3D462218EF290400389AEB /* DSAPIMobileDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIMobileDevice.h; sourceTree = "<group>"; };
+		1C3D462318EF290400389AEB /* DSAPIMobileDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIMobileDevice.m; sourceTree = "<group>"; };
+		1C3D462518F0F9B000389AEB /* DSAPIMobileDeviceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIMobileDeviceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C3D462718F0FD8A00389AEB /* DSAPIMobileDeviceSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIMobileDeviceSetting.h; sourceTree = "<group>"; };
+		1C3D462818F0FD8A00389AEB /* DSAPIMobileDeviceSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIMobileDeviceSetting.m; sourceTree = "<group>"; };
+		1C443E4E182177E1003F4B73 /* DSAPIPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIPage.h; sourceTree = "<group>"; };
+		1C443E4F182177E1003F4B73 /* DSAPIPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIPage.m; sourceTree = "<group>"; };
+		1C443E5118217880003F4B73 /* DSAPIPageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIPageTests.m; sourceTree = "<group>"; };
+		1C4575711922B2C300C08B7A /* DSAPITwitterAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPITwitterAccount.h; sourceTree = "<group>"; };
+		1C4575721922B2C300C08B7A /* DSAPITwitterAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPITwitterAccount.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C4575741922B5ED00C08B7A /* DSAPITwitterAccountTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPITwitterAccountTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C46BBAC19254D6A00D812AE /* DSAPIPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIPermission.h; sourceTree = "<group>"; };
+		1C46BBAD19254D6A00D812AE /* DSAPIPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIPermission.m; sourceTree = "<group>"; };
+		1C4DA76A180A338A00E3B7B2 /* DSAPIRequestSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIRequestSerializerTests.m; sourceTree = "<group>"; };
+		1C4DA76C180A507100E3B7B2 /* DeskAPIAuth-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DeskAPIAuth-Info.plist"; sourceTree = "<group>"; };
+		1C64C2331A44BB4E006C5755 /* twitter_accounts-31986-follows-desk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "twitter_accounts-31986-follows-desk.json"; sourceTree = "<group>"; };
+		1C64C2351A44BD8F006C5755 /* twitter_accounts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = twitter_accounts.json; sourceTree = "<group>"; };
+		1C64C2371A44BFD2006C5755 /* POST-twitter_accounts-31986-follows.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "POST-twitter_accounts-31986-follows.json"; sourceTree = "<group>"; };
+		1C66A32A1A31FE2C00E694D2 /* DSAPIBrand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIBrand.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1C66A32B1A31FE2C00E694D2 /* DSAPIBrand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIBrand.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C6E124518ABB66500666DE4 /* DSAPIFacebookUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIFacebookUser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1C6E124618ABB66500666DE4 /* DSAPIFacebookUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIFacebookUser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C6E124718ABB66500666DE4 /* DSAPITwitterUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPITwitterUser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1C6E124818ABB66500666DE4 /* DSAPITwitterUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPITwitterUser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C6E125118ABB9C700666DE4 /* DSAPIFacebookUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIFacebookUserTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C6E125318ABBA9000666DE4 /* DSAPITwitterUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPITwitterUserTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C6E128318ABFF0600666DE4 /* DSAPICustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPICustomField.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1C6E128418ABFF0600666DE4 /* DSAPICustomField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPICustomField.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C6E128618AC000100666DE4 /* DSAPICustomFieldTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPICustomFieldTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C714CDE199E6377000BAB60 /* DSAPICompany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPICompany.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1C714CDF199E6377000BAB60 /* DSAPICompany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPICompany.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C714CE1199E64F3000BAB60 /* DSAPICompanyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPICompanyTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C7B8DBB1A642351005ED4A8 /* DeskAPIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeskAPIClient.h; sourceTree = "<group>"; };
+		1C880A5C183137F9001075B8 /* DSAPIGroupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIGroupTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C880A6118313885001075B8 /* DSAPIGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIGroup.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1C880A6218313885001075B8 /* DSAPIGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIGroup.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1C94BC5E17EA2131003BA153 /* DeskAPIClientTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DeskAPIClientTests-Prefix.pch"; sourceTree = "<group>"; };
+		1CA360B91A64B19F001F61C0 /* twitter_accounts-1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "twitter_accounts-1.json"; sourceTree = "<group>"; };
+		1CA360C81A6562DB001F61C0 /* POST-twitter_accounts-1-tweets-67.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "POST-twitter_accounts-1-tweets-67.json"; sourceTree = "<group>"; };
+		1CA360CA1A6563AF001F61C0 /* twitter_accounts-1-tweets.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "twitter_accounts-1-tweets.json"; sourceTree = "<group>"; };
+		1CA360CC1A6564B2001F61C0 /* twitter_accounts-1-tweets-45.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "twitter_accounts-1-tweets-45.json"; sourceTree = "<group>"; };
+		1CA824361896FD9E00C7DF54 /* DSAPIMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIMacro.h; sourceTree = "<group>"; };
+		1CA824371896FD9E00C7DF54 /* DSAPIMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIMacro.m; sourceTree = "<group>"; };
+		1CA824391896FEB100C7DF54 /* DSAPIMacroTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIMacroTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CA8243B189719E200C7DF54 /* newMacro.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = newMacro.json; path = ../newMacro.json; sourceTree = "<group>"; };
+		1CA8243D18971FB900C7DF54 /* DSAPIMacroAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIMacroAction.h; sourceTree = "<group>"; };
+		1CA8243E18971FB900C7DF54 /* DSAPIMacroAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIMacroAction.m; sourceTree = "<group>"; };
+		1CB814CE1889DFB300B4ECBF /* DSAPITypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPITypes.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CBC6FAE196B4A8E00E763E1 /* DSAPIJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIJob.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CBC6FAF196B4A8E00E763E1 /* DSAPIJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIJob.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CBC6FB1196B4B6E00E763E1 /* DSAPIJobsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIJobsTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CC438D8182AE1CC00FB046C /* DSAPILabelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPILabelTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CC438DA182AE36400FB046C /* DSAPILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPILabel.h; sourceTree = "<group>"; };
+		1CC438DB182AE36400FB046C /* DSAPILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPILabel.m; sourceTree = "<group>"; };
+		1CC438DD182AE8F000FB046C /* newLabel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newLabel.json; sourceTree = "<group>"; };
+		1CC438DF182AE92E00FB046C /* updateLabel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = updateLabel.json; sourceTree = "<group>"; };
+		1CCA5A0618A1868800B01729 /* DSAPICustomerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPICustomerTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CCA5A0818A189D600B01729 /* newCustomer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newCustomer.json; sourceTree = "<group>"; };
+		1CCA5A0A18A18B7100B01729 /* updateCustomer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = updateCustomer.json; sourceTree = "<group>"; };
+		1CDBDF781A78191A00582BE2 /* DSAPIListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIListProvider.h; sourceTree = "<group>"; };
+		1CDBDF791A78191A00582BE2 /* DSAPIListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIListProvider.m; sourceTree = "<group>"; };
+		1CDBDF7C1A781F7500582BE2 /* DSAPIListProviderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIListProviderTests.m; sourceTree = "<group>"; };
+		1CDBDF7F1A78222B00582BE2 /* topics.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = topics.json; sourceTree = "<group>"; };
+		1CE2A2181ADEA7C90067F682 /* DSAPIPermissionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIPermissionTests.m; sourceTree = "<group>"; };
+		1CE54205180C475200550D35 /* DSAPIOAuthClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIOAuthClientTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CE601241958827C00DD8DF9 /* DSAPIMailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIMailbox.h; sourceTree = "<group>"; };
+		1CE601251958827C00DD8DF9 /* DSAPIMailbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIMailbox.m; sourceTree = "<group>"; };
+		1CE60127195895DF00DD8DF9 /* DSAPIMailboxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIMailboxTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CE9D56D1811CAA300DFAFCD /* casesWithMessages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; lineEnding = 0; path = casesWithMessages.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		1CEA9A0D1961EA1E00D7473A /* DSAPITwitterFollow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPITwitterFollow.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CEA9A0E1961EA1E00D7473A /* DSAPITwitterFollow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPITwitterFollow.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CEDA0C81A65652D0065C885 /* POST-twitter_accounts-1-tweets-45-retweet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "POST-twitter_accounts-1-tweets-45-retweet.json"; sourceTree = "<group>"; };
+		1CF0EC8D17F23B7200901969 /* DSAPICase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPICase.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CF0EC8E17F23B7200901969 /* DSAPICase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPICase.m; sourceTree = "<group>"; };
+		1CF0EC9917F2456400901969 /* DSAPICaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPICaseTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0EC9B17F3102400901969 /* DSAPICustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPICustomer.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CF0EC9C17F3102400901969 /* DSAPICustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPICustomer.m; sourceTree = "<group>"; };
+		1CF0EC9E17F3105D00901969 /* DSAPIModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIModels.h; sourceTree = "<group>"; };
+		1CF0ECA117F3293000901969 /* DSAPINote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPINote.h; sourceTree = "<group>"; };
+		1CF0ECA217F3293000901969 /* DSAPINote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPINote.m; sourceTree = "<group>"; };
+		1CF0ECA417F32A1A00901969 /* DSAPINoteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPINoteTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0ECA617F32D0C00901969 /* newNote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newNote.json; sourceTree = "<group>"; };
+		1CF0ECAB17F32FA500901969 /* DSAPIInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIInteraction.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CF0ECAC17F32FA500901969 /* DSAPIInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIInteraction.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0ECB117F32FF200901969 /* DSAPIChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIChatMessage.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CF0ECB217F32FF200901969 /* DSAPIChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIChatMessage.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0ECB417F3302A00901969 /* DSAPITweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPITweet.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CF0ECB517F3302A00901969 /* DSAPITweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPITweet.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0ECB717F3305300901969 /* DSAPIEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIEmail.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CF0ECB817F3305300901969 /* DSAPIEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIEmail.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0ECBA17F3306300901969 /* DSAPICommunityAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPICommunityAnswer.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CF0ECBB17F3306300901969 /* DSAPICommunityAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPICommunityAnswer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0ECC017F3308400901969 /* DSAPIFacebookComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIFacebookComment.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CF0ECC117F3308400901969 /* DSAPIFacebookComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIFacebookComment.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0ECC317F3309100901969 /* DSAPIPhoneCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIPhoneCall.h; sourceTree = "<group>"; };
+		1CF0ECC417F3309100901969 /* DSAPIPhoneCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIPhoneCall.m; sourceTree = "<group>"; };
+		1CF0ECC617F330B200901969 /* DSAPIInteractionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIInteractionTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0ECC817F3384900901969 /* DSAPIAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIAttachment.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CF0ECC917F3384900901969 /* DSAPIAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIAttachment.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0ECCB17F338A800901969 /* DSAPIAttachmentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIAttachmentTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0ECCD17F33F4B00901969 /* newAttachment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newAttachment.json; sourceTree = "<group>"; };
+		1CF0ECCF17F378EF00901969 /* DSAPIFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIFilterTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF0ECD117F379B200901969 /* DSAPIFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIFilter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CF0ECD217F379B200901969 /* DSAPIFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIFilter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF4484417FDFCA4009FED5A /* DSAPIUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIUser.h; sourceTree = "<group>"; };
+		1CF4484517FDFCA4009FED5A /* DSAPIUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIUser.m; sourceTree = "<group>"; };
+		1CF4484717FDFD1B009FED5A /* DSAPIUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIUserTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CF4484917FE017E009FED5A /* DSAPIUserPreference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPIUserPreference.h; sourceTree = "<group>"; };
+		1CF4484A17FE017E009FED5A /* DSAPIUserPreference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPIUserPreference.m; sourceTree = "<group>"; };
+		1CF4484C17FE056E009FED5A /* DSAPIUserPreferenceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIUserPreferenceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1CFCA36D1A23E0D3000D9F61 /* DSAPIBilling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIBilling.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		1CFCA36E1A23E0D3000D9F61 /* DSAPIBilling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIBilling.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		28BCE9A37E225799CA401109 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2D2C4CC219B8D77200565E65 /* DSAPIArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPIArticle.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2D2C4CC319B8D77200565E65 /* DSAPIArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIArticle.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2D2C4CC519B8EB1E00565E65 /* DSAPIArticleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPIArticleTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2D4947401A114F5E00D81AF7 /* DSAPISite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPISite.m; sourceTree = "<group>"; };
+		2D4947421A114F9A00D81AF7 /* DSAPISite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPISite.h; sourceTree = "<group>"; };
+		2D4947431A11521200D81AF7 /* DSAPISiteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPISiteTests.m; sourceTree = "<group>"; };
+		2DFFB06519B60D1A00683B6C /* DSAPITopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DSAPITopic.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2DFFB06619B60D1A00683B6C /* DSAPITopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPITopic.m; sourceTree = "<group>"; };
+		2DFFB06819B6126100683B6C /* DSAPITopicsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = DSAPITopicsTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		53502A1E49457E269F1AB62A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		8C379B08E1724939AF847EA7 /* libPods-DeskAPIClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeskAPIClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2B9E55B55FA489EA70BB35A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF67CF8B90604791B3D698D4 /* libPods-DeskAPIClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeskAPIClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7111867EB10C4223E408AFD /* Pods-DeskAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1C316D6D17E9533900ACA543 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C316D7417E9533900ACA543 /* Foundation.framework in Frameworks */,
+				3E223CA44C6A4C4380497DB7 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C316D7D17E9533900ACA543 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C94BC5D17EA2003003BA153 /* libDeskAPIClient.a in Frameworks */,
+				1C316D8217E9533900ACA543 /* XCTest.framework in Frameworks */,
+				1C316D8517E9533900ACA543 /* UIKit.framework in Frameworks */,
+				1C316D8317E9533900ACA543 /* Foundation.framework in Frameworks */,
+				0151060FA7FE4EE4839EFBAB /* libPods-DeskAPIClientTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C28761017EBF6D7004B4CBF /* Test Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C64C2311A44BAA2006C5755 /* fixtures */,
+				1C28761117EBF72B004B4CBF /* case6.json */,
+				1C28761917F07388004B4CBF /* case41replies.json */,
+				1C1FF03817F12ABD00484D80 /* newCase.json */,
+				1C1FF03A17F1314C00484D80 /* updateCase.json */,
+				1C1FF03C17F1E86D00484D80 /* newReply.json */,
+				1CF0ECA617F32D0C00901969 /* newNote.json */,
+				1CF0ECCD17F33F4B00901969 /* newAttachment.json */,
+				1CE9D56D1811CAA300DFAFCD /* casesWithMessages.json */,
+				1CC438DD182AE8F000FB046C /* newLabel.json */,
+				1CC438DF182AE92E00FB046C /* updateLabel.json */,
+				1C07A54D1864C4DE008056B5 /* case41repliespageone.json */,
+				1CA8243B189719E200C7DF54 /* newMacro.json */,
+				1CCA5A0818A189D600B01729 /* newCustomer.json */,
+				1CCA5A0A18A18B7100B01729 /* updateCustomer.json */,
+			);
+			path = "Test Files";
+			sourceTree = "<group>";
+		};
+		1C28762017F09AD9004B4CBF /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				1C28762117F09AFF004B4CBF /* NSDictionary+DSAPI.h */,
+				1C28762217F09AFF004B4CBF /* NSDictionary+DSAPI.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		1C316D6717E9533900ACA543 = {
+			isa = PBXGroup;
+			children = (
+				1C316D7517E9533900ACA543 /* DeskAPIClient */,
+				1C316D8917E9533900ACA543 /* DeskAPIClientTests */,
+				1C316D7117E9533900ACA543 /* Products */,
+				8E21734AF4294AA89EF25DBC /* Frameworks */,
+				2D15D6CAB8DD42C33348C1C7 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		1C316D7117E9533900ACA543 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1C316D7017E9533900ACA543 /* libDeskAPIClient.a */,
+				1C316D8017E9533900ACA543 /* DeskAPIClientTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1C316D7217E9533900ACA543 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C316D7317E9533900ACA543 /* Foundation.framework */,
+				1C316D8417E9533900ACA543 /* UIKit.framework */,
+				B2B9E55B55FA489EA70BB35A /* libPods.a */,
+				1C316D8117E9533900ACA543 /* XCTest.framework */,
+				8C379B08E1724939AF847EA7 /* libPods-DeskAPIClientTests.a */,
+			);
+			name = Frameworks;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		1C316D7517E9533900ACA543 /* DeskAPIClient */ = {
+			isa = PBXGroup;
+			children = (
+				1C399F921A647EC0004366DF /* Serialization */,
+				1CF0EC8C17F23B5C00901969 /* Models */,
+				1C28762017F09AD9004B4CBF /* Categories */,
+				1C7B8DBB1A642351005ED4A8 /* DeskAPIClient.h */,
+				1CB814CE1889DFB300B4ECBF /* DSAPITypes.h */,
+				1C316D7817E9533900ACA543 /* DSAPIClient.h */,
+				1C316D7A17E9533900ACA543 /* DSAPIClient.m */,
+				1C07A5551864DA5B008056B5 /* DSAPIETagCache.h */,
+				1C07A5561864DA5B008056B5 /* DSAPIETagCache.m */,
+				1C28760D17EBF27D004B4CBF /* DSAPILink.h */,
+				1C28760E17EBF27D004B4CBF /* DSAPILink.m */,
+				1C443E4E182177E1003F4B73 /* DSAPIPage.h */,
+				1C443E4F182177E1003F4B73 /* DSAPIPage.m */,
+				1C28761317ED2F0C004B4CBF /* DSAPIResource.h */,
+				1C28761417ED2F0C004B4CBF /* DSAPIResource.m */,
+				1CDBDF781A78191A00582BE2 /* DSAPIListProvider.h */,
+				1CDBDF791A78191A00582BE2 /* DSAPIListProvider.m */,
+				1C316D7617E9533900ACA543 /* Supporting Files */,
+			);
+			path = DeskAPIClient;
+			sourceTree = "<group>";
+		};
+		1C316D7617E9533900ACA543 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C316D7717E9533900ACA543 /* DeskAPIClient-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1C316D8917E9533900ACA543 /* DeskAPIClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				1C4575761922B5F500C08B7A /* Models */,
+				1C28762417F0CE04004B4CBF /* DSAPITestUtils.h */,
+				1C28762517F0CE04004B4CBF /* DSAPITestUtils.m */,
+				1C316D8F17E9533900ACA543 /* DSAPIClientTests.m */,
+				1CE54205180C475200550D35 /* DSAPIOAuthClientTests.m */,
+				1C4DA76A180A338A00E3B7B2 /* DSAPIRequestSerializerTests.m */,
+				1C28760B17EBF25B004B4CBF /* DSAPILinkTests.m */,
+				1C28761717ED2F27004B4CBF /* DSAPIResourceTests.m */,
+				1C443E5118217880003F4B73 /* DSAPIPageTests.m */,
+				1C399FB11A64936B004366DF /* DSAPITestCase.h */,
+				1C399FAF1A648CF0004366DF /* DSAPITestCase.m */,
+				1C316D7217E9533900ACA543 /* Frameworks */,
+				1C316D8A17E9533900ACA543 /* Supporting Files */,
+				1CDBDF7C1A781F7500582BE2 /* DSAPIListProviderTests.m */,
+			);
+			path = DeskAPIClientTests;
+			sourceTree = "<group>";
+		};
+		1C316D8A17E9533900ACA543 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C28761017EBF6D7004B4CBF /* Test Files */,
+				1C4DA76C180A507100E3B7B2 /* DeskAPIAuth-Info.plist */,
+				1C316D8B17E9533900ACA543 /* DeskAPIClientTests-Info.plist */,
+				1C316D8C17E9533900ACA543 /* InfoPlist.strings */,
+				1C94BC5E17EA2131003BA153 /* DeskAPIClientTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1C399F921A647EC0004366DF /* Serialization */ = {
+			isa = PBXGroup;
+			children = (
+				1C399F881A6472A0004366DF /* DSAPIURLRequestSerialization.h */,
+				1C399F891A6472A0004366DF /* DSAPIURLRequestSerialization.m */,
+				1C399F8C1A64735D004366DF /* DSAPIURLResponseSerialization.h */,
+				1C399F8D1A64735D004366DF /* DSAPIURLResponseSerialization.m */,
+			);
+			path = Serialization;
+			sourceTree = "<group>";
+		};
+		1C4575761922B5F500C08B7A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1CF0EC9917F2456400901969 /* DSAPICaseTests.m */,
+				1CF0ECC617F330B200901969 /* DSAPIInteractionTests.m */,
+				1CF0ECA417F32A1A00901969 /* DSAPINoteTests.m */,
+				1CF0ECCB17F338A800901969 /* DSAPIAttachmentTests.m */,
+				1CF0ECCF17F378EF00901969 /* DSAPIFilterTests.m */,
+				1CF4484717FDFD1B009FED5A /* DSAPIUserTests.m */,
+				1CF4484C17FE056E009FED5A /* DSAPIUserPreferenceTests.m */,
+				1CC438D8182AE1CC00FB046C /* DSAPILabelTests.m */,
+				1C880A5C183137F9001075B8 /* DSAPIGroupTests.m */,
+				1CA824391896FEB100C7DF54 /* DSAPIMacroTests.m */,
+				1C07A5581864DFC8008056B5 /* DSAPIETagCacheTests.m */,
+				1CCA5A0618A1868800B01729 /* DSAPICustomerTests.m */,
+				1C6E125118ABB9C700666DE4 /* DSAPIFacebookUserTests.m */,
+				1C6E125318ABBA9000666DE4 /* DSAPITwitterUserTests.m */,
+				1C6E128618AC000100666DE4 /* DSAPICustomFieldTests.m */,
+				1C3D462518F0F9B000389AEB /* DSAPIMobileDeviceTests.m */,
+				1C4575741922B5ED00C08B7A /* DSAPITwitterAccountTests.m */,
+				1C2D68B4192F9C1E0076A434 /* DSAPISiteSettingTests.m */,
+				1CE60127195895DF00DD8DF9 /* DSAPIMailboxTests.m */,
+				1CBC6FB1196B4B6E00E763E1 /* DSAPIJobsTests.m */,
+				1C714CE1199E64F3000BAB60 /* DSAPICompanyTests.m */,
+				2DFFB06819B6126100683B6C /* DSAPITopicsTests.m */,
+				2D2C4CC519B8EB1E00565E65 /* DSAPIArticleTests.m */,
+				2D4947431A11521200D81AF7 /* DSAPISiteTests.m */,
+				1C0482A81A3209B700DBF660 /* DSAPIBrandTests.m */,
+				1CE2A2181ADEA7C90067F682 /* DSAPIPermissionTests.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		1C64C2311A44BAA2006C5755 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				1CDBDF7E1A7821F800582BE2 /* topics */,
+				1C64C2321A44BAF3006C5755 /* twitter_accounts */,
+			);
+			name = fixtures;
+			sourceTree = "<group>";
+		};
+		1C64C2321A44BAF3006C5755 /* twitter_accounts */ = {
+			isa = PBXGroup;
+			children = (
+				1CA360C71A6562C2001F61C0 /* tweets */,
+				1C64C2351A44BD8F006C5755 /* twitter_accounts.json */,
+				1C64C2331A44BB4E006C5755 /* twitter_accounts-31986-follows-desk.json */,
+				1C64C2371A44BFD2006C5755 /* POST-twitter_accounts-31986-follows.json */,
+				1CA360B91A64B19F001F61C0 /* twitter_accounts-1.json */,
+			);
+			name = twitter_accounts;
+			path = fixtures/twitter_accounts;
+			sourceTree = "<group>";
+		};
+		1CA360C71A6562C2001F61C0 /* tweets */ = {
+			isa = PBXGroup;
+			children = (
+				1CA360C81A6562DB001F61C0 /* POST-twitter_accounts-1-tweets-67.json */,
+				1CA360CA1A6563AF001F61C0 /* twitter_accounts-1-tweets.json */,
+				1CA360CC1A6564B2001F61C0 /* twitter_accounts-1-tweets-45.json */,
+				1CEDA0C81A65652D0065C885 /* POST-twitter_accounts-1-tweets-45-retweet.json */,
+			);
+			name = tweets;
+			sourceTree = "<group>";
+		};
+		1CDBDF7E1A7821F800582BE2 /* topics */ = {
+			isa = PBXGroup;
+			children = (
+				1CDBDF7F1A78222B00582BE2 /* topics.json */,
+			);
+			name = topics;
+			path = fixtures/topics;
+			sourceTree = "<group>";
+		};
+		1CF0EC8C17F23B5C00901969 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1CF0EC9E17F3105D00901969 /* DSAPIModels.h */,
+				1CF0EC8D17F23B7200901969 /* DSAPICase.h */,
+				1CF0EC8E17F23B7200901969 /* DSAPICase.m */,
+				1CF0EC9B17F3102400901969 /* DSAPICustomer.h */,
+				1CF0EC9C17F3102400901969 /* DSAPICustomer.m */,
+				1C6E124518ABB66500666DE4 /* DSAPIFacebookUser.h */,
+				1C6E124618ABB66500666DE4 /* DSAPIFacebookUser.m */,
+				1C6E124718ABB66500666DE4 /* DSAPITwitterUser.h */,
+				1C6E124818ABB66500666DE4 /* DSAPITwitterUser.m */,
+				1CF0ECA117F3293000901969 /* DSAPINote.h */,
+				1CF0ECA217F3293000901969 /* DSAPINote.m */,
+				1CF0ECAB17F32FA500901969 /* DSAPIInteraction.h */,
+				1CF0ECAC17F32FA500901969 /* DSAPIInteraction.m */,
+				1CF0ECB117F32FF200901969 /* DSAPIChatMessage.h */,
+				1CF0ECB217F32FF200901969 /* DSAPIChatMessage.m */,
+				1CF0ECB417F3302A00901969 /* DSAPITweet.h */,
+				1CF0ECB517F3302A00901969 /* DSAPITweet.m */,
+				1CF0ECB717F3305300901969 /* DSAPIEmail.h */,
+				1CF0ECB817F3305300901969 /* DSAPIEmail.m */,
+				1CF0ECBA17F3306300901969 /* DSAPICommunityAnswer.h */,
+				1CF0ECBB17F3306300901969 /* DSAPICommunityAnswer.m */,
+				1CF0ECC017F3308400901969 /* DSAPIFacebookComment.h */,
+				1CF0ECC117F3308400901969 /* DSAPIFacebookComment.m */,
+				1CF0ECC317F3309100901969 /* DSAPIPhoneCall.h */,
+				1CF0ECC417F3309100901969 /* DSAPIPhoneCall.m */,
+				1CF0ECC817F3384900901969 /* DSAPIAttachment.h */,
+				1CF0ECC917F3384900901969 /* DSAPIAttachment.m */,
+				1CF0ECD117F379B200901969 /* DSAPIFilter.h */,
+				1CF0ECD217F379B200901969 /* DSAPIFilter.m */,
+				1CF4484417FDFCA4009FED5A /* DSAPIUser.h */,
+				1CF4484517FDFCA4009FED5A /* DSAPIUser.m */,
+				1CF4484917FE017E009FED5A /* DSAPIUserPreference.h */,
+				1CF4484A17FE017E009FED5A /* DSAPIUserPreference.m */,
+				1CC438DA182AE36400FB046C /* DSAPILabel.h */,
+				1CC438DB182AE36400FB046C /* DSAPILabel.m */,
+				1C880A6118313885001075B8 /* DSAPIGroup.h */,
+				1C880A6218313885001075B8 /* DSAPIGroup.m */,
+				1CA824361896FD9E00C7DF54 /* DSAPIMacro.h */,
+				1CA824371896FD9E00C7DF54 /* DSAPIMacro.m */,
+				1CA8243D18971FB900C7DF54 /* DSAPIMacroAction.h */,
+				1CA8243E18971FB900C7DF54 /* DSAPIMacroAction.m */,
+				1C6E128318ABFF0600666DE4 /* DSAPICustomField.h */,
+				1C6E128418ABFF0600666DE4 /* DSAPICustomField.m */,
+				1C3D462218EF290400389AEB /* DSAPIMobileDevice.h */,
+				1C3D462318EF290400389AEB /* DSAPIMobileDevice.m */,
+				1C3D462718F0FD8A00389AEB /* DSAPIMobileDeviceSetting.h */,
+				1C3D462818F0FD8A00389AEB /* DSAPIMobileDeviceSetting.m */,
+				1C4575711922B2C300C08B7A /* DSAPITwitterAccount.h */,
+				1C4575721922B2C300C08B7A /* DSAPITwitterAccount.m */,
+				1C46BBAC19254D6A00D812AE /* DSAPIPermission.h */,
+				1C46BBAD19254D6A00D812AE /* DSAPIPermission.m */,
+				1C2D68B1192F99720076A434 /* DSAPISiteSetting.h */,
+				1C2D68B2192F99720076A434 /* DSAPISiteSetting.m */,
+				1CE601241958827C00DD8DF9 /* DSAPIMailbox.h */,
+				1CE601251958827C00DD8DF9 /* DSAPIMailbox.m */,
+				1CEA9A0D1961EA1E00D7473A /* DSAPITwitterFollow.h */,
+				1CEA9A0E1961EA1E00D7473A /* DSAPITwitterFollow.m */,
+				1CBC6FAE196B4A8E00E763E1 /* DSAPIJob.h */,
+				1CBC6FAF196B4A8E00E763E1 /* DSAPIJob.m */,
+				1C714CDE199E6377000BAB60 /* DSAPICompany.h */,
+				1C714CDF199E6377000BAB60 /* DSAPICompany.m */,
+				2DFFB06519B60D1A00683B6C /* DSAPITopic.h */,
+				2DFFB06619B60D1A00683B6C /* DSAPITopic.m */,
+				2D2C4CC219B8D77200565E65 /* DSAPIArticle.h */,
+				2D2C4CC319B8D77200565E65 /* DSAPIArticle.m */,
+				2D4947421A114F9A00D81AF7 /* DSAPISite.h */,
+				2D4947401A114F5E00D81AF7 /* DSAPISite.m */,
+				1CFCA36D1A23E0D3000D9F61 /* DSAPIBilling.h */,
+				1CFCA36E1A23E0D3000D9F61 /* DSAPIBilling.m */,
+				1C66A32A1A31FE2C00E694D2 /* DSAPIBrand.h */,
+				1C66A32B1A31FE2C00E694D2 /* DSAPIBrand.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2D15D6CAB8DD42C33348C1C7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				28BCE9A37E225799CA401109 /* Pods.debug.xcconfig */,
+				53502A1E49457E269F1AB62A /* Pods.release.xcconfig */,
+				035EC54787927BFFC627F045 /* Pods-DeskAPIClientTests.debug.xcconfig */,
+				E7111867EB10C4223E408AFD /* Pods-DeskAPIClientTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8E21734AF4294AA89EF25DBC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF67CF8B90604791B3D698D4 /* libPods-DeskAPIClient.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1C7B8D8E1A64217C005ED4A8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C7B8DBC1A6423A5005ED4A8 /* DeskAPIClient.h in Headers */,
+				1C399F8A1A6472A0004366DF /* DSAPIURLRequestSerialization.h in Headers */,
+				1C7B8D901A642277005ED4A8 /* DSAPIModels.h in Headers */,
+				1C7B8D911A642277005ED4A8 /* DSAPICase.h in Headers */,
+				1C7B8D921A642277005ED4A8 /* DSAPICustomer.h in Headers */,
+				1C7B8D931A642277005ED4A8 /* DSAPIFacebookUser.h in Headers */,
+				1C7B8D941A642277005ED4A8 /* DSAPITwitterUser.h in Headers */,
+				1C7B8D951A642277005ED4A8 /* DSAPINote.h in Headers */,
+				1C7B8D961A642277005ED4A8 /* DSAPIInteraction.h in Headers */,
+				1C7B8D971A642277005ED4A8 /* DSAPIChatMessage.h in Headers */,
+				1C7B8D981A642277005ED4A8 /* DSAPITweet.h in Headers */,
+				1C7B8D991A642277005ED4A8 /* DSAPIEmail.h in Headers */,
+				1C7B8D9A1A642277005ED4A8 /* DSAPICommunityAnswer.h in Headers */,
+				1C7B8D9B1A642277005ED4A8 /* DSAPIFacebookComment.h in Headers */,
+				1C7B8D9C1A642277005ED4A8 /* DSAPIPhoneCall.h in Headers */,
+				1C7B8D9D1A642277005ED4A8 /* DSAPIAttachment.h in Headers */,
+				1C7B8D9E1A642277005ED4A8 /* DSAPIFilter.h in Headers */,
+				1C7B8D9F1A642277005ED4A8 /* DSAPIUser.h in Headers */,
+				1C7B8DA01A642277005ED4A8 /* DSAPIUserPreference.h in Headers */,
+				1C7B8DA11A642277005ED4A8 /* DSAPILabel.h in Headers */,
+				1C7B8DA21A642277005ED4A8 /* DSAPIGroup.h in Headers */,
+				1C7B8DA31A642277005ED4A8 /* DSAPIMacro.h in Headers */,
+				1C7B8DA41A642277005ED4A8 /* DSAPIMacroAction.h in Headers */,
+				1C7B8DA51A642277005ED4A8 /* DSAPICustomField.h in Headers */,
+				1C7B8DA61A642277005ED4A8 /* DSAPIMobileDevice.h in Headers */,
+				1C7B8DA71A642277005ED4A8 /* DSAPIMobileDeviceSetting.h in Headers */,
+				1C7B8DA81A642277005ED4A8 /* DSAPITwitterAccount.h in Headers */,
+				1C7B8DA91A642277005ED4A8 /* DSAPIPermission.h in Headers */,
+				1C7B8DAA1A642278005ED4A8 /* DSAPISiteSetting.h in Headers */,
+				1CDBDF7A1A78191A00582BE2 /* DSAPIListProvider.h in Headers */,
+				1C7B8DAB1A642278005ED4A8 /* DSAPIMailbox.h in Headers */,
+				1C399F8E1A64735D004366DF /* DSAPIURLResponseSerialization.h in Headers */,
+				1C7B8DAC1A642278005ED4A8 /* DSAPITwitterFollow.h in Headers */,
+				1C7B8DAD1A642278005ED4A8 /* DSAPIJob.h in Headers */,
+				1C7B8DAE1A642278005ED4A8 /* DSAPICompany.h in Headers */,
+				1C7B8DAF1A642278005ED4A8 /* DSAPITopic.h in Headers */,
+				1C7B8DB01A642278005ED4A8 /* DSAPIArticle.h in Headers */,
+				1C7B8DB11A642278005ED4A8 /* DSAPISite.h in Headers */,
+				1C7B8DB21A642278005ED4A8 /* DSAPIBilling.h in Headers */,
+				1C7B8DB31A642278005ED4A8 /* DSAPIBrand.h in Headers */,
+				1C7B8DB41A642278005ED4A8 /* DSAPITypes.h in Headers */,
+				1C7B8DB51A642278005ED4A8 /* DSAPIClient.h in Headers */,
+				1C7B8DB61A642278005ED4A8 /* DSAPIETagCache.h in Headers */,
+				1C7B8DB71A642278005ED4A8 /* DSAPILink.h in Headers */,
+				1C7B8DB81A642278005ED4A8 /* DSAPIPage.h in Headers */,
+				1C7B8DB91A642278005ED4A8 /* DSAPIResource.h in Headers */,
+				1C7B8DBA1A64229A005ED4A8 /* NSDictionary+DSAPI.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1C316D6F17E9533900ACA543 /* DeskAPIClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C316D9317E9533900ACA543 /* Build configuration list for PBXNativeTarget "DeskAPIClient" */;
+			buildPhases = (
+				A1D663EF215D4041A4DF9FC5 /* Check Pods Manifest.lock */,
+				1C316D6C17E9533900ACA543 /* Sources */,
+				1C316D6D17E9533900ACA543 /* Frameworks */,
+				2C045C710C014F07A3F273C2 /* Copy Pods Resources */,
+				1C7B8D8E1A64217C005ED4A8 /* Headers */,
+				1C7B8DBD1A64252A005ED4A8 /* Prepare Framework */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeskAPIClient;
+			productName = DeskAPIClient;
+			productReference = 1C316D7017E9533900ACA543 /* libDeskAPIClient.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		1C316D7F17E9533900ACA543 /* DeskAPIClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C316D9617E9533900ACA543 /* Build configuration list for PBXNativeTarget "DeskAPIClientTests" */;
+			buildPhases = (
+				75C36E54CE3043FCB83D5EBC /* Check Pods Manifest.lock */,
+				1C316D7C17E9533900ACA543 /* Sources */,
+				1C316D7D17E9533900ACA543 /* Frameworks */,
+				1C316D7E17E9533900ACA543 /* Resources */,
+				8277CE3230644BD2A7222A89 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1C316D8717E9533900ACA543 /* PBXTargetDependency */,
+			);
+			name = DeskAPIClientTests;
+			productName = DeskAPIClientTests;
+			productReference = 1C316D8017E9533900ACA543 /* DeskAPIClientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1C316D6817E9533900ACA543 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = DSAPI;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Desk.com;
+				TargetAttributes = {
+					1C316D7F17E9533900ACA543 = {
+						TestTargetID = 1C316D6F17E9533900ACA543;
+					};
+					1C7B8DBE1A6425EC005ED4A8 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 1C316D6B17E9533900ACA543 /* Build configuration list for PBXProject "DeskAPIClient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1C316D6717E9533900ACA543;
+			productRefGroup = 1C316D7117E9533900ACA543 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1C316D6F17E9533900ACA543 /* DeskAPIClient */,
+				1C316D7F17E9533900ACA543 /* DeskAPIClientTests */,
+				1C7B8DBE1A6425EC005ED4A8 /* Framework */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1C316D7E17E9533900ACA543 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CF0ECA717F32D0C00901969 /* newNote.json in Resources */,
+				1CA360CD1A6564B2001F61C0 /* twitter_accounts-1-tweets-45.json in Resources */,
+				1C07A54E1864C4DE008056B5 /* case41repliespageone.json in Resources */,
+				1CA8243C189719E200C7DF54 /* newMacro.json in Resources */,
+				1CCA5A0B18A18B7100B01729 /* updateCustomer.json in Resources */,
+				1CE9D56E1811CAA300DFAFCD /* casesWithMessages.json in Resources */,
+				1CC438E0182AE92E00FB046C /* updateLabel.json in Resources */,
+				1CCA5A0918A189D600B01729 /* newCustomer.json in Resources */,
+				1CA360CB1A6563AF001F61C0 /* twitter_accounts-1-tweets.json in Resources */,
+				1C4DA76D180A507100E3B7B2 /* DeskAPIAuth-Info.plist in Resources */,
+				1C28761A17F0748F004B4CBF /* case41replies.json in Resources */,
+				1C1FF03D17F1E86D00484D80 /* newReply.json in Resources */,
+				1C64C2381A44BFD2006C5755 /* POST-twitter_accounts-31986-follows.json in Resources */,
+				1CA360BA1A64B19F001F61C0 /* twitter_accounts-1.json in Resources */,
+				1C316D8E17E9533900ACA543 /* InfoPlist.strings in Resources */,
+				1C64C2361A44BD8F006C5755 /* twitter_accounts.json in Resources */,
+				1CA360C91A6562DB001F61C0 /* POST-twitter_accounts-1-tweets-67.json in Resources */,
+				1CC438DE182AE8F000FB046C /* newLabel.json in Resources */,
+				1CDBDF801A78222B00582BE2 /* topics.json in Resources */,
+				1C1FF03B17F1314C00484D80 /* updateCase.json in Resources */,
+				1CF0ECCE17F33F4B00901969 /* newAttachment.json in Resources */,
+				1C1FF03917F12ABD00484D80 /* newCase.json in Resources */,
+				1CEDA0C91A65652D0065C885 /* POST-twitter_accounts-1-tweets-45-retweet.json in Resources */,
+				1C64C2341A44BB4E006C5755 /* twitter_accounts-31986-follows-desk.json in Resources */,
+				1C28761217EBF72B004B4CBF /* case6.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1C7B8DBD1A64252A005ED4A8 /* Prepare Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare Framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"";
+		};
+		1C7B8DC41A642622005ED4A8 /* Build Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcrun xcodebuild ONLY_ACTIVE_ARCH=NO -workspace \"${PROJECT_DIR}/${PROJECT_NAME}.xcworkspace\" -scheme \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nxcrun lipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"";
+		};
+		2C045C710C014F07A3F273C2 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75C36E54CE3043FCB83D5EBC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8277CE3230644BD2A7222A89 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1D663EF215D4041A4DF9FC5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1C316D6C17E9533900ACA543 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D4947411A114F5E00D81AF7 /* DSAPISite.m in Sources */,
+				1CEA9A0F1961EA1E00D7473A /* DSAPITwitterFollow.m in Sources */,
+				1CF0EC8F17F23B7200901969 /* DSAPICase.m in Sources */,
+				1C6E124918ABB66500666DE4 /* DSAPIFacebookUser.m in Sources */,
+				1CFCA36F1A23E0D3000D9F61 /* DSAPIBilling.m in Sources */,
+				1CF0ECCA17F3384900901969 /* DSAPIAttachment.m in Sources */,
+				1C3D462918F0FD8A00389AEB /* DSAPIMobileDeviceSetting.m in Sources */,
+				2D2C4CC419B8D77200565E65 /* DSAPIArticle.m in Sources */,
+				1C07A5571864DA5B008056B5 /* DSAPIETagCache.m in Sources */,
+				1C399F8B1A6472A0004366DF /* DSAPIURLRequestSerialization.m in Sources */,
+				1C6E128518ABFF0600666DE4 /* DSAPICustomField.m in Sources */,
+				1CF4484617FDFCA4009FED5A /* DSAPIUser.m in Sources */,
+				1C4575731922B2C300C08B7A /* DSAPITwitterAccount.m in Sources */,
+				1C316D7B17E9533900ACA543 /* DSAPIClient.m in Sources */,
+				1CF0ECC217F3308400901969 /* DSAPIFacebookComment.m in Sources */,
+				2DFFB06719B60D1A00683B6C /* DSAPITopic.m in Sources */,
+				1CF0ECC517F3309100901969 /* DSAPIPhoneCall.m in Sources */,
+				1CF4484B17FE017E009FED5A /* DSAPIUserPreference.m in Sources */,
+				1C399F8F1A64735D004366DF /* DSAPIURLResponseSerialization.m in Sources */,
+				1C28761517ED2F0C004B4CBF /* DSAPIResource.m in Sources */,
+				1CA824381896FD9E00C7DF54 /* DSAPIMacro.m in Sources */,
+				1CF0EC9D17F3102400901969 /* DSAPICustomer.m in Sources */,
+				1CF0ECA317F3293000901969 /* DSAPINote.m in Sources */,
+				1C443E50182177E1003F4B73 /* DSAPIPage.m in Sources */,
+				1C2D68B3192F99720076A434 /* DSAPISiteSetting.m in Sources */,
+				1C6E124A18ABB66500666DE4 /* DSAPITwitterUser.m in Sources */,
+				1CC438DC182AE36400FB046C /* DSAPILabel.m in Sources */,
+				1CA8243F18971FB900C7DF54 /* DSAPIMacroAction.m in Sources */,
+				1C46BBAE19254D6A00D812AE /* DSAPIPermission.m in Sources */,
+				1C28762317F09AFF004B4CBF /* NSDictionary+DSAPI.m in Sources */,
+				1CDBDF7B1A78191A00582BE2 /* DSAPIListProvider.m in Sources */,
+				1C714CE0199E6377000BAB60 /* DSAPICompany.m in Sources */,
+				1CF0ECB917F3305300901969 /* DSAPIEmail.m in Sources */,
+				1CF0ECAD17F32FA500901969 /* DSAPIInteraction.m in Sources */,
+				1C66A32C1A31FE2C00E694D2 /* DSAPIBrand.m in Sources */,
+				1CF0ECB617F3302A00901969 /* DSAPITweet.m in Sources */,
+				1C880A6318313885001075B8 /* DSAPIGroup.m in Sources */,
+				1C3D462418EF290400389AEB /* DSAPIMobileDevice.m in Sources */,
+				1CE601261958827C00DD8DF9 /* DSAPIMailbox.m in Sources */,
+				1CF0ECBC17F3306300901969 /* DSAPICommunityAnswer.m in Sources */,
+				1C28760F17EBF27D004B4CBF /* DSAPILink.m in Sources */,
+				1CBC6FB0196B4A8E00E763E1 /* DSAPIJob.m in Sources */,
+				1CF0ECB317F32FF200901969 /* DSAPIChatMessage.m in Sources */,
+				1CF0ECD317F379B200901969 /* DSAPIFilter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C316D7C17E9533900ACA543 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C399F941A648C20004366DF /* DSAPICaseTests.m in Sources */,
+				1C399F951A648C20004366DF /* DSAPIInteractionTests.m in Sources */,
+				1C399F961A648C20004366DF /* DSAPINoteTests.m in Sources */,
+				1CE2A2191ADEA7C90067F682 /* DSAPIPermissionTests.m in Sources */,
+				1C399F971A648C20004366DF /* DSAPIAttachmentTests.m in Sources */,
+				1C399F981A648C20004366DF /* DSAPIFilterTests.m in Sources */,
+				1C399F991A648C20004366DF /* DSAPIUserTests.m in Sources */,
+				1C399F9A1A648C20004366DF /* DSAPIUserPreferenceTests.m in Sources */,
+				1C399F9B1A648C20004366DF /* DSAPILabelTests.m in Sources */,
+				1C399F9C1A648C20004366DF /* DSAPIGroupTests.m in Sources */,
+				1C399F9D1A648C20004366DF /* DSAPIMacroTests.m in Sources */,
+				1CDBDF7D1A781F7500582BE2 /* DSAPIListProviderTests.m in Sources */,
+				1C399F9E1A648C20004366DF /* DSAPIETagCacheTests.m in Sources */,
+				1C399F9F1A648C20004366DF /* DSAPICustomerTests.m in Sources */,
+				1C399FA01A648C20004366DF /* DSAPIFacebookUserTests.m in Sources */,
+				1C399FA11A648C20004366DF /* DSAPITwitterUserTests.m in Sources */,
+				1C399FA21A648C20004366DF /* DSAPICustomFieldTests.m in Sources */,
+				1C399FA31A648C20004366DF /* DSAPIMobileDeviceTests.m in Sources */,
+				1C399FA41A648C20004366DF /* DSAPITwitterAccountTests.m in Sources */,
+				1C399FA51A648C20004366DF /* DSAPISiteSettingTests.m in Sources */,
+				1C399FA61A648C20004366DF /* DSAPIMailboxTests.m in Sources */,
+				1C399FA71A648C20004366DF /* DSAPIJobsTests.m in Sources */,
+				1C399FA81A648C20004366DF /* DSAPICompanyTests.m in Sources */,
+				1C399FA91A648C20004366DF /* DSAPITopicsTests.m in Sources */,
+				1C399FAA1A648C20004366DF /* DSAPIArticleTests.m in Sources */,
+				1C399FAB1A648C20004366DF /* DSAPISiteTests.m in Sources */,
+				1C399FAC1A648C20004366DF /* DSAPIBrandTests.m in Sources */,
+				1C399FAD1A648C20004366DF /* DSAPILinkTests.m in Sources */,
+				1C399FAE1A648C20004366DF /* DSAPIPageTests.m in Sources */,
+				1C399F931A647FE3004366DF /* DSAPIResourceTests.m in Sources */,
+				1C399F911A6474CE004366DF /* DSAPIOAuthClientTests.m in Sources */,
+				1C399F901A6474B2004366DF /* DSAPIRequestSerializerTests.m in Sources */,
+				1C7B8E0C1A64710A005ED4A8 /* DSAPITestUtils.m in Sources */,
+				1C316D9017E9533900ACA543 /* DSAPIClientTests.m in Sources */,
+				1C399FB01A648CF0004366DF /* DSAPITestCase.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1C316D8717E9533900ACA543 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1C316D6F17E9533900ACA543 /* DeskAPIClient */;
+			targetProxy = 1C316D8617E9533900ACA543 /* PBXContainerItemProxy */;
+		};
+		1CA360C01A6558F6001F61C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1C316D6F17E9533900ACA543 /* DeskAPIClient */;
+			targetProxy = 1CA360BF1A6558F6001F61C0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1C316D8C17E9533900ACA543 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C316D8D17E9533900ACA543 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1C316D9117E9533900ACA543 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1C316D9217E9533900ACA543 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1C316D9417E9533900ACA543 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28BCE9A37E225799CA401109 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/DeskAPIClient.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DeskAPIClient/DeskAPIClient-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Debug;
+		};
+		1C316D9517E9533900ACA543 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53502A1E49457E269F1AB62A /* Pods.release.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/DeskAPIClient.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DeskAPIClient/DeskAPIClient-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
+		1C316D9717E9533900ACA543 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 035EC54787927BFFC627F045 /* Pods-DeskAPIClientTests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DeskAPIClientTests/DeskAPIClientTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "DeskAPIClientTests/DeskAPIClientTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DeskAPIClientTests/DeskAPIClientTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		1C316D9817E9533900ACA543 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7111867EB10C4223E408AFD /* Pods-DeskAPIClientTests.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DeskAPIClientTests/DeskAPIClientTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"NS_BLOCK_ASSERTIONS=1",
+				);
+				INFOPLIST_FILE = "DeskAPIClientTests/DeskAPIClientTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "DeskAPIClientTests/DeskAPIClientTests-Bridging-Header.h";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		1C7B8DC01A6425EC005ED4A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1C7B8DC11A6425EC005ED4A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1C316D6B17E9533900ACA543 /* Build configuration list for PBXProject "DeskAPIClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C316D9117E9533900ACA543 /* Debug */,
+				1C316D9217E9533900ACA543 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C316D9317E9533900ACA543 /* Build configuration list for PBXNativeTarget "DeskAPIClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C316D9417E9533900ACA543 /* Debug */,
+				1C316D9517E9533900ACA543 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C316D9617E9533900ACA543 /* Build configuration list for PBXNativeTarget "DeskAPIClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C316D9717E9533900ACA543 /* Debug */,
+				1C316D9817E9533900ACA543 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C7B8DBF1A6425EC005ED4A8 /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C7B8DC01A6425EC005ED4A8 /* Debug */,
+				1C7B8DC11A6425EC005ED4A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1C316D6817E9533900ACA543 /* Project object */;
+}

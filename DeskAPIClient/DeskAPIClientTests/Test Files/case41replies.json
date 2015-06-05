@@ -1,0 +1,87 @@
+{
+    "_embedded": {
+        "entries": [
+            {
+                "status": "sent",
+                "updated_at": "2010-10-07T01:17:39Z",
+                "type": "mention",
+                "body": "@bmnehls bulk tweet oct 6 916p",
+                "to": null,
+                "from": null,
+                "direction": "out",
+                "created_at": "2010-07-07T21:28:51Z",
+                "_links": {
+                    "sent_by": {
+                        "href": "/api/v2/users/5",
+                        "class": "user"
+                    },
+                    "case": {
+                        "href": "/api/v2/cases/41",
+                        "class": "case"
+                    },
+                    "self": {
+                        "href": "/api/v2/cases/41/replies/14602",
+                        "class": "tweet"
+                    },
+                    "twitter_account": {
+                        "href": "/api/v2/twitter_accounts/1",
+                        "class": "twitter_account"
+                    },
+                    "customer": {
+                        "href": "/api/v2/customers/11",
+                        "class": "customer"
+                    }
+                }
+            },
+            {
+                "status": "draft",
+                "updated_at": "2013-09-23T12:59:52Z",
+                "type": "mention",
+                "body": "@bmnehls quick reply from july 23bThis is the july 23b article.",
+                "to": null,
+                "from": null,
+                "direction": "out",
+                "created_at": "2010-10-29T21:41:38Z",
+                "_links": {
+                    "sent_by": {
+                        "href": "/api/v2/users/161720",
+                        "class": "user"
+                    },
+                    "case": {
+                        "href": "/api/v2/cases/41",
+                        "class": "case"
+                    },
+                    "self": {
+                        "href": "/api/v2/cases/41/replies/94121",
+                        "class": "tweet"
+                    },
+                    "twitter_account": {
+                        "href": "/api/v2/twitter_accounts/1",
+                        "class": "twitter_account"
+                    },
+                    "customer": {
+                        "href": "/api/v2/customers/11",
+                        "class": "customer"
+                    }
+                }
+            }
+        ]
+    },
+    "total_entries": 2,
+    "_links": {
+        "last": {
+            "href": "/api/v2/cases/41/replies?page=1&per_page=50",
+            "class": "page"
+        },
+        "first": {
+            "href": "/api/v2/cases/41/replies?page=1&per_page=50",
+            "class": "page"
+        },
+        "previous": null,
+        "self": {
+            "href": "/api/v2/cases/41/replies?page=1&per_page=50",
+            "class": "page"
+        },
+        "next": null
+    }
+}

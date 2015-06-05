@@ -1,0 +1,30 @@
+{
+    "id": 71,
+    "body": "@desktest12 Television northern through dyes where dog related plants mug high beer video elephant hello basketball habitats infection fat a",
+    "direction": "out",
+    "status": "pending",
+    "created_at": "2015-01-13T14:37:06Z",
+    "updated_at": "2015-01-13T14:37:06Z",
+    "erased_at": null,
+    "sent_at": null,
+    "type": "retweet",
+    "to": null,
+    "from": "desktest12",
+    "_links": {
+        "self": {
+            "href": "/api/v2/twitter_accounts/1/tweets/71",
+            "class": "tweet"
+        },
+        "sent_by": {
+            "href": "/api/v2/users/10",
+            "class": "user"
+        },
+        "twitter_account": {
+            "href": "/api/v2/twitter_accounts/1",
+            "class": "twitter_account"
+        },
+        "erased_by": null,
+        "retweeted_by": null,
+        "favorited_by": null
+    }
+}
