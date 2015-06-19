@@ -1,5 +1,7 @@
 # Desk API Client
 
+DISCLAIMER: The DeskKit SDK is in Private Customer Pilot. It does not work out-of-box without a prior arrangement with the Desk.com product team. If you are interested in participating in the Private Customer Pilot, please send an email to jpappas@salesforce.com.
+
 The Desk API Client is a lightweight static library that wraps the [Desk.com API V2](http://dev.desk.com), written in Objective-C.
 
 The easiest way to install the library is as a cocoapod:
