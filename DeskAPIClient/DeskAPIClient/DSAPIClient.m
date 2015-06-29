@@ -65,7 +65,6 @@ static NSDictionary *ClassNames;
     static DSAPIClient *sharedInstance;
     dispatch_once(&once, ^{
         sharedInstance = [[DSAPIClient alloc] init];
-        [sharedInstance initialize];
     });
     return sharedInstance;
 }
