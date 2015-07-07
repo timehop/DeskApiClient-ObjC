@@ -43,7 +43,7 @@
 
 + (void)showCurrentSiteWithQueue:(NSOperationQueue *)queue
                          success:(void (^)(DSAPISite *site))success
-                         failure:(DSAPIFailureBlock)failure;
+                         failure:(DSAPIFailureBlock)failure
 {
     [self showCurrentSiteWithParameters:nil
                                   queue:queue
@@ -66,7 +66,7 @@
 
 + (void)showCurrentSiteBillingWithQueue:(NSOperationQueue *)queue
                                 success:(void (^)(DSAPIBilling *billing))success
-                                failure:(DSAPIFailureBlock)failure;
+                                failure:(DSAPIFailureBlock)failure
 {
     [self showCurrentSiteBillingWithParameters:nil
                                          queue:queue
@@ -89,7 +89,7 @@
 
 - (void)showWithQueue:(NSOperationQueue *)queue
               success:(void (^)(DSAPISite *site))success
-              failure:(DSAPIFailureBlock)failure;
+              failure:(DSAPIFailureBlock)failure
 {
     [self showWithParameters:nil
                        queue:queue

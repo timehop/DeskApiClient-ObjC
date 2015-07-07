@@ -200,36 +200,40 @@ static NSDictionary *ClassNames;
 
 #pragma mark - OAuth Authentication
 
-- (void)authorizeUsingOAuthWithBlock:(void (^)(DSAPIOAuth1Token *requestToken, NSURLRequest *authorizeRequest))success
+- (void)authorizeUsingOAuthWithQueue:(NSOperationQueue *)queue
+                             success:(void (^)(DSAPIOAuth1Token *requestToken, NSURLRequest *authorizeRequest))success
                              failure:(DSAPIFailureBlock)failure
 {
     NSAssert(self.authType == DSAPIClientAuthTypeOAuth, @"Client not initialized for OAuth.");
     
-    [self acquireOAuthRequestTokenWithBlock:^(DSAPIOAuth1Token *requestToken) {
-        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-        NSString *urlString = [NSString stringWithFormat:@"%@%@?oauth_token=%@", self.baseURL, @"/oauth/authorize", requestToken.key];
-        NSError *error = nil;
-        NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"GET"
-                                                                       URLString:urlString
-                                                                      parameters:parameters
-                                                                           error:&error];
-        if (error && failure) {
-            if (failure) {
-                failure(nil, error);
-            }
-        } else if (!error && success) {
-            if (success) {
-                success(requestToken, request);
-            }
-        }
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        if (failure) {
-            failure(response, error);
-        }
-    }];
+    [self acquireOAuthRequestTokenWithQueue:queue
+                                    success:^(DSAPIOAuth1Token *requestToken) {
+                                        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+                                        NSString *urlString = [NSString stringWithFormat:@"%@%@?oauth_token=%@", self.baseURL, @"/oauth/authorize", requestToken.key];
+                                        NSError *error = nil;
+                                        NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"GET"
+                                                                                                       URLString:urlString
+                                                                                                      parameters:parameters
+                                                                                                           error:&error];
+                                        if (error && failure) {
+                                            if (failure) {
+                                                failure(nil, error);
+                                            }
+                                        } else if (!error && success) {
+                                            if (success) {
+                                                success(requestToken, request);
+                                            }
+                                        }
+                                    }
+                                    failure:^(NSHTTPURLResponse *response, NSError *error) {
+                                        if (failure) {
+                                            failure(response, error);
+                                        }
+                                    }];
 }
 
-- (void)acquireOAuthRequestTokenWithBlock:(void (^)(DSAPIOAuth1Token *))success
+- (void)acquireOAuthRequestTokenWithQueue:(NSOperationQueue *)queue
+                                  success:(void (^)(DSAPIOAuth1Token *requestToken))success
                                   failure:(DSAPIFailureBlock)failure
 {
     NSAssert(self.authType == DSAPIClientAuthTypeOAuth, @"Client not initialized for OAuth.");
@@ -241,20 +245,25 @@ static NSDictionary *ClassNames;
     manager.requestSerializer = self.requestSerializer;
     manager.responseSerializer = [DSAPIHTTPResponseSerializer serializer];
     
-    [manager POST:@"/oauth/request_token" parameters:parameters success:^(NSHTTPURLResponse *response, id responseObject) {
-        DSAPIOAuth1Token *token = [[DSAPIOAuth1Token alloc] initWithQueryString:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
-        if (success) {
-            success(token);
-        }
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        [self postRateLimitingNotificationIfNecessary:response];
-        if (failure) {
-            failure(response, error);
-        }
-    }];
+    [manager POST:@"/oauth/request_token"
+       parameters:parameters
+            queue:queue
+          success:^(NSHTTPURLResponse *response, id responseObject) {
+              DSAPIOAuth1Token *token = [[DSAPIOAuth1Token alloc] initWithQueryString:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
+              if (success) {
+                  success(token);
+              }
+          }
+          failure:^(NSHTTPURLResponse *response, NSError *error) {
+              [self postRateLimitingNotificationIfNecessary:response];
+              if (failure) {
+                  failure(response, error);
+              }
+          }];
 }
 
 - (void)acquireOAuthAccessTokenWithRequestToken:(DSAPIOAuth1Token *)requestToken
+                                          queue:(NSOperationQueue *)queue
                                         success:(void (^)(DSAPIOAuth1Token *))success
                                         failure:(DSAPIFailureBlock)failure
 {
@@ -268,18 +277,22 @@ static NSDictionary *ClassNames;
     manager.requestSerializer = serializer;
     manager.responseSerializer = [DSAPIHTTPResponseSerializer serializer];
     
-    [manager POST:@"/oauth/access_token" parameters:nil success:^(NSHTTPURLResponse *response, id responseObject) {
-        DSAPIOAuth1Token *accessToken = [[DSAPIOAuth1Token alloc] initWithQueryString:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
-        serializer.accessToken = accessToken;
-        if (success) {
-            success(accessToken);
-        }
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        [self postRateLimitingNotificationIfNecessary:response];
-        if (failure) {
-            failure(response, error);
-        }
-    }];
+    [manager POST:@"/oauth/access_token"
+       parameters:nil
+            queue:queue
+          success:^(NSHTTPURLResponse *response, id responseObject) {
+              DSAPIOAuth1Token *accessToken = [[DSAPIOAuth1Token alloc] initWithQueryString:[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]];
+              serializer.accessToken = accessToken;
+              if (success) {
+                  success(accessToken);
+              }
+          }
+          failure:^(NSHTTPURLResponse *response, NSError *error) {
+              [self postRateLimitingNotificationIfNecessary:response];
+              if (failure) {
+                  failure(response, error);
+              }
+          }];
 }
 
 - (void)setAccessToken:(DSAPIOAuth1Token *)accessToken
@@ -293,6 +306,7 @@ static NSDictionary *ClassNames;
 }
 
 - (NSURLSessionDataTask *)dataTaskWithRequest:(NSURLRequest *)request
+                                        queue:(NSOperationQueue *)queue
                                       success:(void (^)(NSHTTPURLResponse *response, id))success
                                       failure:(void (^)(NSHTTPURLResponse *response, NSError *))failure
 {
@@ -322,6 +336,7 @@ static NSDictionary *ClassNames;
 
 - (NSURLSessionDataTask *)GET:(NSString *)URLString
                    parameters:(id)parameters
+                        queue:(NSOperationQueue *)queue
                       success:(void (^)(NSHTTPURLResponse *response, id responseObject))success
                       failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure
 {
@@ -333,6 +348,7 @@ static NSDictionary *ClassNames;
                                                                        error:nil];
     
     NSURLSessionDataTask *task = [self dataTaskWithRequest:request
+                                                     queue:queue
                                                    success:success
                                                    failure:failure];
     
@@ -341,7 +357,9 @@ static NSDictionary *ClassNames;
     return task;
 }
 
-- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters
+- (NSURLSessionDataTask *)POST:(NSString *)URLString
+                    parameters:(id)parameters
+                         queue:(NSOperationQueue *)queue
                        success:(void (^)(NSHTTPURLResponse *, id))success
                        failure:(void (^)(NSHTTPURLResponse *, NSError *))failure
 {
@@ -352,14 +370,19 @@ static NSDictionary *ClassNames;
                                                                   parameters:parameters
                                                                        error:nil];
     
-    NSURLSessionDataTask *task = [self dataTaskWithRequest:request success:success failure:failure];
+    NSURLSessionDataTask *task = [self dataTaskWithRequest:request
+                                                     queue:queue
+                                                   success:success
+                                                   failure:failure];
     
     [task resume];
     
     return task;
 }
 
-- (NSURLSessionDataTask *)PUT:(NSString *)URLString parameters:(id)parameters
+- (NSURLSessionDataTask *)PUT:(NSString *)URLString
+                   parameters:(id)parameters
+                        queue:(NSOperationQueue *)queue
                       success:(void (^)(NSHTTPURLResponse *, id))success
                       failure:(void (^)(NSHTTPURLResponse *, NSError *))failure
 {
@@ -370,14 +393,19 @@ static NSDictionary *ClassNames;
                                                                   parameters:parameters
                                                                        error:nil];
     
-    NSURLSessionDataTask *task = [self dataTaskWithRequest:request success:success failure:failure];
+    NSURLSessionDataTask *task = [self dataTaskWithRequest:request
+                                                     queue:queue
+                                                   success:success
+                                                   failure:failure];
     
     [task resume];
     
     return task;
 }
 
-- (NSURLSessionDataTask *)PATCH:(NSString *)URLString parameters:(id)parameters
+- (NSURLSessionDataTask *)PATCH:(NSString *)URLString
+                     parameters:(id)parameters
+                          queue:(NSOperationQueue *)queue
                         success:(void (^)(NSHTTPURLResponse *, id))success
                         failure:(void (^)(NSHTTPURLResponse *, NSError *))failure
 {
@@ -388,7 +416,10 @@ static NSDictionary *ClassNames;
                                                                   parameters:parameters
                                                                        error:nil];
     
-    NSURLSessionDataTask *task = [self dataTaskWithRequest:request success:success failure:failure];
+    NSURLSessionDataTask *task = [self dataTaskWithRequest:request
+                                                     queue:queue
+                                                   success:success
+                                                   failure:failure];
     
     [task resume];
     
@@ -397,6 +428,7 @@ static NSDictionary *ClassNames;
 
 - (NSURLSessionDataTask *)DELETE:(NSString *)URLString
                       parameters:(id)parameters
+                           queue:(NSOperationQueue *)queue
                          success:(void (^)(NSHTTPURLResponse *, id))success
                          failure:(void (^)(NSHTTPURLResponse *, NSError *))failure
 {
@@ -407,7 +439,10 @@ static NSDictionary *ClassNames;
                                                                   parameters:parameters
                                                                        error:nil];
     
-    NSURLSessionDataTask *task = [self dataTaskWithRequest:request success:success failure:failure];
+    NSURLSessionDataTask *task = [self dataTaskWithRequest:request
+                                                     queue:queue
+                                                   success:success
+                                                   failure:failure];
     
     [task resume];
     

@@ -5,19 +5,19 @@
 //  Created by Desk.com on 9/20/13.
 //  Copyright (c) 2015, Salesforce.com, Inc.
 //  All rights reserved.
-//  
+//
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided
 //  that the following conditions are met:
-//  
+//
 //     Redistributions of source code must retain the above copyright notice, this list of conditions and the
 //     following disclaimer.
-//  
+//
 //     Redistributions in binary form must reproduce the above copyright notice, this list of conditions and
 //     the following disclaimer in the documentation and/or other materials provided with the distribution.
-//  
+//
 //     Neither the name of Salesforce.com, Inc. nor the names of its contributors may be used to endorse or
 //     promote products derived from this software without specific prior written permission.
-//  
+//
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
 //  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
 //  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
@@ -56,9 +56,9 @@
 + (DSAPIResource *)resourceWithHref:(NSString *)href className:(NSString *)className
 {
     return [[self alloc] initWithDictionary:@{kLinksKey :
-                                                   @{kSelfKey :
-                                                         @{kHrefKey : href,
-                                                           kClassKey : className}}}];
+                                                  @{kSelfKey :
+                                                        @{kHrefKey : href,
+                                                          kClassKey : className}}}];
 }
 
 + (DSAPIResource *)resourceWithId:(NSString *)resourceId className:(NSString *)className
@@ -86,12 +86,12 @@
         _embedded = [NSMutableDictionary new];
         _dictionary = [dictionary mutableCopy];
         _baseURL = baseURL;
-
+        
         // If we can't parse the dictionary, just return nil
         if (![self parseResource]) {
             return nil;
         }
-
+        
         // Set the class of the object to the class returned by the web service for self
         object_setClass(self, [[DSAPIClient sharedManager] classForClassName:_dictionary[kLinksKey][kSelfKey][kClassKey]]);
     }
@@ -388,37 +388,41 @@
     } else if (!error) {
         // This is the cache policy we need in order to make etags work
         request.cachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
-
+        
         if (notModified) {
             NSString *etag = [[DSAPIETagCache sharedManager] eTagForUrl:request.URL];
             if (etag) {
                 [request setValue:etag forHTTPHeaderField:kIfNoneMatchHeader];
             }
         }
-        NSURLSessionDataTask *task = [client dataTaskWithRequest:request success:^(NSHTTPURLResponse *response, id responseObject) {
-            DSAPIResource *resource = [responseObject DSAPIResourceWithSelf];
-            NSString *etag = [[response allHeaderFields] objectForKey:kETagHeader];
-            if (etag) {
-                [[DSAPIETagCache sharedManager] setETag:etag forUrl:request.URL nextPageUrl:[resource linkForRelation:kNextKey].URL];
-            }
-            if (success) {
-                success((DSAPIPage *)resource);
-            }
-        } failure:^(NSHTTPURLResponse *response, NSError *error) {
-            if (notModified && [response statusCode] == DSC_HTTP_STATUS_NOT_MODIFIED) {
-                DSAPIPage *page = [DSAPIPage pageFromPageHref:[[DSAPIETagCache sharedManager] pageUrlForUrl:request.URL].relativeString withNextPageHref:[[DSAPIETagCache sharedManager] nextPageUrlForUrl:request.URL].relativeString];
-                page.notModified = YES;
-                if (notModified) {
-                    notModified(page);
-                }
-            } else {
-                [client postRateLimitingNotificationIfNecessary:response];
-                if (failure) {
-                    failure(response, error);
-                }
-            }
-        }];
-
+        NSURLSessionDataTask *task =
+        [client dataTaskWithRequest:request
+                              queue:queue
+                            success:^(NSHTTPURLResponse *response, id responseObject) {
+                                DSAPIResource *resource = [responseObject DSAPIResourceWithSelf];
+                                NSString *etag = [[response allHeaderFields] objectForKey:kETagHeader];
+                                if (etag) {
+                                    [[DSAPIETagCache sharedManager] setETag:etag forUrl:request.URL nextPageUrl:[resource linkForRelation:kNextKey].URL];
+                                }
+                                if (success) {
+                                    success((DSAPIPage *)resource);
+                                }
+                            }
+                            failure:^(NSHTTPURLResponse *response, NSError *error) {
+                                if (notModified && [response statusCode] == DSC_HTTP_STATUS_NOT_MODIFIED) {
+                                    DSAPIPage *page = [DSAPIPage pageFromPageHref:[[DSAPIETagCache sharedManager] pageUrlForUrl:request.URL].relativeString withNextPageHref:[[DSAPIETagCache sharedManager] nextPageUrlForUrl:request.URL].relativeString];
+                                    page.notModified = YES;
+                                    if (notModified) {
+                                        notModified(page);
+                                    }
+                                } else {
+                                    [client postRateLimitingNotificationIfNecessary:response];
+                                    if (failure) {
+                                        failure(response, error);
+                                    }
+                                }
+                            }];
+        
         [task resume];
     }
 }
@@ -466,16 +470,20 @@
                failure:(DSAPIFailureBlock)failure
 {
     DSAPIClient *client = [DSAPIClient sharedManager];
-    [client POST:link.href parameters:resourceDict success:^(NSHTTPURLResponse *response, id responseObject) {
-        if (success) {
-            success([responseObject DSAPIResourceWithSelf]);
-        }
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        [client postRateLimitingNotificationIfNecessary:response];
-        if (failure) {
-            failure(response, error);
-        }
-    }];
+    [client POST:link.href
+      parameters:resourceDict
+           queue:queue
+         success:^(NSHTTPURLResponse *response, id responseObject) {
+             if (success) {
+                 success([responseObject DSAPIResourceWithSelf]);
+             }
+         }
+         failure:^(NSHTTPURLResponse *response, NSError *error) {
+             [client postRateLimitingNotificationIfNecessary:response];
+             if (failure) {
+                 failure(response, error);
+             }
+         }];
 }
 
 + (void)showResourceAtLink:(DSAPILink *)linkToResource
@@ -485,16 +493,20 @@
                    failure:(DSAPIFailureBlock)failure
 {
     DSAPIClient *client = [DSAPIClient sharedManager];
-    [client GET:linkToResource.href parameters:parameters success:^(NSHTTPURLResponse *response, id responseObject) {
-        if (success) {
-            success([responseObject DSAPIResourceWithSelf]);
+    [client GET:linkToResource.href
+     parameters:parameters
+          queue:queue
+        success:^(NSHTTPURLResponse *response, id responseObject) {
+            if (success) {
+                success([responseObject DSAPIResourceWithSelf]);
+            }
         }
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        [client postRateLimitingNotificationIfNecessary:response];
-        if (failure) {
-            failure(response, error);
-        }
-    }];
+        failure:^(NSHTTPURLResponse *response, NSError *error) {
+            [client postRateLimitingNotificationIfNecessary:response];
+            if (failure) {
+                failure(response, error);
+            }
+        }];
 }
 
 - (void)showWithParameters:(NSDictionary *)parameters
@@ -515,16 +527,20 @@
                      failure:(DSAPIFailureBlock)failure
 {
     DSAPIClient *client = [DSAPIClient sharedManager];
-    [client PATCH:self.linkToSelf.href parameters:dictionary success:^(NSHTTPURLResponse *response, id responseObject) {
-        if (success) {
-            success([responseObject DSAPIResourceWithSelf]);
-        }
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        [client postRateLimitingNotificationIfNecessary:response];
-        if (failure) {
-            failure(response, error);
-        }
-    }];
+    [client PATCH:self.linkToSelf.href
+       parameters:dictionary
+            queue:queue
+          success:^(NSHTTPURLResponse *response, id responseObject) {
+              if (success) {
+                  success([responseObject DSAPIResourceWithSelf]);
+              }
+          }
+          failure:^(NSHTTPURLResponse *response, NSError *error) {
+              [client postRateLimitingNotificationIfNecessary:response];
+              if (failure) {
+                  failure(response, error);
+              }
+          }];
 }
 
 - (void)listResourcesForRelation:(NSString *)relation
@@ -563,16 +579,20 @@
                      failure:(DSAPIFailureBlock)failure
 {
     DSAPIClient *client = [DSAPIClient sharedManager];
-    [client DELETE:self.linkToSelf.href parameters:parameters success:^(NSHTTPURLResponse *response, id responseObject) {
-        if (success) {
-            success();
-        }
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        [client postRateLimitingNotificationIfNecessary:response];
-        if (failure) {
-            failure(response, error);
-        }
-    }];
+    [client DELETE:self.linkToSelf.href
+        parameters:parameters
+             queue:queue
+           success:^(NSHTTPURLResponse *response, id responseObject) {
+               if (success) {
+                   success();
+               }
+           }
+           failure:^(NSHTTPURLResponse *response, NSError *error) {
+               [client postRateLimitingNotificationIfNecessary:response];
+               if (failure) {
+                   failure(response, error);
+               }
+           }];
 }
 
 #pragma mark - NSCoding

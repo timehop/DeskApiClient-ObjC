@@ -392,7 +392,7 @@
 
 - (void)historyWithQueue:(NSOperationQueue *)queue
                  success:(DSAPIPageSuccessBlock)success
-                 failure:(DSAPIFailureBlock)failure;
+                 failure:(DSAPIFailureBlock)failure
 {
     [self historyWithQueue:queue
                    success:success
@@ -404,7 +404,7 @@
 - (void)historyWithQueue:(NSOperationQueue *)queue
                  success:(DSAPIPageSuccessBlock)success
              notModified:(DSAPIPageSuccessBlock)notModified
-                 failure:(DSAPIFailureBlock)failure;
+                 failure:(DSAPIFailureBlock)failure
 {
     DSAPILink *linkToHistory = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, kHistoryKey], kClassKey:kHistoryKey}];
     [DSAPIResource listResourcesAt:linkToHistory
@@ -426,16 +426,20 @@
     DSAPILink *linkToMacros = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@/%@", self.linkToSelf.href, [DSAPIMacro classNamePlural], kPreviewKey], kClassKey:[DSAPIMacro className]}];
     
     DSAPIClient *client = [DSAPIClient sharedManager];
-    [client POST:linkToMacros.href parameters:macrosPreviewResource.dictionary success:^(NSHTTPURLResponse *response, id responseObject) {
-        if (success) {
-            success((DSAPIPage *)[responseObject DSAPIResourceWithSelf]);
-        }
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        [client postRateLimitingNotificationIfNecessary:response];
-        if (failure) {
-            failure(response, error);
-        }
-    }];
+    [client POST:linkToMacros.href
+      parameters:macrosPreviewResource.dictionary
+           queue:queue
+         success:^(NSHTTPURLResponse *response, id responseObject) {
+             if (success) {
+                 success((DSAPIPage *)[responseObject DSAPIResourceWithSelf]);
+             }
+         }
+         failure:^(NSHTTPURLResponse *response, NSError *error) {
+             [client postRateLimitingNotificationIfNecessary:response];
+             if (failure) {
+                 failure(response, error);
+             }
+         }];
 }
 
 @end

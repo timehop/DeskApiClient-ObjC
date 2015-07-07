@@ -90,35 +90,43 @@
                               failure:(DSAPIFailureBlock)failure
 {
     DSAPIClient *client = [DSAPIClient sharedManager];
-    [client GET:[self linkForLoggedInUser].href parameters:parameters success:^(NSHTTPURLResponse *response, id responseObject) {
-        if (success) {
-            success((DSAPIUser *)[responseObject DSAPIResourceWithSelf]);
+    [client GET:[self linkForLoggedInUser].href
+     parameters:parameters
+          queue:queue
+        success:^(NSHTTPURLResponse *response, id responseObject) {
+            if (success) {
+                success((DSAPIUser *)[responseObject DSAPIResourceWithSelf]);
+            }
         }
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        [client postRateLimitingNotificationIfNecessary:response];
-        if (failure) {
-            failure(response, error);
-        }
-    }];
+        failure:^(NSHTTPURLResponse *response, NSError *error) {
+            [client postRateLimitingNotificationIfNecessary:response];
+            if (failure) {
+                failure(response, error);
+            }
+        }];
 }
 
 
 + (void)logoutCurrentUserWithQueue:(NSOperationQueue *)queue
                            success:(void (^)(void))success
-                           failure:(DSAPIFailureBlock)failure;
+                           failure:(DSAPIFailureBlock)failure
 {
     DSAPIClient *client = [DSAPIClient sharedManager];
     NSString *logoutLink = [NSString stringWithFormat:@"%@/logout", [self linkForLoggedInUser].href];
-    [client POST:logoutLink parameters:nil success:^(NSHTTPURLResponse *response, id responseObject) {
-        if (success) {
-            success();
-        }
-    } failure:^(NSHTTPURLResponse *response, NSError *error) {
-        [client postRateLimitingNotificationIfNecessary:response];
-        if (failure) {
-            failure(response, error);
-        }
-    }];
+    [client POST:logoutLink
+      parameters:nil
+           queue:queue
+         success:^(NSHTTPURLResponse *response, id responseObject) {
+             if (success) {
+                 success();
+             }
+         }
+         failure:^(NSHTTPURLResponse *response, NSError *error) {
+             [client postRateLimitingNotificationIfNecessary:response];
+             if (failure) {
+                 failure(response, error);
+             }
+         }];
 }
 
 
