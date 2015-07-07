@@ -46,18 +46,6 @@
 @property (nonatomic, strong) NSMutableDictionary *embedded;
 @property (nonatomic, strong) NSURL *baseURL;
 
-- (BOOL)parseResource;
-- (BOOL)parseLinks;
-- (NSArray *)extractLinkOrLinks:(id)linkOrLinks;
-- (NSArray *)extractArrayOfLinks:(NSArray *)linkArray;
-- (BOOL)parseEmbedded;
-- (BOOL)parseNew;
-- (BOOL)parseChanged;
-- (BOOL)parseEmbeddedAtRelation:(id)relation;
-- (BOOL)parseEmbeddedDictionaries:(NSDictionary *)embeddedDictionaries;
-- (BOOL)parseEmbeddedArrayOfDictionaries:(NSArray *)embeddedArrayOfDictionaries atRelation:(id)relation;
-- (void)embedResourceOrResources:(id)resourceOrResources atRelation:(id)relation;
-
 @end
 
 @implementation DSAPIResource {
@@ -369,11 +357,13 @@
 
 + (void)listResourcesAt:(DSAPILink *)link
              parameters:(NSDictionary *)parameters
+                  queue:(NSOperationQueue *)queue
                 success:(DSAPIPageSuccessBlock)success
                 failure:(DSAPIFailureBlock)failure
 {
     [self listResourcesAt:link
                parameters:parameters
+                    queue:(NSOperationQueue *)queue
                   success:success
               notModified:nil
                   failure:failure];
@@ -381,6 +371,7 @@
 
 + (void)listResourcesAt:(DSAPILink *)link
              parameters:(NSDictionary *)parameters
+                  queue:(NSOperationQueue *)queue
                 success:(DSAPIPageSuccessBlock)success
             notModified:(DSAPIPageSuccessBlock)notModified
                 failure:(DSAPIFailureBlock)failure
@@ -404,7 +395,6 @@
                 [request setValue:etag forHTTPHeaderField:kIfNoneMatchHeader];
             }
         }
-
         NSURLSessionDataTask *task = [client dataTaskWithRequest:request success:^(NSHTTPURLResponse *response, id responseObject) {
             DSAPIResource *resource = [responseObject DSAPIResourceWithSelf];
             NSString *etag = [[response allHeaderFields] objectForKey:kETagHeader];
@@ -435,11 +425,13 @@
 
 + (void)searchResourcesAt:(DSAPILink *)link
                parameters:(NSDictionary *)parameters
+                    queue:(NSOperationQueue *)queue
                   success:(DSAPIPageSuccessBlock)success
                   failure:(DSAPIFailureBlock)failure
 {
     [self searchResourcesAt:link
                  parameters:parameters
+                      queue:queue
                     success:success
                 notModified:nil
                     failure:failure];
@@ -447,12 +439,14 @@
 
 + (void)searchResourcesAt:(DSAPILink *)link
                parameters:(NSDictionary *)parameters
+                    queue:queue
                   success:(DSAPIPageSuccessBlock)success
               notModified:(DSAPIPageSuccessBlock)notModified
                   failure:(DSAPIFailureBlock)failure
 {
     [self listResourcesAt:[self searchEndpointForClassLink:link]
                parameters:parameters
+                    queue:queue
                   success:success
               notModified:notModified
                   failure:failure];
@@ -467,6 +461,7 @@
 
 + (void)createResource:(NSDictionary *)resourceDict
                 atLink:(DSAPILink *)link
+                 queue:queue
                success:(DSAPIResourceSuccessBlock)success
                failure:(DSAPIFailureBlock)failure
 {
@@ -485,6 +480,7 @@
 
 + (void)showResourceAtLink:(DSAPILink *)linkToResource
                 parameters:(NSDictionary *)parameters
+                     queue:(NSOperationQueue *)queue
                    success:(DSAPIResourceSuccessBlock)success
                    failure:(DSAPIFailureBlock)failure
 {
@@ -502,16 +498,19 @@
 }
 
 - (void)showWithParameters:(NSDictionary *)parameters
+                     queue:(NSOperationQueue *)queue
                    success:(DSAPIResourceSuccessBlock)success
                    failure:(DSAPIFailureBlock)failure
 {
     [[self class] showResourceAtLink:self.linkToSelf
                           parameters:parameters
+                               queue:queue
                              success:success
                              failure:failure];
 }
 
 - (void)updateWithDictionary:(NSDictionary *)dictionary
+                       queue:(NSOperationQueue *)queue
                      success:(DSAPIResourceSuccessBlock)success
                      failure:(DSAPIFailureBlock)failure
 {
@@ -530,11 +529,13 @@
 
 - (void)listResourcesForRelation:(NSString *)relation
                       parameters:(NSDictionary *)parameters
+                           queue:(NSOperationQueue *)queue
                          success:(DSAPIPageSuccessBlock)success
                          failure:(DSAPIFailureBlock)failure
 {
     [self listResourcesForRelation:relation
                         parameters:parameters
+                             queue:queue
                            success:success
                        notModified:nil
                            failure:failure];
@@ -542,6 +543,7 @@
 
 - (void)listResourcesForRelation:(NSString *)relation
                       parameters:(NSDictionary *)parameters
+                           queue:(NSOperationQueue *)queue
                          success:(DSAPIPageSuccessBlock)success
                      notModified:(DSAPIPageSuccessBlock)notModified
                          failure:(DSAPIFailureBlock)failure
@@ -549,12 +551,14 @@
     DSAPILink *linkToRelation = [self linkForRelation:relation];
     [DSAPIResource listResourcesAt:linkToRelation
                         parameters:parameters
+                             queue:queue
                            success:success
                        notModified:notModified
                            failure:failure];
 }
 
 - (void)deleteWithParameters:(NSDictionary *)parameters
+                       queue:(NSOperationQueue *)queue
                      success:(void (^)(void))success
                      failure:(DSAPIFailureBlock)failure
 {
