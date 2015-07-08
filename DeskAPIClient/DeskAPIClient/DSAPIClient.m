@@ -43,6 +43,8 @@ NSString *const DSAPIResponseKey = @"response";
 
 static NSString *const DSAPIOAuthCallbackKey = @"oauth_callback";
 static NSString *const DSAPIClientLockName = @"com.desk.networking.session.client.lock";
+static NSString *const DSAPIQueueKey = @"queue";
+static NSString *const DSAPIBlockHandlerKey = @"blockHandler";
 
 @interface DSAPIClient ()
 
@@ -312,7 +314,7 @@ static NSDictionary *ClassNames;
 {
     return [self.session dataTaskWithRequest:request
                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                               dispatch_async(dispatch_get_main_queue(), ^{
+                               [queue addOperationWithBlock:^{
                                    if (error) {
                                        if (failure) {
                                            failure((NSHTTPURLResponse *)response, error);
@@ -330,7 +332,7 @@ static NSDictionary *ClassNames;
                                            }
                                        }
                                    }
-                               });
+                               }];
                            }];
 }
 
@@ -464,6 +466,7 @@ static NSDictionary *ClassNames;
 #pragma mark - Downloads
 
 - (NSURLSessionDownloadTask *)downloadTaskWithURL:(NSURL *)url
+                                            queue:(NSOperationQueue *)queue
                                   progressHandler:(DSAPIDownloadProgressHandler)progressHandler
                                 completionHandler:(DSAPIDownloadCompletionHandler)completionHandler
 {
@@ -481,10 +484,10 @@ static NSDictionary *ClassNames;
         
         [self.lock lock];
         if (progressHandler) {
-            self.downloadProgressBlocks[@(task.taskIdentifier)] = progressHandler;
+            self.downloadProgressBlocks[@(task.taskIdentifier)] = [self dictionaryWithQueue:queue blockHandler:progressHandler];
         }
         if (completionHandler) {
-            self.downloadCompletionBlocks[@(task.taskIdentifier)] = completionHandler;
+            self.downloadCompletionBlocks[@(task.taskIdentifier)] = [self dictionaryWithQueue:queue blockHandler:completionHandler];
         }
         [self.lock unlock];
         
@@ -492,8 +495,18 @@ static NSDictionary *ClassNames;
     }
 }
 
+- (NSDictionary *)dictionaryWithQueue:(NSOperationQueue *)queue blockHandler:(id)blockHandler
+{
+    NSDictionary *dict = @{
+                           DSAPIQueueKey : queue,
+                           DSAPIBlockHandlerKey : blockHandler
+                           };
+    return dict;
+}
+
 - (void)cancelDownloadTask:(NSURLSessionDownloadTask *)downloadTask
 {
+    [downloadTask cancel];
     [self.lock lock];
     if (self.downloadProgressBlocks[@(downloadTask.taskIdentifier)]) {
         [self.downloadProgressBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
@@ -503,7 +516,6 @@ static NSDictionary *ClassNames;
         [self.downloadCompletionBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
     }
     [self.lock unlock];
-    [downloadTask cancel];
 }
 
 #pragma mark - NSURLSessionDelegate
@@ -536,10 +548,11 @@ didFinishDownloadingToURL:(NSURL *)location
     }
     
     if (self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)]) {
-        DSAPIDownloadCompletionHandler downloadCompletion = self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            downloadCompletion(data, error);
-        });
+        NSOperationQueue *queue = self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)][DSAPIQueueKey];
+        DSAPIDownloadCompletionHandler downloadCompletion = self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)][DSAPIBlockHandlerKey];
+        [queue addOperationWithBlock:^{
+            downloadCompletion(data,error);
+        }];
         [self.downloadCompletionBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
     }
     [self.lock unlock];
@@ -553,10 +566,11 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 {
     [self.lock lock];
     if (self.downloadProgressBlocks[@(downloadTask.taskIdentifier)]) {
+        NSOperationQueue *queue = self.downloadProgressBlocks[@(downloadTask.taskIdentifier)][DSAPIQueueKey];
         DSAPIDownloadProgressHandler downloadProgress = self.downloadProgressBlocks[@(downloadTask.taskIdentifier)];
-        dispatch_async(dispatch_get_main_queue(), ^{
+        [queue addOperationWithBlock:^{
             downloadProgress(session, downloadTask, bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
-        });
+        }];
     }
     [self.lock unlock];
 }

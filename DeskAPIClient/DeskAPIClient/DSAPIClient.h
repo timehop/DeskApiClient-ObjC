@@ -197,6 +197,7 @@ extern NSString * const DSAPIResponseKey;
 - (void)cancelAllDataTasks:(void (^)(void))completionHandler;
 
 - (NSURLSessionDownloadTask *)downloadTaskWithURL:(NSURL *)url
+                                            queue:(NSOperationQueue *)queue
                                   progressHandler:(DSAPIDownloadProgressHandler)progressHandler
                                 completionHandler:(DSAPIDownloadCompletionHandler)completionHandler;
 
