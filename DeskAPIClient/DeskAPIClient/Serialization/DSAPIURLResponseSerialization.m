@@ -199,7 +199,7 @@ static id DSAPIJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadi
 
 @end
 
-#pragma mark -
+#pragma mark - KEEP
 
 @implementation DSAPIJSONResponseSerializer
 
