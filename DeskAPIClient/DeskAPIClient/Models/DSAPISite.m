@@ -42,7 +42,7 @@
 }
 
 + (void)showCurrentSiteWithQueue:(NSOperationQueue *)queue
-                         success:(void (^)(DSAPISite *site))success
+                         success:(void (^)(DSAPISite *apiSite))success
                          failure:(DSAPIFailureBlock)failure
 {
     [self showCurrentSiteWithParameters:nil

@@ -36,17 +36,7 @@
 @property (nonatomic) NSUInteger totalResources;
 @property (nonatomic, strong) id<DSAPIListEndpoint> endpoint;
 @property (nonatomic, strong) NSMutableDictionary *loadedPages;
-
-- (void)sendFetchResourcesOnPageNumber:(NSUInteger)pageNumber;
-- (BOOL)shouldFetchResourcesOnPageNumber:(NSUInteger)pageNumber;
-- (BOOL)alreadyLoadedResourcesOnPageNumber:(NSUInteger)pageNumber;
-- (BOOL)pageNumberIsFetchable:(NSUInteger)pageNumber;
-- (void)handleLoadedResourcesOnPage:(DSAPIPage *)page;
-- (void)sendWillFetchPageNumber:(NSUInteger)pageNumber;
-- (void)sendDidFetchPage:(DSAPIPage *)page;
-- (void)sendFetchDidFailOnPageNumber:(NSUInteger)pageNumber;
-- (void)sendNoResults;
-- (DSAPIPage *)loadedPageNumber:(NSInteger)pageNumber;
+@property (nonatomic) NSOperationQueue *APICallbackQueue;
 
 @end
 
@@ -67,6 +57,8 @@
 {
     self.loadedPages = [NSMutableDictionary new];
     self.totalResources = 0;
+    [self.APICallbackQueue cancelAllOperations];
+    self.APICallbackQueue = [NSOperationQueue new];
 }
 
 - (NSInteger)totalPages
@@ -96,6 +88,7 @@
 - (void)sendFetchResourcesOnPageNumber:(NSUInteger)pageNumber
 {
     [self.endpoint listResourcesOnPageNumber:pageNumber
+                                       queue:self.APICallbackQueue
                                      success:^(DSAPIPage *page) {
                                          [self handleLoadedResourcesOnPage:page];
                                      }
