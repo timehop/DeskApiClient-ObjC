@@ -58,7 +58,6 @@
     self.loadedPages = [NSMutableDictionary new];
     self.totalResources = 0;
     [self.APICallbackQueue cancelAllOperations];
-    self.APICallbackQueue = [NSOperationQueue new];
 }
 
 - (NSInteger)totalPages
@@ -90,10 +89,14 @@
     [self.endpoint listResourcesOnPageNumber:pageNumber
                                        queue:self.APICallbackQueue
                                      success:^(DSAPIPage *page) {
-                                         [self handleLoadedResourcesOnPage:page];
+                                         dispatch_sync(dispatch_get_main_queue(), ^{
+                                             [self handleLoadedResourcesOnPage:page];
+                                         });
                                      }
                                      failure:^(NSHTTPURLResponse *response, NSError *error) {
-                                         [self sendFetchDidFailOnPageNumber:pageNumber];
+                                         dispatch_sync(dispatch_get_main_queue(), ^{
+                                             [self sendFetchDidFailOnPageNumber:pageNumber];
+                                         });
                                      }];
 }
 
