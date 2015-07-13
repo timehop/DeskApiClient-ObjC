@@ -47,7 +47,8 @@
     NSParameterAssert(endpoint);
     self = [super init];
     if (self) {
-        self.endpoint = endpoint;
+        _endpoint = endpoint;
+        _APICallbackQueue = [NSOperationQueue new];
         [self reset];
     }
     return self;
