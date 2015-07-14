@@ -567,7 +567,7 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
     [self.lock lock];
     if (self.downloadProgressBlocks[@(downloadTask.taskIdentifier)]) {
         NSOperationQueue *queue = self.downloadProgressBlocks[@(downloadTask.taskIdentifier)][DSAPIQueueKey];
-        DSAPIDownloadProgressHandler downloadProgress = self.downloadProgressBlocks[@(downloadTask.taskIdentifier)];
+        DSAPIDownloadProgressHandler downloadProgress = self.downloadProgressBlocks[@(downloadTask.taskIdentifier)][DSAPIBlockHandlerKey];
         [queue addOperationWithBlock:^{
             downloadProgress(session, downloadTask, bytesWritten, totalBytesWritten, totalBytesExpectedToWrite);
         }];
