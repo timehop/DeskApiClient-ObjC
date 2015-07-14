@@ -21,6 +21,7 @@
 - (void)setUp {
     [super setUp];
     [DSAPITestUtils setupSharedApiClient];
+    _APICallbackQueue = [NSOperationQueue new];
     [self start];
 }
 
