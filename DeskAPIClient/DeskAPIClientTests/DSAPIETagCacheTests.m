@@ -198,7 +198,7 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout handler:nil];
+    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout * 2.f handler:nil];
 }
 
 - (void)testEtagCachingForUsers
