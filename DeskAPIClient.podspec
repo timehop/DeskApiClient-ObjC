@@ -5,8 +5,8 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'BSD 3-Clause', :file => 'LICENSE.txt' }
   s.homepage     = "https://github.com/forcedotcom/DeskApiClient-ObjC"
   s.author       = { "Salesforce, Inc." => "mobile@desk.com" }
-  s.source       = { :git => "https://github.com/forcedotcom/DeskApiClient-ObjC.git", :branch => 'tickets/APIC-127-remove-dependency-on-main-queue-for-api-callbacks' }
-  s.platform     = :ios, '7.0'
+  s.source       = { :git => "https://github.com/forcedotcom/DeskApiClient-ObjC.git", :branch => 'develop' }
+  s.platform     = :ios, '8.0'
   s.source_files = 'DeskAPIClient/DeskAPIClient/*.{h,m}', 'DeskAPIClient/DeskAPIClient/**/*.{h,m}'
   s.requires_arc = true
 end
