@@ -355,26 +355,26 @@
 
 #pragma mark - Generic CRUD Methods
 
-+ (void)listResourcesAt:(DSAPILink *)link
-             parameters:(NSDictionary *)parameters
-                  queue:(NSOperationQueue *)queue
-                success:(DSAPIPageSuccessBlock)success
-                failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listResourcesAt:(DSAPILink *)link
+                               parameters:(NSDictionary *)parameters
+                                    queue:(NSOperationQueue *)queue
+                                  success:(DSAPIPageSuccessBlock)success
+                                  failure:(DSAPIFailureBlock)failure
 {
-    [self listResourcesAt:link
-               parameters:parameters
-                    queue:(NSOperationQueue *)queue
-                  success:success
-              notModified:nil
-                  failure:failure];
+    return [self listResourcesAt:link
+                      parameters:parameters
+                           queue:(NSOperationQueue *)queue
+                         success:success
+                     notModified:nil
+                         failure:failure];
 }
 
-+ (void)listResourcesAt:(DSAPILink *)link
-             parameters:(NSDictionary *)parameters
-                  queue:(NSOperationQueue *)queue
-                success:(DSAPIPageSuccessBlock)success
-            notModified:(DSAPIPageSuccessBlock)notModified
-                failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listResourcesAt:(DSAPILink *)link
+                               parameters:(NSDictionary *)parameters
+                                    queue:(NSOperationQueue *)queue
+                                  success:(DSAPIPageSuccessBlock)success
+                              notModified:(DSAPIPageSuccessBlock)notModified
+                                  failure:(DSAPIFailureBlock)failure
 {
     DSAPIClient *client = [DSAPIClient sharedManager];
     NSString *urlString = [[NSURL URLWithString:link.href relativeToURL:client.baseURL] absoluteString];
@@ -424,36 +424,38 @@
                             }];
         
         [task resume];
+        return task;
     }
+    return nil;
 }
 
-+ (void)searchResourcesAt:(DSAPILink *)link
-               parameters:(NSDictionary *)parameters
-                    queue:(NSOperationQueue *)queue
-                  success:(DSAPIPageSuccessBlock)success
-                  failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)searchResourcesAt:(DSAPILink *)link
+                                 parameters:(NSDictionary *)parameters
+                                      queue:(NSOperationQueue *)queue
+                                    success:(DSAPIPageSuccessBlock)success
+                                    failure:(DSAPIFailureBlock)failure
 {
-    [self searchResourcesAt:link
-                 parameters:parameters
-                      queue:queue
-                    success:success
-                notModified:nil
-                    failure:failure];
+    return [self searchResourcesAt:link
+                        parameters:parameters
+                             queue:queue
+                           success:success
+                       notModified:nil
+                           failure:failure];
 }
 
-+ (void)searchResourcesAt:(DSAPILink *)link
-               parameters:(NSDictionary *)parameters
-                    queue:queue
-                  success:(DSAPIPageSuccessBlock)success
-              notModified:(DSAPIPageSuccessBlock)notModified
-                  failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)searchResourcesAt:(DSAPILink *)link
+                                 parameters:(NSDictionary *)parameters
+                                      queue:queue
+                                    success:(DSAPIPageSuccessBlock)success
+                                notModified:(DSAPIPageSuccessBlock)notModified
+                                    failure:(DSAPIFailureBlock)failure
 {
-    [self listResourcesAt:[self searchEndpointForClassLink:link]
-               parameters:parameters
-                    queue:queue
-                  success:success
-              notModified:notModified
-                  failure:failure];
+    return [self listResourcesAt:[self searchEndpointForClassLink:link]
+                      parameters:parameters
+                           queue:queue
+                         success:success
+                     notModified:notModified
+                         failure:failure];
 }
 
 + (DSAPILink *)searchEndpointForClassLink:(DSAPILink *)classLink
@@ -463,136 +465,136 @@
                                                    kClassKey : classLink.className}];
 }
 
-+ (void)createResource:(NSDictionary *)resourceDict
-                atLink:(DSAPILink *)link
++ (NSURLSessionDataTask *)createResource:(NSDictionary *)resourceDict
+                                  atLink:(DSAPILink *)link
+                                   queue:queue
+                                 success:(DSAPIResourceSuccessBlock)success
+                                 failure:(DSAPIFailureBlock)failure
+{
+    DSAPIClient *client = [DSAPIClient sharedManager];
+    return [client POST:link.href
+             parameters:resourceDict
+                  queue:queue
+                success:^(NSHTTPURLResponse *response, id responseObject) {
+                    if (success) {
+                        success([responseObject DSAPIResourceWithSelf]);
+                    }
+                }
+                failure:^(NSHTTPURLResponse *response, NSError *error) {
+                    [client postRateLimitingNotificationIfNecessary:response];
+                    if (failure) {
+                        failure(response, error);
+                    }
+                }];
+}
+
++ (NSURLSessionDataTask *)showResourceAtLink:(DSAPILink *)linkToResource
+                                  parameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(DSAPIResourceSuccessBlock)success
+                                     failure:(DSAPIFailureBlock)failure
+{
+    DSAPIClient *client = [DSAPIClient sharedManager];
+    return [client GET:linkToResource.href
+            parameters:parameters
                  queue:queue
-               success:(DSAPIResourceSuccessBlock)success
-               failure:(DSAPIFailureBlock)failure
+               success:^(NSHTTPURLResponse *response, id responseObject) {
+                   if (success) {
+                       success([responseObject DSAPIResourceWithSelf]);
+                   }
+               }
+               failure:^(NSHTTPURLResponse *response, NSError *error) {
+                   [client postRateLimitingNotificationIfNecessary:response];
+                   if (failure) {
+                       failure(response, error);
+                   }
+               }];
+}
+
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(DSAPIResourceSuccessBlock)success
+                                     failure:(DSAPIFailureBlock)failure
+{
+    return [[self class] showResourceAtLink:self.linkToSelf
+                                 parameters:parameters
+                                      queue:queue
+                                    success:success
+                                    failure:failure];
+}
+
+- (NSURLSessionDataTask *)updateWithDictionary:(NSDictionary *)dictionary
+                                         queue:(NSOperationQueue *)queue
+                                       success:(DSAPIResourceSuccessBlock)success
+                                       failure:(DSAPIFailureBlock)failure
 {
     DSAPIClient *client = [DSAPIClient sharedManager];
-    [client POST:link.href
-      parameters:resourceDict
-           queue:queue
-         success:^(NSHTTPURLResponse *response, id responseObject) {
-             if (success) {
-                 success([responseObject DSAPIResourceWithSelf]);
-             }
-         }
-         failure:^(NSHTTPURLResponse *response, NSError *error) {
-             [client postRateLimitingNotificationIfNecessary:response];
-             if (failure) {
-                 failure(response, error);
-             }
-         }];
+    return [client PATCH:self.linkToSelf.href
+              parameters:dictionary
+                   queue:queue
+                 success:^(NSHTTPURLResponse *response, id responseObject) {
+                     if (success) {
+                         success([responseObject DSAPIResourceWithSelf]);
+                     }
+                 }
+                 failure:^(NSHTTPURLResponse *response, NSError *error) {
+                     [client postRateLimitingNotificationIfNecessary:response];
+                     if (failure) {
+                         failure(response, error);
+                     }
+                 }];
 }
 
-+ (void)showResourceAtLink:(DSAPILink *)linkToResource
-                parameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(DSAPIResourceSuccessBlock)success
-                   failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listResourcesForRelation:(NSString *)relation
+                                        parameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                           failure:(DSAPIFailureBlock)failure
 {
-    DSAPIClient *client = [DSAPIClient sharedManager];
-    [client GET:linkToResource.href
-     parameters:parameters
-          queue:queue
-        success:^(NSHTTPURLResponse *response, id responseObject) {
-            if (success) {
-                success([responseObject DSAPIResourceWithSelf]);
-            }
-        }
-        failure:^(NSHTTPURLResponse *response, NSError *error) {
-            [client postRateLimitingNotificationIfNecessary:response];
-            if (failure) {
-                failure(response, error);
-            }
-        }];
+    return [self listResourcesForRelation:relation
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:nil
+                                  failure:failure];
 }
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(DSAPIResourceSuccessBlock)success
-                   failure:(DSAPIFailureBlock)failure
-{
-    [[self class] showResourceAtLink:self.linkToSelf
-                          parameters:parameters
-                               queue:queue
-                             success:success
-                             failure:failure];
-}
-
-- (void)updateWithDictionary:(NSDictionary *)dictionary
-                       queue:(NSOperationQueue *)queue
-                     success:(DSAPIResourceSuccessBlock)success
-                     failure:(DSAPIFailureBlock)failure
-{
-    DSAPIClient *client = [DSAPIClient sharedManager];
-    [client PATCH:self.linkToSelf.href
-       parameters:dictionary
-            queue:queue
-          success:^(NSHTTPURLResponse *response, id responseObject) {
-              if (success) {
-                  success([responseObject DSAPIResourceWithSelf]);
-              }
-          }
-          failure:^(NSHTTPURLResponse *response, NSError *error) {
-              [client postRateLimitingNotificationIfNecessary:response];
-              if (failure) {
-                  failure(response, error);
-              }
-          }];
-}
-
-- (void)listResourcesForRelation:(NSString *)relation
-                      parameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                         failure:(DSAPIFailureBlock)failure
-{
-    [self listResourcesForRelation:relation
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:nil
-                           failure:failure];
-}
-
-- (void)listResourcesForRelation:(NSString *)relation
-                      parameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                     notModified:(DSAPIPageSuccessBlock)notModified
-                         failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listResourcesForRelation:(NSString *)relation
+                                        parameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                       notModified:(DSAPIPageSuccessBlock)notModified
+                                           failure:(DSAPIFailureBlock)failure
 {
     DSAPILink *linkToRelation = [self linkForRelation:relation];
-    [DSAPIResource listResourcesAt:linkToRelation
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:notModified
-                           failure:failure];
+    return [DSAPIResource listResourcesAt:linkToRelation
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:notModified
+                                  failure:failure];
 }
 
-- (void)deleteWithParameters:(NSDictionary *)parameters
-                       queue:(NSOperationQueue *)queue
-                     success:(void (^)(void))success
-                     failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)deleteWithParameters:(NSDictionary *)parameters
+                                         queue:(NSOperationQueue *)queue
+                                       success:(void (^)(void))success
+                                       failure:(DSAPIFailureBlock)failure
 {
     DSAPIClient *client = [DSAPIClient sharedManager];
-    [client DELETE:self.linkToSelf.href
-        parameters:parameters
-             queue:queue
-           success:^(NSHTTPURLResponse *response, id responseObject) {
-               if (success) {
-                   success();
-               }
-           }
-           failure:^(NSHTTPURLResponse *response, NSError *error) {
-               [client postRateLimitingNotificationIfNecessary:response];
-               if (failure) {
-                   failure(response, error);
-               }
-           }];
+    return [client DELETE:self.linkToSelf.href
+               parameters:parameters
+                    queue:queue
+                  success:^(NSHTTPURLResponse *response, id responseObject) {
+                      if (success) {
+                          success();
+                      }
+                  }
+                  failure:^(NSHTTPURLResponse *response, NSError *error) {
+                      [client postRateLimitingNotificationIfNecessary:response];
+                      if (failure) {
+                          failure(response, error);
+                      }
+                  }];
 }
 
 #pragma mark - NSCoding

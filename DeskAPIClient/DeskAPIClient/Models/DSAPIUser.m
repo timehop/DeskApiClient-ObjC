@@ -56,204 +56,204 @@
     return [[DSAPIUser linkForLoggedInUser] linkFromRelationWithClass:[DSAPIMobileDevice class]];
 }
 
-+ (void)listUsersWithParameters:(NSDictionary *)parameters
-                          queue:(NSOperationQueue *)queue
-                        success:(DSAPIPageSuccessBlock)success
-                        failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listUsersWithParameters:(NSDictionary *)parameters
+                                            queue:(NSOperationQueue *)queue
+                                          success:(DSAPIPageSuccessBlock)success
+                                          failure:(DSAPIFailureBlock)failure
 {
-    [self listUsersWithParameters:parameters
+    return [self listUsersWithParameters:parameters
+                                   queue:queue
+                                 success:success
+                             notModified:nil
+                                 failure:failure];
+}
+
+
++ (NSURLSessionDataTask *)listUsersWithParameters:(NSDictionary *)parameters
+                                            queue:(NSOperationQueue *)queue
+                                          success:(DSAPIPageSuccessBlock)success
+                                      notModified:(DSAPIPageSuccessBlock)notModified
+                                          failure:(DSAPIFailureBlock)failure
+{
+    return [super listResourcesAt:[DSAPIUser classLink]
+                       parameters:parameters
                             queue:queue
                           success:success
-                      notModified:nil
+                      notModified:notModified
                           failure:failure];
 }
 
 
-+ (void)listUsersWithParameters:(NSDictionary *)parameters
-                          queue:(NSOperationQueue *)queue
-                        success:(DSAPIPageSuccessBlock)success
-                    notModified:(DSAPIPageSuccessBlock)notModified
-                        failure:(DSAPIFailureBlock)failure
-{
-    [super listResourcesAt:[DSAPIUser classLink]
-                parameters:parameters
-                     queue:queue
-                   success:success
-               notModified:notModified
-                   failure:failure];
-}
-
-
-+ (void)showCurrentUserWithParameters:(NSDictionary *)parameters
-                                queue:(NSOperationQueue *)queue
-                              success:(void (^)(DSAPIUser *))success
-                              failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)showCurrentUserWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(void (^)(DSAPIUser *))success
+                                                failure:(DSAPIFailureBlock)failure
 {
     DSAPIClient *client = [DSAPIClient sharedManager];
-    [client GET:[self linkForLoggedInUser].href
-     parameters:parameters
-          queue:queue
-        success:^(NSHTTPURLResponse *response, id responseObject) {
-            if (success) {
-                success((DSAPIUser *)[responseObject DSAPIResourceWithSelf]);
-            }
-        }
-        failure:^(NSHTTPURLResponse *response, NSError *error) {
-            [client postRateLimitingNotificationIfNecessary:response];
-            if (failure) {
-                failure(response, error);
-            }
-        }];
+    return [client GET:[self linkForLoggedInUser].href
+            parameters:parameters
+                 queue:queue
+               success:^(NSHTTPURLResponse *response, id responseObject) {
+                   if (success) {
+                       success((DSAPIUser *)[responseObject DSAPIResourceWithSelf]);
+                   }
+               }
+               failure:^(NSHTTPURLResponse *response, NSError *error) {
+                   [client postRateLimitingNotificationIfNecessary:response];
+                   if (failure) {
+                       failure(response, error);
+                   }
+               }];
 }
 
 
-+ (void)logoutCurrentUserWithQueue:(NSOperationQueue *)queue
-                           success:(void (^)(void))success
-                           failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)logoutCurrentUserWithQueue:(NSOperationQueue *)queue
+                                             success:(void (^)(void))success
+                                             failure:(DSAPIFailureBlock)failure
 {
     DSAPIClient *client = [DSAPIClient sharedManager];
     NSString *logoutLink = [NSString stringWithFormat:@"%@/logout", [self linkForLoggedInUser].href];
-    [client POST:logoutLink
-      parameters:nil
-           queue:queue
-         success:^(NSHTTPURLResponse *response, id responseObject) {
-             if (success) {
-                 success();
-             }
-         }
-         failure:^(NSHTTPURLResponse *response, NSError *error) {
-             [client postRateLimitingNotificationIfNecessary:response];
-             if (failure) {
-                 failure(response, error);
-             }
-         }];
+    return [client POST:logoutLink
+             parameters:nil
+                  queue:queue
+                success:^(NSHTTPURLResponse *response, id responseObject) {
+                    if (success) {
+                        success();
+                    }
+                }
+                failure:^(NSHTTPURLResponse *response, NSError *error) {
+                    [client postRateLimitingNotificationIfNecessary:response];
+                    if (failure) {
+                        failure(response, error);
+                    }
+                }];
 }
 
 
-+ (void)listMyMobileDevicesWithParameters:(NSDictionary *)parameters
-                                    queue:(NSOperationQueue *)queue
-                                  success:(DSAPIPageSuccessBlock)success
++ (NSURLSessionDataTask *)listMyMobileDevicesWithParameters:(NSDictionary *)parameters
+                                                      queue:(NSOperationQueue *)queue
+                                                    success:(DSAPIPageSuccessBlock)success
+                                                notModified:(DSAPIPageSuccessBlock)notModified
+                                                    failure:(DSAPIFailureBlock)failure
+{
+    return [DSAPIResource listResourcesAt:self.linkForLoggedInUsersMobileDevices
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:notModified
+                                  failure:failure];
+}
+
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIUser *filter))success
+                                     failure:(DSAPIFailureBlock)failure
+{
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPIUser *)resource);
+                                 }
+                             }
+                             failure:failure];
+}
+
+- (NSURLSessionDataTask *)listPreferencesWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                                failure:(DSAPIFailureBlock)failure
+{
+    return [self listPreferencesWithParameters:parameters
+                                         queue:queue
+                                       success:success
+                                   notModified:nil
+                                       failure:failure];
+}
+
+
+- (NSURLSessionDataTask *)listPreferencesWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                            notModified:(DSAPIPageSuccessBlock)notModified
+                                                failure:(DSAPIFailureBlock)failure
+{
+    return [self listResourcesForRelation:[DSAPIUserPreference classNamePlural]
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
                               notModified:(DSAPIPageSuccessBlock)notModified
-                                  failure:(DSAPIFailureBlock)failure
-{
-    [DSAPIResource listResourcesAt:self.linkForLoggedInUsersMobileDevices
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:notModified
-                           failure:failure];
-}
-
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIUser *filter))success
-                   failure:(DSAPIFailureBlock)failure
-{
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPIUser *)resource);
-                          }
-                      }
-                      failure:failure];
-}
-
-- (void)listPreferencesWithParameters:(NSDictionary *)parameters
-                                queue:(NSOperationQueue *)queue
-                              success:(DSAPIPageSuccessBlock)success
-                              failure:(DSAPIFailureBlock)failure
-{
-    [self listPreferencesWithParameters:parameters
-                                  queue:queue
-                                success:success
-                            notModified:nil
-                                failure:failure];
+                                  failure:failure];
 }
 
 
-- (void)listPreferencesWithParameters:(NSDictionary *)parameters
-                                queue:(NSOperationQueue *)queue
-                              success:(DSAPIPageSuccessBlock)success
-                          notModified:(DSAPIPageSuccessBlock)notModified
-                              failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listFiltersWithParameters:(NSDictionary *)parameters
+                                              queue:(NSOperationQueue *)queue
+                                            success:(DSAPIPageSuccessBlock)success
+                                            failure:(DSAPIFailureBlock)failure
 {
-    [self listResourcesForRelation:[DSAPIUserPreference classNamePlural]
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:(DSAPIPageSuccessBlock)notModified
-                           failure:failure];
+    return [self listFiltersWithParameters:parameters
+                                     queue:queue
+                                   success:success
+                               notModified:nil
+                                   failure:failure];
 }
 
 
-- (void)listFiltersWithParameters:(NSDictionary *)parameters
-                            queue:(NSOperationQueue *)queue
-                          success:(DSAPIPageSuccessBlock)success
-                          failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listFiltersWithParameters:(NSDictionary *)parameters
+                                              queue:(NSOperationQueue *)queue
+                                            success:(DSAPIPageSuccessBlock)success
+                                        notModified:(DSAPIPageSuccessBlock)notModified
+                                            failure:(DSAPIFailureBlock)failure
 {
-    [self listFiltersWithParameters:parameters
-                              queue:queue
-                            success:success
-                        notModified:nil
-                            failure:failure];
+    return [DSAPIResource listResourcesAt:[self.linkToSelf linkFromRelationWithClass:[DSAPIFilter class]]
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:notModified
+                                  failure:failure];
 }
 
 
-- (void)listFiltersWithParameters:(NSDictionary *)parameters
-                            queue:(NSOperationQueue *)queue
-                          success:(DSAPIPageSuccessBlock)success
-                      notModified:(DSAPIPageSuccessBlock)notModified
-                          failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listGroupsWithParameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                           failure:(DSAPIFailureBlock)failure
 {
-    [DSAPIResource listResourcesAt:[self.linkToSelf linkFromRelationWithClass:[DSAPIFilter class]]
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:notModified
-                           failure:failure];
+    return [self listGroupsWithParameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:nil
+                                  failure:failure];
 }
 
 
-- (void)listGroupsWithParameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                         failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listGroupsWithParameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                       notModified:(DSAPIPageSuccessBlock)notModified
+                                           failure:(DSAPIFailureBlock)failure
 {
-    [self listGroupsWithParameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:nil
-                           failure:failure];
+    return [self listResourcesForRelation:[DSAPIGroup classNamePlural]
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:notModified
+                                  failure:failure];
 }
 
-
-- (void)listGroupsWithParameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                     notModified:(DSAPIPageSuccessBlock)notModified
-                         failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listMacrosWithParameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                       notModified:(DSAPIPageSuccessBlock)notModified
+                                           failure:(DSAPIFailureBlock)failure
 {
-    [self listResourcesForRelation:[DSAPIGroup classNamePlural]
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:notModified
-                           failure:failure];
-}
-
-- (void)listMacrosWithParameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                     notModified:(DSAPIPageSuccessBlock)notModified
-                         failure:(DSAPIFailureBlock)failure
-{
-    [self listResourcesForRelation:[DSAPIMacro classNamePlural]
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:notModified
-                           failure:failure];
+    return [self listResourcesForRelation:[DSAPIMacro classNamePlural]
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:notModified
+                                  failure:failure];
 }
 
 @end

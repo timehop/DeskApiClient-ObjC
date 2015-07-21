@@ -314,25 +314,27 @@ static NSDictionary *ClassNames;
 {
     return [self.session dataTaskWithRequest:request
                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                               [queue addOperationWithBlock:^{
-                                   if (error) {
-                                       if (failure) {
-                                           failure((NSHTTPURLResponse *)response, error);
-                                       }
-                                   } else {
-                                       if (success) {
-                                           NSError *serializationError = nil;
-                                           id responseObject = [self.responseSerializer responseObjectForResponse:response
-                                                                                                             data:data
-                                                                                                            error:&serializationError];
-                                           if (serializationError && failure) {
-                                               failure((NSHTTPURLResponse *)response, serializationError);
-                                           } else {
-                                               success((NSHTTPURLResponse *)response, responseObject);
+                               if (error == nil || error.code != NSURLErrorCancelled) {
+                                   [queue addOperationWithBlock:^{
+                                       if (error) {
+                                           if (failure) {
+                                               failure((NSHTTPURLResponse *)response, error);
+                                           }
+                                       } else {
+                                           if (success) {
+                                               NSError *serializationError = nil;
+                                               id responseObject = [self.responseSerializer responseObjectForResponse:response
+                                                                                                                 data:data
+                                                                                                                error:&serializationError];
+                                               if (serializationError && failure) {
+                                                   failure((NSHTTPURLResponse *)response, serializationError);
+                                               } else {
+                                                   success((NSHTTPURLResponse *)response, responseObject);
+                                               }
                                            }
                                        }
-                                   }
-                               }];
+                                   }];
+                               }
                            }];
 }
 

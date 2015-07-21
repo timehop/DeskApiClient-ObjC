@@ -45,35 +45,35 @@
     return kClassNamePlural;
 }
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIUserPreference *))success
-                   failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIUserPreference *))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPIUserPreference *)resource);
-                          }
-                      }
-                      failure:failure];
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPIUserPreference *)resource);
+                                 }
+                             }
+                             failure:failure];
 }
 
 
-- (void)updateWithDictionary:(NSDictionary *)dictionary
-                       queue:(NSOperationQueue *)queue
-                     success:(void (^)(DSAPIUserPreference *preference))success
-                     failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)updateWithDictionary:(NSDictionary *)dictionary
+                                         queue:(NSOperationQueue *)queue
+                                       success:(void (^)(DSAPIUserPreference *preference))success
+                                       failure:(DSAPIFailureBlock)failure
 {
-    [super updateWithDictionary:dictionary
-                          queue:queue
-                        success:^(DSAPIResource *resource) {
-                            if (success) {
-                                success((DSAPIUserPreference *)resource);
-                            }
-                        }
-                        failure:failure];
+    return [super updateWithDictionary:dictionary
+                                 queue:queue
+                               success:^(DSAPIResource *resource) {
+                                   if (success) {
+                                       success((DSAPIUserPreference *)resource);
+                                   }
+                               }
+                               failure:failure];
 }
 
 @end

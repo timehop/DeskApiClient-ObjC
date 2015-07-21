@@ -46,83 +46,83 @@
 }
 
 
-+ (void)listFiltersWithParameters:(NSDictionary *)parameters
-                            queue:(NSOperationQueue *)queue
-                          success:(DSAPIPageSuccessBlock)success
-                          failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listFiltersWithParameters:(NSDictionary *)parameters
+                                              queue:(NSOperationQueue *)queue
+                                            success:(DSAPIPageSuccessBlock)success
+                                            failure:(DSAPIFailureBlock)failure
 {
-    [self listFiltersWithParameters:parameters
-                              queue:queue
-                            success:success
-                        notModified:nil
-                            failure:failure];
+    return [self listFiltersWithParameters:parameters
+                                     queue:queue
+                                   success:success
+                               notModified:nil
+                                   failure:failure];
 }
 
 
-+ (void)listFiltersWithParameters:(NSDictionary *)parameters
-                            queue:(NSOperationQueue *)queue
-                          success:(DSAPIPageSuccessBlock)success
-                      notModified:(DSAPIPageSuccessBlock)notModified
-                          failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listFiltersWithParameters:(NSDictionary *)parameters
+                                              queue:(NSOperationQueue *)queue
+                                            success:(DSAPIPageSuccessBlock)success
+                                        notModified:(DSAPIPageSuccessBlock)notModified
+                                            failure:(DSAPIFailureBlock)failure
 {
-    [super listResourcesAt:[DSAPIFilter classLink]
-                parameters:parameters
-                     queue:queue
-                   success:success
-               notModified:notModified
-                   failure:failure];
-}
-
-
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIFilter *filter))success
-                   failure:(DSAPIFailureBlock)failure
-{
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPIFilter *)resource);
-                          }
-                      }
-                      failure:failure];
-}
-
-
-- (void)listCasesWithParameters:(NSDictionary *)parameters
-                          queue:(NSOperationQueue *)queue
-                        success:(DSAPIPageSuccessBlock)success
-                        failure:(DSAPIFailureBlock)failure
-{
-    [self listCasesWithParameters:parameters
+    return [super listResourcesAt:[DSAPIFilter classLink]
+                       parameters:parameters
                             queue:queue
                           success:success
-                      notModified:nil
+                      notModified:notModified
                           failure:failure];
 }
 
 
-- (void)listCasesWithParameters:(NSDictionary *)parameters
-                          queue:(NSOperationQueue *)queue
-                        success:(DSAPIPageSuccessBlock)success
-                    notModified:(DSAPIPageSuccessBlock)notModified
-                        failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIFilter *filter))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [self listResourcesForRelation:[DSAPICase classNamePlural]
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:notModified
-                           failure:failure];
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPIFilter *)resource);
+                                 }
+                             }
+                             failure:failure];
 }
 
-- (void)listCaseChanges:(NSArray *)caseIds
-         lastPolledTime:(NSTimeInterval)lastPolledTime
-             parameters:(NSDictionary *)parameters
-                  queue:(NSOperationQueue *)queue
-                success:(DSAPIPageSuccessBlock)success
-                failure:(DSAPIFailureBlock)failure
+
+- (NSURLSessionDataTask *)listCasesWithParameters:(NSDictionary *)parameters
+                                            queue:(NSOperationQueue *)queue
+                                          success:(DSAPIPageSuccessBlock)success
+                                          failure:(DSAPIFailureBlock)failure
+{
+    return [self listCasesWithParameters:parameters
+                                   queue:queue
+                                 success:success
+                             notModified:nil
+                                 failure:failure];
+}
+
+
+- (NSURLSessionDataTask *)listCasesWithParameters:(NSDictionary *)parameters
+                                            queue:(NSOperationQueue *)queue
+                                          success:(DSAPIPageSuccessBlock)success
+                                      notModified:(DSAPIPageSuccessBlock)notModified
+                                          failure:(DSAPIFailureBlock)failure
+{
+    return [self listResourcesForRelation:[DSAPICase classNamePlural]
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:notModified
+                                  failure:failure];
+}
+
+- (NSURLSessionDataTask *)listCaseChanges:(NSArray *)caseIds
+                           lastPolledTime:(NSTimeInterval)lastPolledTime
+                               parameters:(NSDictionary *)parameters
+                                    queue:(NSOperationQueue *)queue
+                                  success:(DSAPIPageSuccessBlock)success
+                                  failure:(DSAPIFailureBlock)failure
 {
     NSString *caseChangesHref = [NSString stringWithFormat:@"%@/%@", [self linkForRelation:[DSAPICase classNamePlural]], kChangesPath];
     DSAPILink *linkToCaseChanges = [[DSAPILink alloc] initWithDictionary:@{
@@ -134,16 +134,16 @@
     updatedParameters[kCaseIdsParam] = [caseIds componentsJoinedByString:@","];
     updatedParameters[kLastPolledTimeParam] = [NSNumber numberWithInteger:lastPolledTime];
     
-    [[self class] listResourcesAt:linkToCaseChanges
-                       parameters:updatedParameters
-                            queue:queue
-                          success:^(DSAPIPage *page) {
-                              object_setClass(page, [DSAPIPage class]);
-                              if (success) {
-                                  success(page);
-                              }
-                          }
-                          failure:failure];
+    return [[self class] listResourcesAt:linkToCaseChanges
+                              parameters:updatedParameters
+                                   queue:queue
+                                 success:^(DSAPIPage *page) {
+                                     object_setClass(page, [DSAPIPage class]);
+                                     if (success) {
+                                         success(page);
+                                     }
+                                 }
+                                 failure:failure];
 }
 
 @end

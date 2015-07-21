@@ -44,12 +44,12 @@
 }
 
 
-+ (void)listTwitterAccountsWithParameters:(NSDictionary *)parameters
++ (NSURLSessionDataTask *)listTwitterAccountsWithParameters:(NSDictionary *)parameters
                                     queue:(NSOperationQueue *)queue
                                   success:(DSAPIPageSuccessBlock)success
                                   failure:(DSAPIFailureBlock)failure
 {
-    [self listTwitterAccountsWithParameters:parameters
+    return [self listTwitterAccountsWithParameters:parameters
                                       queue:queue
                                     success:success
                                 notModified:nil
@@ -57,13 +57,13 @@
 }
 
 
-+ (void)listTwitterAccountsWithParameters:(NSDictionary *)parameters
++ (NSURLSessionDataTask *)listTwitterAccountsWithParameters:(NSDictionary *)parameters
                                     queue:(NSOperationQueue *)queue
                                   success:(DSAPIPageSuccessBlock)success
                               notModified:(DSAPIPageSuccessBlock)notModified
                                   failure:(DSAPIFailureBlock)failure
 {
-    [super listResourcesAt:[DSAPITwitterAccount classLink]
+    return [super listResourcesAt:[DSAPITwitterAccount classLink]
                 parameters:parameters
                      queue:queue
                    success:success
@@ -72,12 +72,12 @@
 }
 
 
-- (void)showWithParameters:(NSDictionary *)parameters
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
                      queue:(NSOperationQueue *)queue
                    success:(void (^)(DSAPITwitterAccount *filter))success
                    failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
+    return [super showWithParameters:parameters
                         queue:queue
                       success:^(DSAPIResource *resource) {
                           if (success) {
@@ -88,12 +88,12 @@
 }
 
 
-- (void)listTweetsWithParameters:(NSDictionary *)parameters
+- (NSURLSessionDataTask *)listTweetsWithParameters:(NSDictionary *)parameters
                            queue:(NSOperationQueue *)queue
                          success:(DSAPIPageSuccessBlock)success
                          failure:(DSAPIFailureBlock)failure
 {
-    [self listTweetsWithParameters:parameters
+    return [self listTweetsWithParameters:parameters
                              queue:queue
                            success:success
                        notModified:nil
@@ -101,13 +101,13 @@
 }
 
 
-- (void)listTweetsWithParameters:(NSDictionary *)parameters
+- (NSURLSessionDataTask *)listTweetsWithParameters:(NSDictionary *)parameters
                            queue:(NSOperationQueue *)queue
                          success:(DSAPIPageSuccessBlock)success
                      notModified:(DSAPIPageSuccessBlock)notModified
                          failure:(DSAPIFailureBlock)failure
 {
-    [self listResourcesForRelation:[DSAPITweet classNamePlural]
+    return [self listResourcesForRelation:[DSAPITweet classNamePlural]
                         parameters:parameters
                              queue:queue
                            success:success
@@ -116,13 +116,13 @@
 }
 
 
-- (void)createTweet:(NSDictionary *)tweetDict
+- (NSURLSessionDataTask *)createTweet:(NSDictionary *)tweetDict
               queue:(NSOperationQueue *)queue
             success:(void (^)(DSAPITweet *))success
             failure:(DSAPIFailureBlock)failure
 {
     DSAPILink *linkToTweets = [self linkForRelation:[DSAPITweet classNamePlural]];
-    [DSAPIResource createResource:tweetDict
+    return [DSAPIResource createResource:tweetDict
                            atLink:linkToTweets
                             queue:queue
                           success:^(DSAPIResource *resource) {
@@ -134,7 +134,7 @@
 }
 
 
-- (void)showFollowWithUsername:(NSString *)username
+- (NSURLSessionDataTask *)showFollowWithUsername:(NSString *)username
                     parameters:(NSDictionary *)parameters
                          queue:(NSOperationQueue *)queue
                        success:(void (^)(DSAPITwitterFollow *))success
@@ -143,7 +143,7 @@
     NSString *href = [NSString stringWithFormat:@"%@/%@/%@", self.linkToSelf, kFollowsKey, username];
     DSAPILink *linkToFollow = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:href,
                                                                       kClassKey:[DSAPITwitterFollow className]}];
-    [DSAPIResource showResourceAtLink:linkToFollow
+    return [DSAPIResource showResourceAtLink:linkToFollow
                            parameters:parameters
                                 queue:queue
                               success:^(DSAPIResource *resource) {
@@ -155,7 +155,7 @@
 }
 
 
-- (void)createFollow:(NSDictionary *)followDict
+- (NSURLSessionDataTask *)createFollow:(NSDictionary *)followDict
                queue:(NSOperationQueue *)queue
              success:(void (^)(DSAPITwitterFollow *))success
              failure:(DSAPIFailureBlock)failure
@@ -164,7 +164,7 @@
     DSAPILink *linkToFollows = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:href,
                                                                        kClassKey:[DSAPITwitterFollow className]}];
     
-    [DSAPIResource createResource:followDict
+    return [DSAPIResource createResource:followDict
                            atLink:linkToFollows
                             queue:queue
                           success:^(DSAPIResource *resource) {

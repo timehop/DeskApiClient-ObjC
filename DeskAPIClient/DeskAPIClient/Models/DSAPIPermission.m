@@ -39,45 +39,45 @@
     return kClassName;
 }
 
-+ (void)listPermissionsWithParameters:(NSDictionary *)parameters
-                                queue:(NSOperationQueue *)queue
-                              success:(DSAPIPageSuccessBlock)success
-                              failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listPermissionsWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                                failure:(DSAPIFailureBlock)failure
 {
-    [DSAPIPermission listPermissionsWithParameters:parameters
-                                             queue:queue
-                                           success:success
-                                       notModified:nil
-                                           failure:failure];
+    return [DSAPIPermission listPermissionsWithParameters:parameters
+                                                    queue:queue
+                                                  success:success
+                                              notModified:nil
+                                                  failure:failure];
 }
 
-+ (void)listPermissionsWithParameters:(NSDictionary *)parameters
-                                queue:(NSOperationQueue *)queue
-                              success:(DSAPIPageSuccessBlock)success
-                          notModified:(DSAPIPageSuccessBlock)notModified
-                              failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listPermissionsWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                            notModified:(DSAPIPageSuccessBlock)notModified
+                                                failure:(DSAPIFailureBlock)failure
 {
-    [DSAPIResource listResourcesAt:[DSAPIPermission classLink]
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:notModified
-                           failure:failure];
+    return [DSAPIResource listResourcesAt:[DSAPIPermission classLink]
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:notModified
+                                  failure:failure];
 }
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIPermission *))success
-                   failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIPermission *))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPIPermission *)resource);
-                          }
-                      }
-                      failure:failure];
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPIPermission *)resource);
+                                 }
+                             }
+                             failure:failure];
 }
 
 @end

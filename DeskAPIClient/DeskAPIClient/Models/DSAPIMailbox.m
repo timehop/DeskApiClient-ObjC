@@ -56,38 +56,39 @@ NSString *const DSAPIMailboxTypeInbound = @"inbound";
 
 #pragma mark - Class Methods
 
-+ (void)listMailboxesOfType:(NSString *)mailboxType
-                 parameters:(NSDictionary *)parameters
-                      queue:(NSOperationQueue *)queue
-                    success:(DSAPIPageSuccessBlock)success
-                    failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listMailboxesOfType:(NSString *)mailboxType
+                                   parameters:(NSDictionary *)parameters
+                                        queue:(NSOperationQueue *)queue
+                                      success:(DSAPIPageSuccessBlock)success
+                                      failure:(DSAPIFailureBlock)failure
 {
-    [self listMailboxesOfType:mailboxType
-                   parameters:parameters
-                        queue:queue
-                      success:success
-                  notModified:nil
-                      failure:failure];
+    return [self listMailboxesOfType:mailboxType
+                          parameters:parameters
+                               queue:queue
+                             success:success
+                         notModified:nil
+                             failure:failure];
 }
 
-+ (void)listMailboxesOfType:(NSString *)mailboxType
-                 parameters:(NSDictionary *)parameters
-                      queue:(NSOperationQueue *)queue
-                    success:(DSAPIPageSuccessBlock)success
-                notModified:(DSAPIPageSuccessBlock)notModified
-                    failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listMailboxesOfType:(NSString *)mailboxType
+                                   parameters:(NSDictionary *)parameters
+                                        queue:(NSOperationQueue *)queue
+                                      success:(DSAPIPageSuccessBlock)success
+                                  notModified:(DSAPIPageSuccessBlock)notModified
+                                      failure:(DSAPIFailureBlock)failure
 {
     if ([self isValidMailboxType:mailboxType]) {
         NSString *modifiedHref = [NSString stringWithFormat:@"%@/%@", [DSAPIMailbox classLink].href, mailboxType];
         DSAPILink *link = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:modifiedHref,
                                                                   kClassKey:self.className}];
-        [super listResourcesAt:link
-                    parameters:parameters
-                         queue:queue
-                       success:success
-                   notModified:notModified
-                       failure:failure];
+        return [super listResourcesAt:link
+                           parameters:parameters
+                                queue:queue
+                              success:success
+                          notModified:notModified
+                              failure:failure];
     }
+    return nil;
 }
 
 + (NSString *)outboundMailboxClassName
@@ -108,19 +109,19 @@ NSString *const DSAPIMailboxTypeInbound = @"inbound";
 
 #pragma mark - Instance Methods
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIMailbox *))success
-                   failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIMailbox *))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPIMailbox *)resource);
-                          }
-                      }
-                      failure:failure];
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPIMailbox *)resource);
+                                 }
+                             }
+                             failure:failure];
 }
 
 

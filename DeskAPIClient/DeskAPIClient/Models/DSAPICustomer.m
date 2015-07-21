@@ -43,134 +43,134 @@
 
 #pragma mark - Class Methods
 
-+ (void)listCustomersWithParameters:(NSDictionary *)parameters
-                              queue:(NSOperationQueue *)queue
-                            success:(DSAPIPageSuccessBlock)success
-                            failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listCustomersWithParameters:(NSDictionary *)parameters
+                                                queue:(NSOperationQueue *)queue
+                                              success:(DSAPIPageSuccessBlock)success
+                                              failure:(DSAPIFailureBlock)failure
 {
-    [self listCustomersWithParameters:parameters
-                                queue:queue
-                              success:success
-                          notModified:nil
-                              failure:failure];
+    return [self listCustomersWithParameters:parameters
+                                       queue:queue
+                                     success:success
+                                 notModified:nil
+                                     failure:failure];
 }
 
-+ (void)listCustomersWithParameters:(NSDictionary *)parameters
-                              queue:(NSOperationQueue *)queue
-                            success:(DSAPIPageSuccessBlock)success
-                        notModified:(DSAPIPageSuccessBlock)notModified
-                            failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listCustomersWithParameters:(NSDictionary *)parameters
+                                                queue:(NSOperationQueue *)queue
+                                              success:(DSAPIPageSuccessBlock)success
+                                          notModified:(DSAPIPageSuccessBlock)notModified
+                                              failure:(DSAPIFailureBlock)failure
 {
-    [super listResourcesAt:[DSAPICustomer classLink]
-                parameters:parameters
-                     queue:queue
-                   success:success
-                   failure:failure];
+    return [super listResourcesAt:[DSAPICustomer classLink]
+                       parameters:parameters
+                            queue:queue
+                          success:success
+                          failure:failure];
 }
 
-+ (void)searchCustomersWithParameters:(NSDictionary *)parameters
-                                queue:(NSOperationQueue *)queue
-                              success:(DSAPIPageSuccessBlock)success
-                              failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)searchCustomersWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                                failure:(DSAPIFailureBlock)failure
 {
-    [super searchResourcesAt:[DSAPICustomer classLink]
-                  parameters:parameters
-                       queue:queue
-                     success:success
-                     failure:failure];
+    return [super searchResourcesAt:[DSAPICustomer classLink]
+                         parameters:parameters
+                              queue:queue
+                            success:success
+                            failure:failure];
 }
 
-+ (void)searchCustomersWithParameters:(NSDictionary *)parameters
-                                queue:(NSOperationQueue *)queue
-                              success:(DSAPIPageSuccessBlock)success
-                          notModified:(DSAPIPageSuccessBlock)notModified
-                              failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)searchCustomersWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(DSAPIPageSuccessBlock)success
+                                            notModified:(DSAPIPageSuccessBlock)notModified
+                                                failure:(DSAPIFailureBlock)failure
 {
-    [super searchResourcesAt:[DSAPICustomer classLink]
-                  parameters:parameters
-                       queue:queue
-                     success:success
-                 notModified:notModified
-                     failure:failure];
+    return [super searchResourcesAt:[DSAPICustomer classLink]
+                         parameters:parameters
+                              queue:queue
+                            success:success
+                        notModified:notModified
+                            failure:failure];
 }
 
 
-+ (void)createCustomer:(NSDictionary *)customerDictionary
-                 queue:(NSOperationQueue *)queue
-               success:(void (^)(DSAPICustomer *))success
-               failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)createCustomer:(NSDictionary *)customerDictionary
+                                   queue:(NSOperationQueue *)queue
+                                 success:(void (^)(DSAPICustomer *))success
+                                 failure:(DSAPIFailureBlock)failure
 {
-    [super createResource:customerDictionary
-                   atLink:[DSAPICustomer classLink]
-                    queue:queue
-                  success:^(DSAPIResource *resource) {
-                      if (success) {
-                          success((DSAPICustomer *)resource);
-                      }
-                  }
-                  failure:failure];
+    return [super createResource:customerDictionary
+                          atLink:[DSAPICustomer classLink]
+                           queue:queue
+                         success:^(DSAPIResource *resource) {
+                             if (success) {
+                                 success((DSAPICustomer *)resource);
+                             }
+                         }
+                         failure:failure];
 }
 
 
 #pragma mark - Instance Methods
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPICustomer *))success
-                   failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPICustomer *))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPICustomer *)resource);
-                          }
-                      }
-                      failure:failure];
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPICustomer *)resource);
+                                 }
+                             }
+                             failure:failure];
 }
 
 
-- (void)updateWithDictionary:(NSDictionary *)dictionary
-                       queue:(NSOperationQueue *)queue
-                     success:(void (^)(DSAPICustomer *updatedCustomer))success
-                     failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)updateWithDictionary:(NSDictionary *)dictionary
+                                         queue:(NSOperationQueue *)queue
+                                       success:(void (^)(DSAPICustomer *updatedCustomer))success
+                                       failure:(DSAPIFailureBlock)failure
 {
-    [super updateWithDictionary:dictionary
-                          queue:queue
-                        success:^(DSAPIResource *resource) {
-                            if (success) {
-                                success((DSAPICustomer *)resource);
-                            }
-                        }
-                        failure:failure];
+    return [super updateWithDictionary:dictionary
+                                 queue:queue
+                               success:^(DSAPIResource *resource) {
+                                   if (success) {
+                                       success((DSAPICustomer *)resource);
+                                   }
+                               }
+                               failure:failure];
 }
 
 
-- (void)listCasesWithParameters:(NSDictionary *)parameters
-                          queue:(NSOperationQueue *)queue
-                        success:(DSAPIPageSuccessBlock)success
-                        failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listCasesWithParameters:(NSDictionary *)parameters
+                                            queue:(NSOperationQueue *)queue
+                                          success:(DSAPIPageSuccessBlock)success
+                                          failure:(DSAPIFailureBlock)failure
 {
-    [self listCasesWithParameters:parameters
-                            queue:queue
-                          success:success
-                      notModified:nil
-                          failure:failure];
+    return [self listCasesWithParameters:parameters
+                                   queue:queue
+                                 success:success
+                             notModified:nil
+                                 failure:failure];
 }
 
 
-- (void)listCasesWithParameters:(NSDictionary *)parameters
-                          queue:(NSOperationQueue *)queue
-                        success:(DSAPIPageSuccessBlock)success
-                    notModified:(DSAPIPageSuccessBlock)notModified
-                        failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listCasesWithParameters:(NSDictionary *)parameters
+                                            queue:(NSOperationQueue *)queue
+                                          success:(DSAPIPageSuccessBlock)success
+                                      notModified:(DSAPIPageSuccessBlock)notModified
+                                          failure:(DSAPIFailureBlock)failure
 {
-    [self listResourcesForRelation:[DSAPICase classNamePlural]
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:notModified
-                           failure:failure];
+    return [self listResourcesForRelation:[DSAPICase classNamePlural]
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:notModified
+                                  failure:failure];
 }
 
 @end

@@ -33,54 +33,54 @@
 
 @implementation DSAPIInteraction
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIInteraction *note))success
-                   failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIInteraction *note))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPIInteraction *)resource);
-                          }
-                      }
-                      failure:failure];
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPIInteraction *)resource);
+                                 }
+                             }
+                             failure:failure];
 }
 
-- (void)createAttachment:(NSDictionary *)attachmentDict
-                   queue:(NSOperationQueue *)queue
-                 success:(void (^)(DSAPIAttachment *newAttachment))success
-                 failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)createAttachment:(NSDictionary *)attachmentDict
+                                     queue:(NSOperationQueue *)queue
+                                   success:(void (^)(DSAPIAttachment *newAttachment))success
+                                   failure:(DSAPIFailureBlock)failure
 {
     DSAPILink *linkToAttachments = [self linkForRelation:[DSAPIAttachment classNamePlural]];
     if (!linkToAttachments) {
         linkToAttachments = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, [DSAPIAttachment classNamePlural]], kClassKey:[DSAPIAttachment className]}];
     }
-    [DSAPIResource createResource:attachmentDict
-                           atLink:linkToAttachments
-                            queue:queue
-                          success:^(DSAPIResource *resource) {
-                              if (success) {
-                                  success((DSAPIAttachment *)resource);
-                              }
-                          }
-                          failure:failure];
+    return [DSAPIResource createResource:attachmentDict
+                                  atLink:linkToAttachments
+                                   queue:queue
+                                 success:^(DSAPIResource *resource) {
+                                     if (success) {
+                                         success((DSAPIAttachment *)resource);
+                                     }
+                                 }
+                                 failure:failure];
 }
 
-- (void)updateWithDictionary:(NSDictionary *)dictionary
-                       queue:(NSOperationQueue *)queue
-                     success:(void (^)(DSAPIInteraction *))success
-                     failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)updateWithDictionary:(NSDictionary *)dictionary
+                                         queue:(NSOperationQueue *)queue
+                                       success:(void (^)(DSAPIInteraction *))success
+                                       failure:(DSAPIFailureBlock)failure
 {
-    [super updateWithDictionary:dictionary
-                          queue:queue
-                        success:^(DSAPIResource *resource) {
-                            if (success) {
-                                success((DSAPIInteraction *)resource);
-                            }
-                        }
-                        failure:failure];
+    return [super updateWithDictionary:dictionary
+                                 queue:queue
+                               success:^(DSAPIResource *resource) {
+                                   if (success) {
+                                       success((DSAPIInteraction *)resource);
+                                   }
+                               }
+                               failure:failure];
 }
 
 @end

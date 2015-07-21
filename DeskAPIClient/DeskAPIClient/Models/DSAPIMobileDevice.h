@@ -39,12 +39,13 @@
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the new mobile device (`DSAPIMobileDevice`) created and returned by the POST request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 
-+ (void)createMobileDevice:(NSDictionary *)mobileDeviceDict
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIMobileDevice *newMobileDevice))success
-                   failure:(DSAPIFailureBlock)failure;
++ (NSURLSessionDataTask *)createMobileDevice:(NSDictionary *)mobileDeviceDict
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIMobileDevice *newMobileDevice))success
+                                     failure:(DSAPIFailureBlock)failure;
 
 
 /**
@@ -54,11 +55,12 @@
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the mobile device (`DSAPIMobileDevice`) returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIMobileDevice *mobileDevice))success
-                   failure:(DSAPIFailureBlock)failure;
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIMobileDevice *mobileDevice))success
+                                     failure:(DSAPIFailureBlock)failure;
 
 
 /**
@@ -69,12 +71,13 @@
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the page (`DSAPIPage`) of resources returned by the GET request.
  @param notModified A block object to be executed if the web service returns a response of not modified (HTTP status code 304). This is called when the response at this endpoint hasn't changed since the last request (via ETags). This block has no return value and takes one argument: a page (`DSAPIPage`) whose notModified property is set to YES.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
-- (void)listSettingsWithParameters:(NSDictionary *)parameters
-                             queue:(NSOperationQueue *)queue
-                           success:(DSAPIPageSuccessBlock)success
-                       notModified:(DSAPIPageSuccessBlock)notModified
-                           failure:(DSAPIFailureBlock)failure;
+- (NSURLSessionDataTask *)listSettingsWithParameters:(NSDictionary *)parameters
+                                               queue:(NSOperationQueue *)queue
+                                             success:(DSAPIPageSuccessBlock)success
+                                         notModified:(DSAPIPageSuccessBlock)notModified
+                                             failure:(DSAPIFailureBlock)failure;
 
 
 @end

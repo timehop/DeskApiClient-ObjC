@@ -45,19 +45,19 @@
     return kClassNamePlural;
 }
 
-- (void)updateWithDictionary:(NSDictionary *)dictionary
-                       queue:(NSOperationQueue *)queue
-                     success:(void (^)(DSAPIMobileDeviceSetting *))success
-                     failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)updateWithDictionary:(NSDictionary *)dictionary
+                                         queue:(NSOperationQueue *)queue
+                                       success:(void (^)(DSAPIMobileDeviceSetting *))success
+                                       failure:(DSAPIFailureBlock)failure
 {
-    [super updateWithDictionary:dictionary
-                          queue:queue
-                        success:^(DSAPIResource *resource) {
-                            if (success) {
-                                success((DSAPIMobileDeviceSetting *)resource);
-                            }
-                        }
-                        failure:failure];
+    return [super updateWithDictionary:dictionary
+                                 queue:queue
+                               success:^(DSAPIResource *resource) {
+                                   if (success) {
+                                       success((DSAPIMobileDeviceSetting *)resource);
+                                   }
+                               }
+                               failure:failure];
 }
 
 @end

@@ -39,46 +39,46 @@
     return kClassName;
 }
 
-+ (void)listJobsWithParameters:(NSDictionary *)parameters
-                         queue:(NSOperationQueue *)queue
-                       success:(DSAPIPageSuccessBlock)success
-                       failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listJobsWithParameters:(NSDictionary *)parameters
+                                           queue:(NSOperationQueue *)queue
+                                         success:(DSAPIPageSuccessBlock)success
+                                         failure:(DSAPIFailureBlock)failure
 {
-    [self listJobsWithParameters:parameters
+    return [self listJobsWithParameters:parameters
+                                  queue:queue
+                                success:success
+                            notModified:nil
+                                failure:failure];
+}
+
++ (NSURLSessionDataTask *)listJobsWithParameters:(NSDictionary *)parameters
+                                           queue:(NSOperationQueue *)queue
+                                         success:(DSAPIPageSuccessBlock)success
+                                     notModified:(DSAPIPageSuccessBlock)notModified
+                                         failure:(DSAPIFailureBlock)failure
+{
+    return [super listResourcesAt:[self classLink]
+                       parameters:parameters
+                            queue:queue
+                          success:success
+                      notModified:notModified
+                          failure:failure];
+}
+
++ (NSURLSessionDataTask *)createJob:(NSDictionary *)jobDict
+                              queue:(NSOperationQueue *)queue
+                            success:(void (^)(DSAPIJob *))success
+                            failure:(DSAPIFailureBlock)failure
+{
+    return [super createResource:jobDict
+                          atLink:[DSAPIJob classLink]
                            queue:queue
-                         success:success
-                     notModified:nil
+                         success:^(DSAPIResource *resource) {
+                             if (success) {
+                                 success((DSAPIJob *)resource);
+                             }
+                         }
                          failure:failure];
-}
-
-+ (void)listJobsWithParameters:(NSDictionary *)parameters
-                         queue:(NSOperationQueue *)queue
-                       success:(DSAPIPageSuccessBlock)success
-                   notModified:(DSAPIPageSuccessBlock)notModified
-                       failure:(DSAPIFailureBlock)failure
-{
-    [super listResourcesAt:[self classLink]
-                parameters:parameters
-                     queue:queue
-                   success:success
-               notModified:notModified
-                   failure:failure];
-}
-
-+ (void)createJob:(NSDictionary *)jobDict
-            queue:(NSOperationQueue *)queue
-          success:(void (^)(DSAPIJob *))success
-          failure:(DSAPIFailureBlock)failure
-{
-    [super createResource:jobDict
-                   atLink:[DSAPIJob classLink]
-                    queue:queue
-                  success:^(DSAPIResource *resource) {
-                      if (success) {
-                          success((DSAPIJob *)resource);
-                      }
-                  }
-                  failure:failure];
 }
 
 @end

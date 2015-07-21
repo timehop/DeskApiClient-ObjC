@@ -41,43 +41,43 @@
     return kClassName;
 }
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPITweet *))success
-                   failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPITweet *))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPITweet *)resource);
-                          }
-                      }
-                      failure:failure];
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPITweet *)resource);
+                                 }
+                             }
+                             failure:failure];
 }
 
-- (void)postAction:(NSDictionary *)parameters
-             queue:(NSOperationQueue *)queue
-           success:(void (^)(DSAPITweet *))success
-           failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)postAction:(NSDictionary *)parameters
+                               queue:(NSOperationQueue *)queue
+                             success:(void (^)(DSAPITweet *))success
+                             failure:(DSAPIFailureBlock)failure
 {
     NSString *actionsHref = [NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, kActionsKey];
     
     DSAPIClient *client = [DSAPIClient sharedManager];
-    [client POST:actionsHref
-      parameters:parameters
-           queue:queue
-         success:^(NSHTTPURLResponse *response, id responseObject) {
-             if (success) {
-                 success((DSAPITweet *)[responseObject DSAPIResourceWithSelf]);
-             }
-         }
-         failure:^(NSHTTPURLResponse *response, NSError *error) {
-             [client postRateLimitingNotificationIfNecessary:response];
-             if (failure) {
-                 failure(response, error);
-             }
-         }];
+    return [client POST:actionsHref
+             parameters:parameters
+                  queue:queue
+                success:^(NSHTTPURLResponse *response, id responseObject) {
+                    if (success) {
+                        success((DSAPITweet *)[responseObject DSAPIResourceWithSelf]);
+                    }
+                }
+                failure:^(NSHTTPURLResponse *response, NSError *error) {
+                    [client postRateLimitingNotificationIfNecessary:response];
+                    if (failure) {
+                        failure(response, error);
+                    }
+                }];
 }
 
 @end

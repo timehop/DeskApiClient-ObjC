@@ -47,103 +47,103 @@
     return kClassNamePlural;
 }
 
-+ (void)listArticlesWithParameters:(NSDictionary *)parameters
-                             queue:(NSOperationQueue *)queue
-                           success:(DSAPIPageSuccessBlock)success
-                           failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listArticlesWithParameters:(NSDictionary *)parameters
+                                               queue:(NSOperationQueue *)queue
+                                             success:(DSAPIPageSuccessBlock)success
+                                             failure:(DSAPIFailureBlock)failure
 {
-    [self listArticlesWithParameters:parameters
-                               queue:queue
-                             success:success
-                         notModified:nil
-                             failure:failure];
+    return [self listArticlesWithParameters:parameters
+                                      queue:queue
+                                    success:success
+                                notModified:nil
+                                    failure:failure];
 }
 
-+ (void)listArticlesWithParameters:(NSDictionary *)parameters
-                             queue:(NSOperationQueue *)queue
-                           success:(DSAPIPageSuccessBlock)success
-                       notModified:(DSAPIPageSuccessBlock)notModified
-                           failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listArticlesWithParameters:(NSDictionary *)parameters
+                                               queue:(NSOperationQueue *)queue
+                                             success:(DSAPIPageSuccessBlock)success
+                                         notModified:(DSAPIPageSuccessBlock)notModified
+                                             failure:(DSAPIFailureBlock)failure
 {
-    [super listResourcesAt:[DSAPIArticle classLink]
-                parameters:parameters
-                     queue:queue
-                   success:success
-                   failure:failure];
+    return [super listResourcesAt:[DSAPIArticle classLink]
+                       parameters:parameters
+                            queue:queue
+                          success:success
+                          failure:failure];
 }
 
-+ (void)createArticle:(NSDictionary *)dictionary
-                queue:(NSOperationQueue *)queue
-              success:(void (^)(DSAPIArticle *article))success
-              failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)createArticle:(NSDictionary *)dictionary
+                                  queue:(NSOperationQueue *)queue
+                                success:(void (^)(DSAPIArticle *article))success
+                                failure:(DSAPIFailureBlock)failure
 {
-    [super createResource:dictionary
-                   atLink:[DSAPIArticle classLink]
-                    queue:queue
-                  success:^(DSAPIResource *resource) {
-                      if (success) {
-                          success((DSAPIArticle *)resource);
-                      }
-                  }
-                  failure:failure];
+    return [super createResource:dictionary
+                          atLink:[DSAPIArticle classLink]
+                           queue:queue
+                         success:^(DSAPIResource *resource) {
+                             if (success) {
+                                 success((DSAPIArticle *)resource);
+                             }
+                         }
+                         failure:failure];
 }
 
-+ (void)searchArticlesWithParameters:(NSDictionary *)parameters
-                               queue:(NSOperationQueue *)queue
-                             success:(DSAPIPageSuccessBlock)success
-                             failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)searchArticlesWithParameters:(NSDictionary *)parameters
+                                                 queue:(NSOperationQueue *)queue
+                                               success:(DSAPIPageSuccessBlock)success
+                                               failure:(DSAPIFailureBlock)failure
 {
-    [super searchResourcesAt:[DSAPIArticle classLink]
-                  parameters:parameters
-                       queue:queue
-                     success:success
-                     failure:failure];
+    return [super searchResourcesAt:[DSAPIArticle classLink]
+                         parameters:parameters
+                              queue:queue
+                            success:success
+                            failure:failure];
 }
 
-+ (void)searchArticlesWithParameters:(NSDictionary *)parameters
-                               queue:(NSOperationQueue *)queue
-                             success:(DSAPIPageSuccessBlock)success
-                         notModified:(DSAPIPageSuccessBlock)notModified
-                             failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)searchArticlesWithParameters:(NSDictionary *)parameters
+                                                 queue:(NSOperationQueue *)queue
+                                               success:(DSAPIPageSuccessBlock)success
+                                           notModified:(DSAPIPageSuccessBlock)notModified
+                                               failure:(DSAPIFailureBlock)failure
 {
-    [super searchResourcesAt:[DSAPIArticle classLink]
-                  parameters:parameters
-                       queue:queue
-                     success:success
-                 notModified:notModified
-                     failure:failure];
+    return [super searchResourcesAt:[DSAPIArticle classLink]
+                         parameters:parameters
+                              queue:queue
+                            success:success
+                        notModified:notModified
+                            failure:failure];
 }
 
 #pragma mark - Instance Methods
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIArticle *article))success
-                   failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIArticle *article))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPIArticle *)resource);
-                          }
-                      }
-                      failure:failure];
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPIArticle *)resource);
+                                 }
+                             }
+                             failure:failure];
 }
 
-- (void)updateWithDictionary:(NSDictionary *)dictionary
-                       queue:(NSOperationQueue *)queue
-                     success:(void (^)(DSAPIArticle *topic))success
-                     failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)updateWithDictionary:(NSDictionary *)dictionary
+                                         queue:(NSOperationQueue *)queue
+                                       success:(void (^)(DSAPIArticle *topic))success
+                                       failure:(DSAPIFailureBlock)failure
 {
-    [super updateWithDictionary:dictionary
-                          queue:queue
-                        success:^(DSAPIResource *resource) {
-                            if (success) {
-                                success((DSAPIArticle *)resource);
-                            }
-                        }
-                        failure:failure];
+    return [super updateWithDictionary:dictionary
+                                 queue:queue
+                               success:^(DSAPIResource *resource) {
+                                   if (success) {
+                                       success((DSAPIArticle *)resource);
+                                   }
+                               }
+                               failure:failure];
 }
 
 @end

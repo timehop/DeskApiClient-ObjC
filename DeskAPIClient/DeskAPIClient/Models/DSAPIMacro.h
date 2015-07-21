@@ -41,12 +41,13 @@
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the page (`DSAPIPage`) of resources returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 
-+ (void)listMacrosWithParameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                         failure:(DSAPIFailureBlock)failure;
++ (NSURLSessionDataTask *)listMacrosWithParameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                           failure:(DSAPIFailureBlock)failure;
 
 
 /**
@@ -57,13 +58,14 @@
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the page (`DSAPIPage`) of resources returned by the GET request.
  @param notModified A block object to be executed if the web service returns a response of not modified (HTTP status code 304). This is called when the response at this endpoint hasn't changed since the last request (via ETags). This block has no return value and takes one argument: a page (`DSAPIPage`) whose notModified property is set to YES.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 
-+ (void)listMacrosWithParameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                     notModified:(DSAPIPageSuccessBlock)notModified
-                         failure:(DSAPIFailureBlock)failure;
++ (NSURLSessionDataTask *)listMacrosWithParameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                       notModified:(DSAPIPageSuccessBlock)notModified
+                                           failure:(DSAPIFailureBlock)failure;
 
 
 /**
@@ -73,12 +75,13 @@
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the new macro (`DSAPIMacro`) created and returned by the POST request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 
-+ (void)createMacro:(NSDictionary *)macroDict
-              queue:(NSOperationQueue *)queue
-            success:(void (^)(DSAPIMacro *newMacro))success
-            failure:(DSAPIFailureBlock)failure;
++ (NSURLSessionDataTask *)createMacro:(NSDictionary *)macroDict
+                                queue:(NSOperationQueue *)queue
+                              success:(void (^)(DSAPIMacro *newMacro))success
+                              failure:(DSAPIFailureBlock)failure;
 
 
 #pragma mark - Instance Methods
@@ -90,12 +93,13 @@
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the macro (`DSAPIMacro`) returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIMacro *macro))success
-                   failure:(DSAPIFailureBlock)failure;
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIMacro *macro))success
+                                     failure:(DSAPIFailureBlock)failure;
 
 
 /**
@@ -105,11 +109,12 @@
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the updated macro (`DSAPIMacro`) returned by the PATCH request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
-- (void)updateWithDictionary:(NSDictionary *)dictionary
-                       queue:(NSOperationQueue *)queue
-                     success:(void (^)(DSAPIMacro *macro))success
-                     failure:(DSAPIFailureBlock)failure;
+- (NSURLSessionDataTask *)updateWithDictionary:(NSDictionary *)dictionary
+                                         queue:(NSOperationQueue *)queue
+                                       success:(void (^)(DSAPIMacro *macro))success
+                                       failure:(DSAPIFailureBlock)failure;
 
 
 /**
@@ -119,11 +124,12 @@
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the page (`DSAPIPage`) of resources returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
-- (void)listActionsWithParameters:(NSDictionary *)parameters
-                            queue:(NSOperationQueue *)queue
-                          success:(DSAPIPageSuccessBlock)success
-                          failure:(DSAPIFailureBlock)failure;
+- (NSURLSessionDataTask *)listActionsWithParameters:(NSDictionary *)parameters
+                                              queue:(NSOperationQueue *)queue
+                                            success:(DSAPIPageSuccessBlock)success
+                                            failure:(DSAPIFailureBlock)failure;
 
 
 /**
@@ -134,12 +140,13 @@
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the page (`DSAPIPage`) of resources returned by the GET request.
  @param notModified A block object to be executed if the web service returns a response of not modified (HTTP status code 304). This is called when the response at this endpoint hasn't changed since the last request (via ETags). This block has no return value and takes one argument: a page (`DSAPIPage`) whose notModified property is set to YES.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
-- (void)listActionsWithParameters:(NSDictionary *)parameters
-                            queue:(NSOperationQueue *)queue
-                          success:(DSAPIPageSuccessBlock)success
-                      notModified:(DSAPIPageSuccessBlock)notModified
-                          failure:(DSAPIFailureBlock)failure;
+- (NSURLSessionDataTask *)listActionsWithParameters:(NSDictionary *)parameters
+                                              queue:(NSOperationQueue *)queue
+                                            success:(DSAPIPageSuccessBlock)success
+                                        notModified:(DSAPIPageSuccessBlock)notModified
+                                            failure:(DSAPIFailureBlock)failure;
 
 
 @end
