@@ -586,17 +586,15 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
         NSOperationQueue *queue = downloadDictionary[DSAPIQueueKey];
         DSAPIDownloadCompletionHandler downloadCompletion = downloadDictionary[DSAPIBlockHandlerKey];
         
-        if (error) {
-            [queue addOperationWithBlock:^{
-                downloadCompletion(nil, error);
-            }];
-        } else {
-            NSData *data = downloadDictionary[DSAPIDataKey];
+        NSData *data = nil;
+        if (!error) {
+            data = downloadDictionary[DSAPIDataKey];
             error = downloadDictionary[DSAPIErrorKey];
-            [queue addOperationWithBlock:^{
-                downloadCompletion(data, error);
-            }];
         }
+        [queue addOperationWithBlock:^{
+            downloadCompletion(data, error);
+        }];
+
         [self.downloadCompletionBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
     }
     [self.lock unlock];
