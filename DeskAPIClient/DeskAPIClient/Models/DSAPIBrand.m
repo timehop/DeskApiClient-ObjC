@@ -47,29 +47,29 @@
     return kClassName;
 }
 
-+ (void)listBrandsWithParameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                         failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listBrandsWithParameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                           failure:(DSAPIFailureBlock)failure
 {
-    [self listBrandsWithParameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:nil
-                           failure:failure];
+    return [self listBrandsWithParameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:nil
+                                  failure:failure];
 }
 
-+ (void)listBrandsWithParameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                     notModified:(DSAPIPageSuccessBlock)notModified
-                         failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listBrandsWithParameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                       notModified:(DSAPIPageSuccessBlock)notModified
+                                           failure:(DSAPIFailureBlock)failure
 {
-    [super listResourcesAt:[DSAPIBrand classLink]
-                parameters:parameters
-                     queue:queue
-                   success:success
-                   failure:failure];
+    return [super listResourcesAt:[DSAPIBrand classLink]
+                       parameters:parameters
+                            queue:queue
+                          success:success
+                          failure:failure];
 }
 
 - (DSAPILink *)linkToTopics
@@ -80,71 +80,71 @@
 
 #pragma mark - Instance Methods
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIBrand *brand))success
-                   failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIBrand *brand))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPIBrand *)resource);
-                          }
-                      }
-                      failure:failure];
-}
-
-- (void)listTopicsWithParameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                         failure:(DSAPIFailureBlock)failure
-{
-    [self listTopicsWithParameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:nil
-                           failure:failure];
-}
-
-- (void)listTopicsWithParameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                     notModified:(DSAPIPageSuccessBlock)notModified
-                         failure:(DSAPIFailureBlock)failure
-{
-    [DSAPIResource listResourcesAt:self.linkToTopics
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:notModified
-                           failure:failure];
-}
-
-- (void)listArticlesWithParameters:(NSDictionary *)parameters
-                             queue:(NSOperationQueue *)queue
-                           success:(DSAPIPageSuccessBlock)success
-                           failure:(DSAPIFailureBlock)failure
-{
-    [self listArticlesWithParameters:parameters
+    return [super showWithParameters:parameters
                                queue:queue
-                             success:success
-                         notModified:nil
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPIBrand *)resource);
+                                 }
+                             }
                              failure:failure];
 }
 
-- (void)listArticlesWithParameters:(NSDictionary *)parameters
-                             queue:(NSOperationQueue *)queue
-                           success:(DSAPIPageSuccessBlock)success
-                       notModified:(DSAPIPageSuccessBlock)notModified
-                           failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listTopicsWithParameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                           failure:(DSAPIFailureBlock)failure
 {
-    [self listResourcesForRelation:[DSAPIArticle classNamePlural]
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:notModified
-                           failure:failure];
+    return [self listTopicsWithParameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:nil
+                                  failure:failure];
+}
+
+- (NSURLSessionDataTask *)listTopicsWithParameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                       notModified:(DSAPIPageSuccessBlock)notModified
+                                           failure:(DSAPIFailureBlock)failure
+{
+    return [DSAPIResource listResourcesAt:self.linkToTopics
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:notModified
+                                  failure:failure];
+}
+
+- (NSURLSessionDataTask *)listArticlesWithParameters:(NSDictionary *)parameters
+                                               queue:(NSOperationQueue *)queue
+                                             success:(DSAPIPageSuccessBlock)success
+                                             failure:(DSAPIFailureBlock)failure
+{
+    return [self listArticlesWithParameters:parameters
+                                      queue:queue
+                                    success:success
+                                notModified:nil
+                                    failure:failure];
+}
+
+- (NSURLSessionDataTask *)listArticlesWithParameters:(NSDictionary *)parameters
+                                               queue:(NSOperationQueue *)queue
+                                             success:(DSAPIPageSuccessBlock)success
+                                         notModified:(DSAPIPageSuccessBlock)notModified
+                                             failure:(DSAPIFailureBlock)failure
+{
+    return [self listResourcesForRelation:[DSAPIArticle classNamePlural]
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:notModified
+                                  failure:failure];
 }
 
 @end

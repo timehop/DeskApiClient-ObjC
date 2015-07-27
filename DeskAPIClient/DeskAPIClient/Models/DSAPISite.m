@@ -41,68 +41,68 @@
     return kClassName;
 }
 
-+ (void)showCurrentSiteWithQueue:(NSOperationQueue *)queue
++ (NSURLSessionDataTask *)showCurrentSiteWithQueue:(NSOperationQueue *)queue
                          success:(void (^)(DSAPISite *apiSite))success
                          failure:(DSAPIFailureBlock)failure
 {
-    [self showCurrentSiteWithParameters:nil
+    return [self showCurrentSiteWithParameters:nil
                                   queue:queue
                                 success:success
                                 failure:failure];
 }
 
-+ (void)showCurrentSiteWithParameters:(NSDictionary *)parameters
++ (NSURLSessionDataTask *)showCurrentSiteWithParameters:(NSDictionary *)parameters
                                 queue:(NSOperationQueue *)queue
                               success:(void (^)(DSAPISite *site))success
                               failure:(DSAPIFailureBlock)failure
 {
     DSAPISite *site = (DSAPISite *)[DSAPIResource resourceWithHref:kCurrentSiteUrl
                                                          className:[self className]];
-    [site showWithParameters:parameters
+    return [site showWithParameters:parameters
                        queue:queue
                      success:success
                      failure:failure];
 }
 
-+ (void)showCurrentSiteBillingWithQueue:(NSOperationQueue *)queue
++ (NSURLSessionDataTask *)showCurrentSiteBillingWithQueue:(NSOperationQueue *)queue
                                 success:(void (^)(DSAPIBilling *billing))success
                                 failure:(DSAPIFailureBlock)failure
 {
-    [self showCurrentSiteBillingWithParameters:nil
+    return [self showCurrentSiteBillingWithParameters:nil
                                          queue:queue
                                        success:success
                                        failure:failure];
 }
 
-+ (void)showCurrentSiteBillingWithParameters:(NSDictionary *)parameters
++ (NSURLSessionDataTask *)showCurrentSiteBillingWithParameters:(NSDictionary *)parameters
                                        queue:(NSOperationQueue *)queue
                                      success:(void (^)(DSAPIBilling *))success
                                      failure:(DSAPIFailureBlock)failure
 {
     DSAPISite *site = (DSAPISite *)[DSAPIResource resourceWithHref:kCurrentSiteUrl
                                                          className:[self className]];
-    [site showBillingWithParameters:parameters
+    return [site showBillingWithParameters:parameters
                               queue:queue
                             success:success
                             failure:failure];
 }
 
-- (void)showWithQueue:(NSOperationQueue *)queue
+- (NSURLSessionDataTask *)showWithQueue:(NSOperationQueue *)queue
               success:(void (^)(DSAPISite *site))success
               failure:(DSAPIFailureBlock)failure
 {
-    [self showWithParameters:nil
+    return [self showWithParameters:nil
                        queue:queue
                      success:success
                      failure:failure];
 }
 
-- (void)showWithParameters:(NSDictionary *)parameters
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
                      queue:(NSOperationQueue *)queue
                    success:(void (^)(DSAPISite *site))success
                    failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
+    return [super showWithParameters:parameters
                         queue:queue
                       success:^(DSAPIResource *resource) {
                           if (success) {
@@ -112,7 +112,7 @@
                       failure:failure];
 }
 
-- (void)showBillingWithParameters:(NSDictionary *)parameters
+- (NSURLSessionDataTask *)showBillingWithParameters:(NSDictionary *)parameters
                             queue:(NSOperationQueue *)queue
                           success:(void (^)(DSAPIBilling *))success
                           failure:(DSAPIFailureBlock)failure
@@ -121,7 +121,7 @@
     DSAPIBilling *billing = (DSAPIBilling *)[DSAPIResource resourceWithHref:billingHref
                                                                   className:[DSAPIBilling className]];
     
-    [billing showWithParameters:parameters
+    return [billing showWithParameters:parameters
                           queue:queue
                         success:^(DSAPIResource *resource) {
                             if (success) {

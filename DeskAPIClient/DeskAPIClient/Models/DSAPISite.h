@@ -40,15 +40,16 @@
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the site (`DSAPISite`) returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
-+ (void)showCurrentSiteWithQueue:(NSOperationQueue *)queue
-                         success:(void (^)(DSAPISite *site))success
-                         failure:(DSAPIFailureBlock)failure;
++ (NSURLSessionDataTask *)showCurrentSiteWithQueue:(NSOperationQueue *)queue
+                                           success:(void (^)(DSAPISite *site))success
+                                           failure:(DSAPIFailureBlock)failure;
 
-+ (void)showCurrentSiteWithParameters:(NSDictionary *)parameters
-                                queue:(NSOperationQueue *)queue
-                              success:(void (^)(DSAPISite *site))success
-                              failure:(DSAPIFailureBlock)failure;
++ (NSURLSessionDataTask *)showCurrentSiteWithParameters:(NSDictionary *)parameters
+                                                  queue:(NSOperationQueue *)queue
+                                                success:(void (^)(DSAPISite *site))success
+                                                failure:(DSAPIFailureBlock)failure;
 
 /**
  Shows the current site's billing information by calling a GET to the default site's "billing" url.
@@ -57,15 +58,16 @@
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the billing (`DSAPIBilling`) returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
-+ (void)showCurrentSiteBillingWithQueue:(NSOperationQueue *)queue
-                                success:(void (^)(DSAPIBilling *billing))success
-                                failure:(DSAPIFailureBlock)failure;
++ (NSURLSessionDataTask *)showCurrentSiteBillingWithQueue:(NSOperationQueue *)queue
+                                                  success:(void (^)(DSAPIBilling *billing))success
+                                                  failure:(DSAPIFailureBlock)failure;
 
-+ (void)showCurrentSiteBillingWithParameters:(NSDictionary *)parameters
-                                       queue:(NSOperationQueue *)queue
-                                     success:(void (^)(DSAPIBilling *billing))success
-                                     failure:(DSAPIFailureBlock)failure;
++ (NSURLSessionDataTask *)showCurrentSiteBillingWithParameters:(NSDictionary *)parameters
+                                                         queue:(NSOperationQueue *)queue
+                                                       success:(void (^)(DSAPIBilling *billing))success
+                                                       failure:(DSAPIFailureBlock)failure;
 
 /**
  Shows an individual site by calling a GET to the site's "self" link.
@@ -73,10 +75,11 @@
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the note (`DSAPISite`) returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
-- (void)showWithQueue:(NSOperationQueue *)queue
-              success:(void (^)(DSAPISite *site))success
-              failure:(DSAPIFailureBlock)failure;
+- (NSURLSessionDataTask *)showWithQueue:(NSOperationQueue *)queue
+                                success:(void (^)(DSAPISite *site))success
+                                failure:(DSAPIFailureBlock)failure;
 
 /**
  Shows an individual site by calling a GET to the site's "self" link.
@@ -85,12 +88,13 @@
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the site (`DSAPISite`) returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPISite *site))success
-                   failure:(DSAPIFailureBlock)failure;
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPISite *site))success
+                                     failure:(DSAPIFailureBlock)failure;
 
 /**
  Shows an individual site's billing information by calling a GET to the site's "billing" url.
@@ -99,12 +103,13 @@
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the billing (`DSAPIBilling`) returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
+ @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 
-- (void)showBillingWithParameters:(NSDictionary *)parameters
-                            queue:(NSOperationQueue *)queue
-                          success:(void (^)(DSAPIBilling *siteBilling))success
-                          failure:(DSAPIFailureBlock)failure;
+- (NSURLSessionDataTask *)showBillingWithParameters:(NSDictionary *)parameters
+                                              queue:(NSOperationQueue *)queue
+                                            success:(void (^)(DSAPIBilling *siteBilling))success
+                                            failure:(DSAPIFailureBlock)failure;
 
 @end
 

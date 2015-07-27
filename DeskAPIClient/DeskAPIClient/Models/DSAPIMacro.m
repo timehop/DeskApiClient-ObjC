@@ -43,111 +43,111 @@
 }
 
 
-+ (void)listMacrosWithParameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                         failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listMacrosWithParameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                           failure:(DSAPIFailureBlock)failure
 {
-    [self listMacrosWithParameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:nil
-                           failure:failure];
+    return [self listMacrosWithParameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:nil
+                                  failure:failure];
 }
 
 
-+ (void)listMacrosWithParameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                     notModified:(DSAPIPageSuccessBlock)notModified
-                         failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listMacrosWithParameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                       notModified:(DSAPIPageSuccessBlock)notModified
+                                           failure:(DSAPIFailureBlock)failure
 {
-    [super listResourcesAt:[DSAPIMacro classLink]
-                parameters:parameters
-                     queue:queue
-                   success:success
-               notModified:notModified
-                   failure:failure];
+    return [super listResourcesAt:[DSAPIMacro classLink]
+                       parameters:parameters
+                            queue:queue
+                          success:success
+                      notModified:notModified
+                          failure:failure];
 }
 
 
-+ (void)createMacro:(NSDictionary *)macroDict
-              queue:(NSOperationQueue *)queue
-            success:(void (^)(DSAPIMacro *))success
-            failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)createMacro:(NSDictionary *)macroDict
+                                queue:(NSOperationQueue *)queue
+                              success:(void (^)(DSAPIMacro *))success
+                              failure:(DSAPIFailureBlock)failure
 {
     
-    [super createResource:macroDict
-                   atLink:[DSAPIMacro classLink]
-                    queue:queue
-                  success:^(DSAPIResource *resource) {
-                      if (success) {
-                          success((DSAPIMacro *)resource);
-                      }
-                  }
-                  failure:failure];
+    return [super createResource:macroDict
+                          atLink:[DSAPIMacro classLink]
+                           queue:queue
+                         success:^(DSAPIResource *resource) {
+                             if (success) {
+                                 success((DSAPIMacro *)resource);
+                             }
+                         }
+                         failure:failure];
 }
 
 
 #pragma mark - Instance Methods
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIMacro *))success
-                   failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIMacro *))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPIMacro *)resource);
-                          }
-                      }
-                      failure:failure];
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPIMacro *)resource);
+                                 }
+                             }
+                             failure:failure];
 }
 
 
-- (void)updateWithDictionary:(NSDictionary *)dictionary
-                       queue:(NSOperationQueue *)queue
-                     success:(void (^)(DSAPIMacro *))success
-                     failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)updateWithDictionary:(NSDictionary *)dictionary
+                                         queue:(NSOperationQueue *)queue
+                                       success:(void (^)(DSAPIMacro *))success
+                                       failure:(DSAPIFailureBlock)failure
 {
-    [super updateWithDictionary:dictionary
-                          queue:queue
-                        success:^(DSAPIResource *resource) {
-                            if (success) {
-                                success((DSAPIMacro *)resource);
-                            }
-                        }
-                        failure:failure];
+    return [super updateWithDictionary:dictionary
+                                 queue:queue
+                               success:^(DSAPIResource *resource) {
+                                   if (success) {
+                                       success((DSAPIMacro *)resource);
+                                   }
+                               }
+                               failure:failure];
 }
 
 
-- (void)listActionsWithParameters:(NSDictionary *)parameters
-                            queue:(NSOperationQueue *)queue
-                          success:(DSAPIPageSuccessBlock)success
-                          failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listActionsWithParameters:(NSDictionary *)parameters
+                                              queue:(NSOperationQueue *)queue
+                                            success:(DSAPIPageSuccessBlock)success
+                                            failure:(DSAPIFailureBlock)failure
 {
     
-    [self listActionsWithParameters:parameters
-                              queue:queue
-                            success:success
-                        notModified:nil
-                            failure:failure];
+    return [self listActionsWithParameters:parameters
+                                     queue:queue
+                                   success:success
+                               notModified:nil
+                                   failure:failure];
 }
 
-- (void)listActionsWithParameters:(NSDictionary *)parameters
-                            queue:(NSOperationQueue *)queue
-                          success:(DSAPIPageSuccessBlock)success
-                      notModified:(DSAPIPageSuccessBlock)notModified
-                          failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listActionsWithParameters:(NSDictionary *)parameters
+                                              queue:(NSOperationQueue *)queue
+                                            success:(DSAPIPageSuccessBlock)success
+                                        notModified:(DSAPIPageSuccessBlock)notModified
+                                            failure:(DSAPIFailureBlock)failure
 {
-    [self listResourcesForRelation:kMacroActionsKey
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:(DSAPIPageSuccessBlock)notModified
-                           failure:failure];
+    return [self listResourcesForRelation:kMacroActionsKey
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:(DSAPIPageSuccessBlock)notModified
+                                  failure:failure];
 }
 
 @end

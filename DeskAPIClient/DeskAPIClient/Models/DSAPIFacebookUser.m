@@ -42,48 +42,48 @@
 
 #pragma mark - Class Methods
 
-+ (void)listFacebookUsersWithParameters:(NSDictionary *)parameters
-                                  queue:(NSOperationQueue *)queue
-                                success:(DSAPIPageSuccessBlock)success
-                                failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listFacebookUsersWithParameters:(NSDictionary *)parameters
+                                                    queue:(NSOperationQueue *)queue
+                                                  success:(DSAPIPageSuccessBlock)success
+                                                  failure:(DSAPIFailureBlock)failure
 {
-    [self listFacebookUsersWithParameters:parameters
-                                    queue:queue
-                                  success:success
-                              notModified:nil
-                                  failure:failure];
+    return [self listFacebookUsersWithParameters:parameters
+                                           queue:queue
+                                         success:success
+                                     notModified:nil
+                                         failure:failure];
 }
 
-+ (void)listFacebookUsersWithParameters:(NSDictionary *)parameters
-                                  queue:(NSOperationQueue *)queue
-                                success:(DSAPIPageSuccessBlock)success
-                            notModified:(DSAPIPageSuccessBlock)notModified
-                                failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listFacebookUsersWithParameters:(NSDictionary *)parameters
+                                                    queue:(NSOperationQueue *)queue
+                                                  success:(DSAPIPageSuccessBlock)success
+                                              notModified:(DSAPIPageSuccessBlock)notModified
+                                                  failure:(DSAPIFailureBlock)failure
 {
-    [super listResourcesAt:[DSAPIFacebookUser classLink]
-                parameters:parameters
-                     queue:queue
-                   success:success
-               notModified:notModified
-                   failure:failure];
+    return [super listResourcesAt:[DSAPIFacebookUser classLink]
+                       parameters:parameters
+                            queue:queue
+                          success:success
+                      notModified:notModified
+                          failure:failure];
 }
 
 
 #pragma mark - Instance Methods
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIFacebookUser *))success
-                   failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIFacebookUser *))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPIFacebookUser *)resource);
-                          }
-                      }
-                      failure:failure];
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPIFacebookUser *)resource);
+                                 }
+                             }
+                             failure:failure];
 }
 
 @end

@@ -41,48 +41,47 @@
 
 #pragma mark - Class Methods
 
-+ (void)listCustomFieldsWithParameters:(NSDictionary *)parameters
-                                 queue:(NSOperationQueue *)queue
-                               success:(DSAPIPageSuccessBlock)success
-                               failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listCustomFieldsWithParameters:(NSDictionary *)parameters
+                                                   queue:(NSOperationQueue *)queue
+                                                 success:(DSAPIPageSuccessBlock)success
+                                                 failure:(DSAPIFailureBlock)failure
 {
-    [self listCustomFieldsWithParameters:parameters
-                                   queue:queue
-                                 success:success
-                             notModified:nil
-                                 failure:failure];
+    return [self listCustomFieldsWithParameters:parameters
+                                          queue:queue
+                                        success:success
+                                    notModified:nil
+                                        failure:failure];
 }
 
-+ (void)listCustomFieldsWithParameters:(NSDictionary *)parameters
-                                 queue:(NSOperationQueue *)queue
-                               success:(DSAPIPageSuccessBlock)success
-                           notModified:(DSAPIPageSuccessBlock)notModified
-                               failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)listCustomFieldsWithParameters:(NSDictionary *)parameters
+                                                   queue:(NSOperationQueue *)queue
+                                                 success:(DSAPIPageSuccessBlock)success
+                                             notModified:(DSAPIPageSuccessBlock)notModified
+                                                 failure:(DSAPIFailureBlock)failure
 {
-    [super listResourcesAt:[DSAPICustomField classLink]
-                parameters:parameters
-                     queue:queue
-                   success:success
-               notModified:notModified
-                   failure:failure];
+    return [super listResourcesAt:[DSAPICustomField classLink]
+                       parameters:parameters
+                            queue:queue
+                          success:success
+                      notModified:notModified
+                          failure:failure];
 }
-
 
 #pragma mark - Instance Methods
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPICustomField *))success
-                   failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPICustomField *))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPICustomField *)resource);
-                          }
-                      }
-                      failure:failure];
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPICustomField *)resource);
+                                 }
+                             }
+                             failure:failure];
 }
 
 @end

@@ -52,48 +52,48 @@
     return [self.linkToSelf linkFromRelationWithClass:[DSAPIMobileDeviceSetting class]];
 }
 
-+ (void)createMobileDevice:(NSDictionary *)mobileDeviceDict
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIMobileDevice *))success
-                   failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)createMobileDevice:(NSDictionary *)mobileDeviceDict
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIMobileDevice *))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [super createResource:mobileDeviceDict
-                   atLink:[DSAPIUser linkForLoggedInUsersMobileDevices]
-                    queue:queue
-                  success:^(DSAPIResource *resource) {
-                      if (success) {
-                          success((DSAPIMobileDevice *)resource);
-                      }
-                  } failure:failure];
+    return [super createResource:mobileDeviceDict
+                          atLink:[DSAPIUser linkForLoggedInUsersMobileDevices]
+                           queue:queue
+                         success:^(DSAPIResource *resource) {
+                             if (success) {
+                                 success((DSAPIMobileDevice *)resource);
+                             }
+                         } failure:failure];
 }
 
-- (void)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPIMobileDevice *))success
-                   failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPIMobileDevice *))success
+                                     failure:(DSAPIFailureBlock)failure
 {
-    [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPIMobileDevice *)resource);
-                          }
-                      }
-                      failure:failure];
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPIMobileDevice *)resource);
+                                 }
+                             }
+                             failure:failure];
 }
 
-- (void)listSettingsWithParameters:(NSDictionary *)parameters
-                             queue:(NSOperationQueue *)queue
-                           success:(DSAPIPageSuccessBlock)success
-                       notModified:(DSAPIPageSuccessBlock)notModified
-                           failure:(DSAPIFailureBlock)failure
+- (NSURLSessionDataTask *)listSettingsWithParameters:(NSDictionary *)parameters
+                                               queue:(NSOperationQueue *)queue
+                                             success:(DSAPIPageSuccessBlock)success
+                                         notModified:(DSAPIPageSuccessBlock)notModified
+                                             failure:(DSAPIFailureBlock)failure
 {
-    [DSAPIResource listResourcesAt:self.linkToSettings
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:(DSAPIPageSuccessBlock)notModified
-                           failure:failure];
+    return [DSAPIResource listResourcesAt:self.linkToSettings
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:(DSAPIPageSuccessBlock)notModified
+                                  failure:failure];
 }
 
 @end
