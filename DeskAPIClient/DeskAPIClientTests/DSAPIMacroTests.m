@@ -224,6 +224,7 @@
                 [self done];
             } failure:^(NSHTTPURLResponse *response, NSError *error) {
                 EXPFail(self, __LINE__, __FILE__, [error description]);
+                [self done];
             }];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
             EXPFail(self, __LINE__, __FILE__, [error description]);

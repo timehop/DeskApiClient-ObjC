@@ -22,6 +22,7 @@
     [super setUp];
     [DSAPITestUtils setupSharedApiClient];
     _APICallbackQueue = [NSOperationQueue new];
+    _APICallbackQueue.name = @"APICallbackQueue";
     [self start];
 }
 
