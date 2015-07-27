@@ -45,6 +45,8 @@ static NSString *const DSAPIOAuthCallbackKey = @"oauth_callback";
 static NSString *const DSAPIClientLockName = @"com.desk.networking.session.client.lock";
 static NSString *const DSAPIQueueKey = @"queue";
 static NSString *const DSAPIBlockHandlerKey = @"blockHandler";
+static NSString *const DSAPIDataKey = @"data";
+static NSString *const DSAPIErrorKey = @"error";
 
 @interface DSAPIClient ()
 
@@ -373,7 +375,6 @@ static NSDictionary *ClassNames;
                                                                               absoluteString]
                                                                   parameters:parameters
                                                                        error:nil];
-    
     NSURLSessionDataTask *task = [self dataTaskWithRequest:request
                                                      queue:queue
                                                    success:success
@@ -497,12 +498,12 @@ static NSDictionary *ClassNames;
     }
 }
 
-- (NSDictionary *)dictionaryWithQueue:(NSOperationQueue *)queue blockHandler:(id)blockHandler
+- (NSMutableDictionary *)dictionaryWithQueue:(NSOperationQueue *)queue blockHandler:(id)blockHandler
 {
-    NSDictionary *dict = @{
-                           DSAPIQueueKey : queue,
-                           DSAPIBlockHandlerKey : blockHandler
-                           };
+    NSMutableDictionary *dict = [@{
+                                   DSAPIQueueKey : queue,
+                                   DSAPIBlockHandlerKey : blockHandler
+                                   } mutableCopy];
     return dict;
 }
 
@@ -544,18 +545,19 @@ didFinishDownloadingToURL:(NSURL *)location
     NSError *error = nil;
     NSData *data = [NSData dataWithContentsOfURL:location options:NSDataReadingMappedIfSafe error:&error];
     
+    
     [self.lock lock];
     if (self.downloadProgressBlocks[@(downloadTask.taskIdentifier)]) {
         [self.downloadProgressBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
     }
     
-    if (self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)]) {
-        NSOperationQueue *queue = self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)][DSAPIQueueKey];
-        DSAPIDownloadCompletionHandler downloadCompletion = self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)][DSAPIBlockHandlerKey];
-        [queue addOperationWithBlock:^{
-            downloadCompletion(data,error);
-        }];
-        [self.downloadCompletionBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
+    NSMutableDictionary *downloadDictionary;
+    if ((downloadDictionary = self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)])) {
+        if (error) {
+            downloadDictionary[DSAPIErrorKey] = error;
+        } else if (data) {
+            downloadDictionary[DSAPIDataKey] = data;
+        }
     }
     [self.lock unlock];
 }
@@ -575,6 +577,30 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
         }];
     }
     [self.lock unlock];
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)downloadTask didCompleteWithError:(NSError *)error
+{
+    [self.lock lock];
+    
+    NSDictionary *downloadDictionary;
+    if ((downloadDictionary = self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)])) {
+        NSOperationQueue *queue = downloadDictionary[DSAPIQueueKey];
+        DSAPIDownloadCompletionHandler downloadCompletion = downloadDictionary[DSAPIBlockHandlerKey];
+        
+        NSData *data = nil;
+        if (!error) {
+            data = downloadDictionary[DSAPIDataKey];
+            error = downloadDictionary[DSAPIErrorKey];
+        }
+        [queue addOperationWithBlock:^{
+            downloadCompletion(data, error);
+        }];
+
+        [self.downloadCompletionBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
+    }
+    [self.lock unlock];
+    
 }
 
 @end
