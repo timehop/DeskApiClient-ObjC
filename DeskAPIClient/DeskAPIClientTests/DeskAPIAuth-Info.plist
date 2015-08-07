@@ -4,7 +4,7 @@
 <dict>
 	<key>APIToken</key>
 	<string>n55A2ocnkgjPhPY2K76w</string>
-	<key>CallbackUrl</key>
+	<key>CallbackURL</key>
 	<string>salesforcedeskmobile://oauth/success</string>
 	<key>BasicAuthPassword</key>
 	<string>Test1234</string>

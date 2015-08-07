@@ -39,7 +39,7 @@
 #define kSearchEndpoint @"search"
 
 #define kEncoderKeyDictionary @"DSAPIResourceDictionary"
-#define kEncoderKeyBaseUrl @"DSAPIResourceBaseUrl"
+#define kEncoderKeyBaseURL @"DSAPIResourceBaseURL"
 
 @interface DSAPIResource ()
 
@@ -390,7 +390,7 @@
         request.cachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
         
         if (notModified) {
-            NSString *etag = [[DSAPIETagCache sharedManager] eTagForUrl:request.URL];
+            NSString *etag = [[DSAPIETagCache sharedManager] eTagForURL:request.URL];
             if (etag) {
                 [request setValue:etag forHTTPHeaderField:kIfNoneMatchHeader];
             }
@@ -402,7 +402,7 @@
                                 DSAPIResource *resource = [responseObject DSAPIResourceWithSelf];
                                 NSString *etag = [[response allHeaderFields] objectForKey:kETagHeader];
                                 if (etag) {
-                                    [[DSAPIETagCache sharedManager] setETag:etag forUrl:request.URL nextPageUrl:[resource linkForRelation:kNextKey].URL];
+                                    [[DSAPIETagCache sharedManager] setETag:etag forURL:request.URL nextPageURL:[resource linkForRelation:kNextKey].URL];
                                 }
                                 if (success) {
                                     success((DSAPIPage *)resource);
@@ -410,7 +410,7 @@
                             }
                             failure:^(NSHTTPURLResponse *response, NSError *error) {
                                 if (notModified && [response statusCode] == DSC_HTTP_STATUS_NOT_MODIFIED) {
-                                    DSAPIPage *page = [DSAPIPage pageFromPageHref:[[DSAPIETagCache sharedManager] pageUrlForUrl:request.URL].relativeString withNextPageHref:[[DSAPIETagCache sharedManager] nextPageUrlForUrl:request.URL].relativeString];
+                                    DSAPIPage *page = [DSAPIPage pageFromPageHref:[[DSAPIETagCache sharedManager] pageURLForURL:request.URL].relativeString withNextPageHref:[[DSAPIETagCache sharedManager] nextPageURLForURL:request.URL].relativeString];
                                     page.notModified = YES;
                                     if (notModified) {
                                         notModified(page);
@@ -602,14 +602,14 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     NSDictionary *dictionary = [aDecoder decodeObjectForKey:kEncoderKeyDictionary];
-    NSURL *baseUrl = [aDecoder decodeObjectForKey:kEncoderKeyBaseUrl];
-    return [self initWithDictionary:dictionary baseURL:baseUrl];
+    NSURL *baseURL = [aDecoder decodeObjectForKey:kEncoderKeyBaseURL];
+    return [self initWithDictionary:dictionary baseURL:baseURL];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.dictionary forKey:kEncoderKeyDictionary];
-    [aCoder encodeObject:self.baseURL forKey:kEncoderKeyBaseUrl];
+    [aCoder encodeObject:self.baseURL forKey:kEncoderKeyBaseURL];
 }
 
 - (NSString *)idFromSelfLink

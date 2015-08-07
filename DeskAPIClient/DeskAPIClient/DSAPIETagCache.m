@@ -47,7 +47,7 @@
 - (BOOL)saveETagCache;
 - (void)loadETagCache;
 - (NSMutableDictionary *)newETagCache;
-- (NSURL *)urlWithBaseUrl:(NSURL *)url fromAbsoluteUrlString:(NSString *)urlString;
+- (NSURL *)URLWithBaseURL:(NSURL *)url fromAbsoluteURLString:(NSString *)urlString;
 
 @end
 
@@ -91,7 +91,7 @@
     self.eTagCache = eTagCache;
 }
 
-- (void)setETag:(NSString *)eTag forUrl:(NSURL *)url nextPageUrl:(NSURL *)nextPageURL
+- (void)setETag:(NSString *)eTag forURL:(NSURL *)url nextPageURL:(NSURL *)nextPageURL
 {
     if (!self.eTagCache) {
         self.eTagCache = [self newETagCache];
@@ -101,7 +101,7 @@
     [self saveETagCache];
 }
 
-- (NSString *)eTagForUrl:(NSURL *)url
+- (NSString *)eTagForURL:(NSURL *)url
 {
     if (!self.eTagCache) {
         [self loadETagCache];
@@ -110,12 +110,12 @@
     return valueDictionary[kETagKey];
 }
 
-- (NSURL *)pageUrlForUrl:(NSURL *)url
+- (NSURL *)pageURLForURL:(NSURL *)url
 {
-    return [self urlWithBaseUrl:url fromAbsoluteUrlString:url.absoluteString];
+    return [self URLWithBaseURL:url fromAbsoluteURLString:url.absoluteString];
 }
 
-- (NSURL *)nextPageUrlForUrl:(NSURL *)url
+- (NSURL *)nextPageURLForURL:(NSURL *)url
 {
     if (!self.eTagCache) {
         [self loadETagCache];
@@ -127,11 +127,11 @@
     if ([nextPageURLAbsoluteString isEqualToString:kNullValue] || !nextPageURLAbsoluteString) {
         return nil;
     } else {
-        return [self urlWithBaseUrl:url fromAbsoluteUrlString:nextPageURLAbsoluteString];
+        return [self URLWithBaseURL:url fromAbsoluteURLString:nextPageURLAbsoluteString];
     }
 }
 
-- (NSURL *)urlWithBaseUrl:(NSURL *)url fromAbsoluteUrlString:(NSString *)urlString
+- (NSURL *)URLWithBaseURL:(NSURL *)url fromAbsoluteURLString:(NSString *)urlString
 {
     NSArray *components = [urlString componentsSeparatedByString:url.host];
     if (components.count > 1) {

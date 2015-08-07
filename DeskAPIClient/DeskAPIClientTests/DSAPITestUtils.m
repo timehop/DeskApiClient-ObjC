@@ -76,7 +76,7 @@ CGFloat const DSAPIDefaultTimeout = 1.f;
     [client setHostname:[DSAPITestUtils authSettings][@"Hostname"]
             consumerKey:[DSAPITestUtils authSettings][@"ConsumerKey"]
          consumerSecret:[DSAPITestUtils authSettings][@"ConsumerSecret"]
-            callbackURL:[NSURL URLWithString:[DSAPITestUtils authSettings][@"CallbackUrl"]]];
+            callbackURL:[NSURL URLWithString:[DSAPITestUtils authSettings][@"CallbackURL"]]];
     return client;
 }
 

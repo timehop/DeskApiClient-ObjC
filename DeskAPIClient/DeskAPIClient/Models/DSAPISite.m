@@ -32,7 +32,7 @@
 #import "DSAPIClient.h"
 
 #define kClassName @"site"
-#define kCurrentSiteUrl @"/api/v2/site"
+#define kCurrentSiteURL @"/api/v2/site"
 
 @implementation DSAPISite
 
@@ -56,7 +56,7 @@
                               success:(void (^)(DSAPISite *site))success
                               failure:(DSAPIFailureBlock)failure
 {
-    DSAPISite *site = (DSAPISite *)[DSAPIResource resourceWithHref:kCurrentSiteUrl
+    DSAPISite *site = (DSAPISite *)[DSAPIResource resourceWithHref:kCurrentSiteURL
                                                          className:[self className]];
     return [site showWithParameters:parameters
                        queue:queue
@@ -79,7 +79,7 @@
                                      success:(void (^)(DSAPIBilling *))success
                                      failure:(DSAPIFailureBlock)failure
 {
-    DSAPISite *site = (DSAPISite *)[DSAPIResource resourceWithHref:kCurrentSiteUrl
+    DSAPISite *site = (DSAPISite *)[DSAPIResource resourceWithHref:kCurrentSiteURL
                                                          className:[self className]];
     return [site showBillingWithParameters:parameters
                               queue:queue
