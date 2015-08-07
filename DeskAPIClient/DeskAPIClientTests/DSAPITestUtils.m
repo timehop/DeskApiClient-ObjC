@@ -53,15 +53,15 @@ CGFloat const DSAPIDefaultTimeout = 1.f;
     return [NSDictionary dictionaryWithContentsOfFile:filePath];
 }
 
-+ (DSAPIClient *)apiClientTokenAuth
++ (DSAPIClient *)APIClientTokenAuth
 {
     DSAPIClient *client = [DSAPIClient new];
     [client setHostname:[DSAPITestUtils authSettings][@"Hostname"]
-               apiToken:[DSAPITestUtils authSettings][@"ApiToken"]];
+               APIToken:[DSAPITestUtils authSettings][@"APIToken"]];
     return client;
 }
 
-+ (DSAPIClient *)apiClientBasicAuth
++ (DSAPIClient *)APIClientBasicAuth
 {
     DSAPIClient *client = [DSAPIClient new];
     [client setHostname:[DSAPITestUtils authSettings][@"Hostname"]
@@ -70,7 +70,7 @@ CGFloat const DSAPIDefaultTimeout = 1.f;
     return client;
 }
 
-+ (DSAPIClient *)apiClientOAuthUnauthorized
++ (DSAPIClient *)APIClientOAuthUnauthorized
 {
     DSAPIClient *client = [DSAPIClient new];
     [client setHostname:[DSAPITestUtils authSettings][@"Hostname"]
@@ -80,10 +80,10 @@ CGFloat const DSAPIDefaultTimeout = 1.f;
     return client;
 }
 
-+ (DSAPIClient *)apiClient
++ (DSAPIClient *)APIClient
 {
     
-    DSAPIClient *client = [self apiClientOAuthUnauthorized];
+    DSAPIClient *client = [self APIClientOAuthUnauthorized];
     
     DSAPIOAuth1Token *token = [[DSAPIOAuth1Token alloc] initWithKey:[DSAPITestUtils authSettings][@"AccessToken"]
                                                              secret:[DSAPITestUtils authSettings][@"AccessTokenSecret"]
@@ -95,7 +95,7 @@ CGFloat const DSAPIDefaultTimeout = 1.f;
     return client;
 }
 
-+ (void)setupSharedApiClient
++ (void)setupSharedAPIClient
 {
     [[DSAPIClient sharedManager] setHostname:[DSAPITestUtils authSettings][@"Hostname"]
                                     username:(NSString *)[DSAPITestUtils authSettings][@"BasicAuthUsername"]

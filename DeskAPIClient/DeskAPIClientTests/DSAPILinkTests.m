@@ -73,7 +73,7 @@
 - (void)testParameters
 {
     __block DSAPILink *nextLink = nil;
-    [DSAPITestUtils apiClientBasicAuth];
+    [DSAPITestUtils APIClientBasicAuth];
     [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         nextLink = page.links[@"next"][0];
         [self done];

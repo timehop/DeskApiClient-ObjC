@@ -43,7 +43,7 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:3.f];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 - (void)testListBrands
 {

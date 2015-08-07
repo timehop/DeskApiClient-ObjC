@@ -20,7 +20,7 @@
 - (void)setUp
 {
     [super setUp];
-    _client = [DSAPITestUtils apiClientOAuthUnauthorized];
+    _client = [DSAPITestUtils APIClientOAuthUnauthorized];
 
 }
 - (void)testInitializationOfOAuthClient

@@ -43,7 +43,7 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:5.0];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 - (void)testCreateMobileDevice

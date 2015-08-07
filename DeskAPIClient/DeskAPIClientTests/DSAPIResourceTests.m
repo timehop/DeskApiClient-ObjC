@@ -45,7 +45,7 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:3.f];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
     _resourceFixture = [DSAPITestUtils resourceFromJSONFile:@"case6"];
     _replies = [DSAPITestUtils resourceFromJSONFile:@"case41replies"];
     _linkToCases = [[DSAPILink alloc] initWithDictionary:@{kHrefKey : @"/api/v2/cases",
