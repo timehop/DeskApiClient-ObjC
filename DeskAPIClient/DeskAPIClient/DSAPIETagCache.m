@@ -47,7 +47,7 @@
 - (BOOL)saveETagCache;
 - (void)loadETagCache;
 - (NSMutableDictionary *)newETagCache;
-- (NSURL *)URLWithBaseURL:(NSURL *)url fromAbsoluteURLString:(NSString *)urlString;
+- (NSURL *)URLWithAbsoluteURLString:(NSString *)absoluteURLString relativeToBaseOfURL:(NSURL *)baseOfURL;
 
 @end
 
@@ -112,7 +112,7 @@
 
 - (NSURL *)pageURLForURL:(NSURL *)url
 {
-    return [self URLWithBaseURL:url fromAbsoluteURLString:url.absoluteString];
+    return [self URLWithAbsoluteURLString:url.absoluteString relativeToBaseOfURL:url];
 }
 
 - (NSURL *)nextPageURLForURL:(NSURL *)url
@@ -127,15 +127,15 @@
     if ([nextPageURLAbsoluteString isEqualToString:kNullValue] || !nextPageURLAbsoluteString) {
         return nil;
     } else {
-        return [self URLWithBaseURL:url fromAbsoluteURLString:nextPageURLAbsoluteString];
+        return [self URLWithAbsoluteURLString:nextPageURLAbsoluteString relativeToBaseOfURL:url];
     }
 }
 
-- (NSURL *)URLWithBaseURL:(NSURL *)url fromAbsoluteURLString:(NSString *)urlString
+- (NSURL *)URLWithAbsoluteURLString:(NSString *)absoluteURLString relativeToBaseOfURL:(NSURL *)baseOfURL
 {
-    NSArray *components = [urlString componentsSeparatedByString:url.host];
+    NSArray *components = [absoluteURLString componentsSeparatedByString:baseOfURL.host];
     if (components.count > 1) {
-        NSURL *baseURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", url.scheme, url.host]];
+        NSURL *baseURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", baseOfURL.scheme, baseOfURL.host]];
         return [NSURL URLWithString:components[1] relativeToURL:baseURL];
     } else {
         return nil;

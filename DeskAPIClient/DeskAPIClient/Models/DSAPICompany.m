@@ -80,7 +80,7 @@
                                 failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:companyDict
-                          atLink:[DSAPICompany classLink]
+                          link:[DSAPICompany classLink]
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {

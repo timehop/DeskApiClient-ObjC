@@ -101,7 +101,7 @@
                                  failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:customerDictionary
-                          atLink:[DSAPICustomer classLink]
+                          link:[DSAPICustomer classLink]
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {

@@ -78,7 +78,7 @@
 {
     
     return [super createResource:macroDict
-                          atLink:[DSAPIMacro classLink]
+                          link:[DSAPIMacro classLink]
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {

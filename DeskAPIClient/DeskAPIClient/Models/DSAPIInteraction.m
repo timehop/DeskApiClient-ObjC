@@ -58,7 +58,7 @@
         linkToAttachments = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, [DSAPIAttachment classNamePlural]], kClassKey:[DSAPIAttachment className]}];
     }
     return [DSAPIResource createResource:attachmentDict
-                                  atLink:linkToAttachments
+                                  link:linkToAttachments
                                    queue:queue
                                  success:^(DSAPIResource *resource) {
                                      if (success) {

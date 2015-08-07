@@ -71,7 +71,7 @@
                             failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:jobDict
-                          atLink:[DSAPIJob classLink]
+                          link:[DSAPIJob classLink]
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {

@@ -267,7 +267,7 @@
  @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 + (NSURLSessionDataTask *)createResource:(NSDictionary *)resourceDict
-                                  atLink:(DSAPILink *)link
+                                  link:(DSAPILink *)link
                                    queue:(NSOperationQueue *)queue
                                  success:(DSAPIResourceSuccessBlock)success
                                  failure:(DSAPIFailureBlock)failure;

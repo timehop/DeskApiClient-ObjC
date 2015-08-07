@@ -466,7 +466,7 @@
 }
 
 + (NSURLSessionDataTask *)createResource:(NSDictionary *)resourceDict
-                                  atLink:(DSAPILink *)link
+                                  link:(DSAPILink *)link
                                    queue:queue
                                  success:(DSAPIResourceSuccessBlock)success
                                  failure:(DSAPIFailureBlock)failure

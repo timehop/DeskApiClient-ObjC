@@ -58,7 +58,7 @@
                                      failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:mobileDeviceDict
-                          atLink:[DSAPIUser linkForLoggedInUsersMobileDevices]
+                          link:[DSAPIUser linkForLoggedInUsersMobileDevices]
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {

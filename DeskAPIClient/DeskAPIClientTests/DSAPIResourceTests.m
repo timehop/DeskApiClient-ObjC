@@ -208,7 +208,7 @@
 - (void)testCreateResource
 {
     __block DSAPIResource *responseResource = nil;
-    [DSAPIResource createResource:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] atLink:_linkToCases queue:self.APICallbackQueue success:^(DSAPIResource *resource) {
+    [DSAPIResource createResource:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] link:_linkToCases queue:self.APICallbackQueue success:^(DSAPIResource *resource) {
         responseResource = resource;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -229,7 +229,7 @@
 - (void)testUpdateResource
 {
     __block DSAPIResource *anUpdatedCase = nil;
-    [DSAPIResource createResource:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] atLink:_linkToCases queue:self.APICallbackQueue success:^(DSAPIResource *resource) {
+    [DSAPIResource createResource:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] link:_linkToCases queue:self.APICallbackQueue success:^(DSAPIResource *resource) {
         NSDictionary *updateCaseDict = [DSAPITestUtils dictionaryFromJSONFile:@"updateCase"];
         [resource updateWithDictionary:updateCaseDict queue:self.APICallbackQueue success:^(DSAPIResource *updatedCase) {
             anUpdatedCase = updatedCase;
