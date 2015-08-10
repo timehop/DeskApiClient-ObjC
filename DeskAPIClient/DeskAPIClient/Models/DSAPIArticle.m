@@ -78,7 +78,7 @@
                                 failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:dictionary
-                          atLink:[DSAPIArticle classLink]
+                          link:[DSAPIArticle classLink]
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {

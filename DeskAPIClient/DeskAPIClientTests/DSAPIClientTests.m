@@ -27,7 +27,7 @@
 {
     [super setUp];
     [Expecta setAsynchronousTestTimeout:5.0];
-    _client = [DSAPITestUtils apiClientBasicAuth];
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 - (void)testThatWeCanCommunicateWithTheWebService
 {
@@ -101,7 +101,7 @@
 
 - (void)testTokenAuthentication
 {
-    DSAPIClient *client = [DSAPITestUtils apiClientTokenAuth];
+    DSAPIClient *client = [DSAPITestUtils APIClientTokenAuth];
     
     __weak XCTestExpectation *expectation = [self expectationWithDescription:@"Should get 200 response"];
     

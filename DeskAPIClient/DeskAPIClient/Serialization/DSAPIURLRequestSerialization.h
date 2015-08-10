@@ -50,7 +50,7 @@
  @return A serialized request.
  */
 - (NSURLRequest *)requestBySerializingRequest:(NSURLRequest *)request
-                               withParameters:(id)parameters
+                               parameters:(id)parameters
                                         error:(NSError * __autoreleasing *)error;
 
 @end

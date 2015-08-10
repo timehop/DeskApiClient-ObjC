@@ -100,7 +100,7 @@
                               failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:labelDict
-                          atLink:[DSAPILabel classLink]
+                          link:[DSAPILabel classLink]
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {

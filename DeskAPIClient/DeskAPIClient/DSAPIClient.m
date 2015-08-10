@@ -128,7 +128,7 @@ static NSDictionary *ClassNames;
     _lock.name = DSAPIClientLockName;
 }
 
-- (void)setHostname:(NSString *)hostname apiToken:(NSString *)apiToken
+- (void)setHostname:(NSString *)hostname APIToken:(NSString *)apiToken
 {
     [self setBaseURLFromHostname:hostname];
     self.authType = DSAPIClientAuthTypeOAuth2Token;

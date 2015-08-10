@@ -123,7 +123,7 @@
 {
     DSAPILink *linkToTweets = [self linkForRelation:[DSAPITweet classNamePlural]];
     return [DSAPIResource createResource:tweetDict
-                           atLink:linkToTweets
+                           link:linkToTweets
                             queue:queue
                           success:^(DSAPIResource *resource) {
                               if (success) {
@@ -165,7 +165,7 @@
                                                                        kClassKey:[DSAPITwitterFollow className]}];
     
     return [DSAPIResource createResource:followDict
-                           atLink:linkToFollows
+                           link:linkToFollows
                             queue:queue
                           success:^(DSAPIResource *resource) {
                               if (success) {

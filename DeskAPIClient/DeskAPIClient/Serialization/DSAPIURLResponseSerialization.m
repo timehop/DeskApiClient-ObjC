@@ -1,5 +1,5 @@
 //
-//  DSAPIUrlResponseSerialization.h
+//  DSAPIURLResponseSerialization.h
 //  DeskAPIClient
 //
 //  Created by Desk.com on 1/12/15.

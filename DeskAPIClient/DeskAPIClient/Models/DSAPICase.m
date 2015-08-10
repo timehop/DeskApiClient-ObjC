@@ -110,7 +110,7 @@
                              failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:caseDict
-                          atLink:[DSAPICase classLink]
+                          link:[DSAPICase classLink]
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {
@@ -255,7 +255,7 @@
 {
     DSAPILink *linkToReplies = [self linkForRelation:kRepliesKey];
     return [DSAPIResource createResource:replyDict
-                                  atLink:linkToReplies
+                                  link:linkToReplies
                                    queue:queue
                                  success:^(DSAPIResource *newReply) {
                                      if (success) {
@@ -273,7 +273,7 @@
 {
     DSAPILink *linkToReplies = [self linkForRelation:kDraftKey];
     return [DSAPIResource createResource:draftDict
-                                  atLink:linkToReplies
+                                  link:linkToReplies
                                    queue:queue
                                  success:^(DSAPIResource *newDraft) {
                                      if (success) {
@@ -336,7 +336,7 @@
 {
     DSAPILink *linkToNotes = [self linkForRelation:[DSAPINote classNamePlural]];
     return [DSAPIResource createResource:noteDict
-                                  atLink:linkToNotes
+                                  link:linkToNotes
                                    queue:queue
                                  success:^(DSAPIResource *resource) {
                                      if (success) {
@@ -384,7 +384,7 @@
         linkToAttachments = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, [DSAPIAttachment classNamePlural]], kClassKey:[DSAPIAttachment className]}];
     }
     return [DSAPIResource createResource:attachmentDict
-                                  atLink:linkToAttachments
+                                  link:linkToAttachments
                                    queue:queue
                                  success:^(DSAPIResource *resource) {
                                      if (success) {

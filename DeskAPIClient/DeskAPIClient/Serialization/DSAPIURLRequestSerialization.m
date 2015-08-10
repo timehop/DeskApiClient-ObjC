@@ -299,7 +299,7 @@ NSArray * DSAPIQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     mutableRequest.networkServiceType = self.networkServiceType;
     mutableRequest.timeoutInterval = self.timeoutInterval;
     
-    mutableRequest = [[self requestBySerializingRequest:mutableRequest withParameters:parameters error:error] mutableCopy];
+    mutableRequest = [[self requestBySerializingRequest:mutableRequest parameters:parameters error:error] mutableCopy];
     
     return mutableRequest;
 }
@@ -307,7 +307,7 @@ NSArray * DSAPIQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 #pragma mark - DSAPIURLRequestSerialization
 
 - (NSURLRequest *)requestBySerializingRequest:(NSURLRequest *)request
-                               withParameters:(id)parameters
+                               parameters:(id)parameters
                                         error:(NSError *__autoreleasing *)error
 {
     NSParameterAssert(request);
@@ -401,13 +401,13 @@ NSArray * DSAPIQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 #pragma mark - DSAPIURLRequestSerialization
 
 - (NSURLRequest *)requestBySerializingRequest:(NSURLRequest *)request
-                               withParameters:(id)parameters
+                               parameters:(id)parameters
                                         error:(NSError *__autoreleasing *)error
 {
     NSParameterAssert(request);
     
     if ([self.HTTPMethodsEncodingParametersInURI containsObject:[[request HTTPMethod] uppercaseString]]) {
-        return [super requestBySerializingRequest:request withParameters:parameters error:error];
+        return [super requestBySerializingRequest:request parameters:parameters error:error];
     }
     
     NSMutableURLRequest *mutableRequest = [request mutableCopy];
@@ -481,13 +481,13 @@ NSArray * DSAPIQueryStringPairsFromKeyAndValue(NSString *key, id value) {
 #pragma mark - DSAPIURLRequestSerializer
 
 - (NSURLRequest *)requestBySerializingRequest:(NSURLRequest *)request
-                               withParameters:(id)parameters
+                               parameters:(id)parameters
                                         error:(NSError *__autoreleasing *)error
 {
     NSParameterAssert(request);
     
     if ([self.HTTPMethodsEncodingParametersInURI containsObject:[[request HTTPMethod] uppercaseString]]) {
-        return [super requestBySerializingRequest:request withParameters:parameters error:error];
+        return [super requestBySerializingRequest:request parameters:parameters error:error];
     }
     
     NSMutableURLRequest *mutableRequest = [request mutableCopy];
@@ -716,11 +716,11 @@ static inline NSString * DSAPIHMACSHA1Signature(NSURLRequest *request, NSDiction
     NSString *header = [NSString stringWithFormat:@"OAuth %@", headerString];
     [self setValue:header forHTTPHeaderField:@"Authorization"];
     
-    return [super requestBySerializingRequest:request withParameters:mutableParameters error:error];
+    return [super requestBySerializingRequest:request parameters:mutableParameters error:error];
 }
 
 - (NSURLRequest *)requestBySerializingRequest:(NSURLRequest *)request
-                               withParameters:(NSDictionary *)parameters
+                               parameters:(NSDictionary *)parameters
                                         error:(NSError *__autoreleasing *)error
 {
     return [self requestWithAuthorizationHeaderForRequest:request parameters:parameters error:error];

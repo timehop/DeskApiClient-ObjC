@@ -61,11 +61,11 @@ extern NSString * const DSAPIResponseKey;
  Sets the `DSAPIClient` object with the specified hostname and API token.
  
  @param hostname The hostname for a Desk.com site.
- @param apiToken A token to authenticate the api
+ @param APIToken A token to authenticate the API
  
  */
 - (void)setHostname:(NSString *)hostname
-           apiToken:(NSString *)apiToken;
+           APIToken:(NSString *)apiToken;
 
 /**
  Sets the `DSAPIClient` object with the specified hostname, username, and password.
