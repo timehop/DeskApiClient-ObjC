@@ -103,7 +103,7 @@
 {
     DSAPIClient *client = [DSAPITestUtils APIClientTokenAuth];
     
-    __weak XCTestExpectation *expectation = [self expectationWithDescription:@"Should get 200 response"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Should get 200 response"];
     
     [client GET:@"/api/v2/articles" parameters:nil queue:self.APICallbackQueue success:^(NSHTTPURLResponse *response, id responseObject) {
         expect(response.statusCode).to.equal(DSC_HTTP_STATUS_OK);
@@ -119,60 +119,81 @@
 {
     NSURL *url = [NSURL URLWithString:@"http://google.com/favicon.ico"];
     
-    __weak XCTestExpectation *exp = [self expectationWithDescription:@"wait for download progress"];
-    NSURLSessionDownloadTask *task = [_client downloadTaskWithURL:url
-                                                            queue:self.APICallbackQueue
-                                                  progressHandler:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-                                                      expect([[_client downloadProgressBlocks] count]).to.equal(1);
-                                                      [exp fulfill];
-                                                  }
-                                                completionHandler:nil];
+    XCTestExpectation *exp = [self expectationWithDescription:@"wait for download progress"];
+    __block BOOL calledOnce = NO;
+    [_client downloadTaskWithURL:url
+                           queue:self.APICallbackQueue
+                 progressHandler:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+                     expect([[_client downloadProgressBlocks] count]).to.equal(1);
+                     if (!calledOnce) {
+                         [exp fulfill];
+                         calledOnce = YES;
+                     }
+                 }
+               completionHandler:nil];
     
-    [task resume];
-    
-    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout handler:nil];
+    [self waitForExpectationsWithTimeout:2.0 handler:nil];
 }
 
 - (void)testDownloadTaskCallsCompletionHandler
 {
     NSURL *url = [NSURL URLWithString:@"http://google.com/favicon.ico"];
     
-    __weak XCTestExpectation *exp = [self expectationWithDescription:@"wait for download"];
+    XCTestExpectation *exp = [self expectationWithDescription:@"wait for download"];
     
-    NSURLSessionDownloadTask *task = [_client downloadTaskWithURL:url
-                                                            queue:self.APICallbackQueue
-                                                  progressHandler:nil
-                                                completionHandler:^(NSData *data, NSError *error) {
-                                                    expect(data).toNot.beNil();
-                                                    expect([[_client downloadProgressBlocks] count]).to.equal(0);
-                                                    [exp fulfill];
-                                                  }];
+    [_client downloadTaskWithURL:url
+                           queue:self.APICallbackQueue
+                 progressHandler:nil
+               completionHandler:^(NSData *data, NSError *error) {
+                   expect(data).toNot.beNil();
+                   expect([[_client downloadProgressBlocks] count]).to.equal(0);
+                   [exp fulfill];
+               }];
     
-    [task resume];
-    
-    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout handler:nil];
-    expect([[_client downloadCompletionBlocks] count]).to.equal(0);
+    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout handler:^(NSError *error) {
+        expect([[_client downloadCompletionBlocks] count]).to.equal(0);
+    }];
 }
 
-- (void)testCancelDownloadTask
+- (void)testCancelDownloadTasks
+{
+    XCTestExpectation *exp = [self expectationWithDescription:@"wait for completion"];
+    
+    // Launch and cancel 20 download tasks
+    for (int i = 1; i <= 20; i++) {
+        NSURLSessionDownloadTask *task = [self startDownloadTaskWithExpectation:exp];
+        expect([[_client downloadProgressBlocks] count]).to.equal(i);
+        expect([[_client downloadCompletionBlocks] count]).to.equal(i);
+        [task cancel];
+        expect(task.state).will.equal(NSURLSessionTaskStateCanceling);
+    }
+    
+    // Wait 5 seconds for all cancelations to finish.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [exp fulfill];
+    });
+    
+    // Verify client state is correct.
+    [self waitForExpectationsWithTimeout:10.0 handler:^(NSError *error) {
+        expect([[_client downloadProgressBlocks] count]).to.equal(0);
+        expect([[_client downloadCompletionBlocks] count]).to.equal(0);
+    }];
+}
+
+- (NSURLSessionDownloadTask *)startDownloadTaskWithExpectation:(XCTestExpectation *)expectation
 {
     NSURL *url = [NSURL URLWithString:@"http://google.com/favicon.ico"];
     
-    NSURLSessionDownloadTask *task = [_client downloadTaskWithURL:url
-                                                            queue:self.APICallbackQueue
-                                                  progressHandler:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-                                                      // dummy block
-                                                  }
-                                                completionHandler:^(NSData *data, NSError *error) {
-                                                    // dummy block
-                                                }];
-    expect([[_client downloadProgressBlocks] count]).to.equal(1);
-    expect([[_client downloadCompletionBlocks] count]).to.equal(1);
-    [task resume];
-    [_client cancelDownloadTask:task];
-    expect([[_client downloadProgressBlocks] count]).to.equal(0);
-    expect([[_client downloadCompletionBlocks] count]).to.equal(0);
-    expect(task.state).will.equal(NSURLSessionTaskStateCompleted);
+    return [_client downloadTaskWithURL:url
+                                  queue:self.APICallbackQueue
+                        progressHandler:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+                            // dummy block
+                        }
+                      completionHandler:^(NSData *data, NSError *error) {
+                          // Completion should not be called if cancelled.
+                          XCTFail(@"Completion called.");
+                          [expectation fulfill];
+                      }];
 }
 
 @end

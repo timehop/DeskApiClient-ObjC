@@ -180,6 +180,8 @@
 		2D4947411A114F5E00D81AF7 /* DSAPISite.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4947401A114F5E00D81AF7 /* DSAPISite.m */; };
 		2DFFB06719B60D1A00683B6C /* DSAPITopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DFFB06619B60D1A00683B6C /* DSAPITopic.m */; };
 		3E223CA44C6A4C4380497DB7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B9E55B55FA489EA70BB35A /* libPods.a */; };
+		C748B8B31B7A4D3600AF400A /* DSAPINetworkIndicatorController.h in Headers */ = {isa = PBXBuildFile; fileRef = C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */; };
+		C748B8B41B7A4D3600AF400A /* DSAPINetworkIndicatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -366,6 +368,8 @@
 		53502A1E49457E269F1AB62A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8C379B08E1724939AF847EA7 /* libPods-DeskAPIClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeskAPIClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2B9E55B55FA489EA70BB35A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPINetworkIndicatorController.h; sourceTree = "<group>"; };
+		C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPINetworkIndicatorController.m; sourceTree = "<group>"; };
 		DF67CF8B90604791B3D698D4 /* libPods-DeskAPIClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeskAPIClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7111867EB10C4223E408AFD /* Pods-DeskAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -479,6 +483,8 @@
 				1C28761417ED2F0C004B4CBF /* DSAPIResource.m */,
 				1CDBDF781A78191A00582BE2 /* DSAPIListProvider.h */,
 				1CDBDF791A78191A00582BE2 /* DSAPIListProvider.m */,
+				C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */,
+				C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */,
 				1C316D7617E9533900ACA543 /* Supporting Files */,
 			);
 			path = DeskAPIClient;
@@ -740,6 +746,7 @@
 				1C7B8DA41A642277005ED4A8 /* DSAPIMacroAction.h in Headers */,
 				1C7B8DA51A642277005ED4A8 /* DSAPICustomField.h in Headers */,
 				1C7B8DA61A642277005ED4A8 /* DSAPIMobileDevice.h in Headers */,
+				C748B8B31B7A4D3600AF400A /* DSAPINetworkIndicatorController.h in Headers */,
 				1C7B8DA71A642277005ED4A8 /* DSAPIMobileDeviceSetting.h in Headers */,
 				1C7B8DA81A642277005ED4A8 /* DSAPITwitterAccount.h in Headers */,
 				1C7B8DA91A642277005ED4A8 /* DSAPIPermission.h in Headers */,
@@ -995,6 +1002,7 @@
 				1CF0ECC517F3309100901969 /* DSAPIPhoneCall.m in Sources */,
 				1CF4484B17FE017E009FED5A /* DSAPIUserPreference.m in Sources */,
 				1C399F8F1A64735D004366DF /* DSAPIURLResponseSerialization.m in Sources */,
+				C748B8B41B7A4D3600AF400A /* DSAPINetworkIndicatorController.m in Sources */,
 				1C28761517ED2F0C004B4CBF /* DSAPIResource.m in Sources */,
 				1CA824381896FD9E00C7DF54 /* DSAPIMacro.m in Sources */,
 				1CF0EC9D17F3102400901969 /* DSAPICustomer.m in Sources */,

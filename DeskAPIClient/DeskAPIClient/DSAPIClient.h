@@ -194,13 +194,13 @@ extern NSString * const DSAPIResponseKey;
                          success:(void (^)(NSHTTPURLResponse *response, id responseObject))success
                          failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure;
 
-- (void)cancelAllDataTasks:(void (^)(void))completionHandler;
+- (void)cancelAllDataTasksWithQueue:(NSOperationQueue *)queue completionHandler:(void (^)(void))completionHandler;
 
 - (NSURLSessionDownloadTask *)downloadTaskWithURL:(NSURL *)url
                                             queue:(NSOperationQueue *)queue
                                   progressHandler:(DSAPIDownloadProgressHandler)progressHandler
                                 completionHandler:(DSAPIDownloadCompletionHandler)completionHandler;
 
-- (void)cancelDownloadTask:(NSURLSessionDownloadTask *)downloadTask;
+- (void)cancelAllDownloadTasksWithQueue:(NSOperationQueue *)queue completionHandler:(void (^)(void))completionHandler;
 
 @end
