@@ -10,7 +10,7 @@
 
 @interface DSAPINetworkIndicatorController ()
 
-@property NSUInteger activityCount;
+@property (nonatomic) NSUInteger activityCount;
 @property (nonatomic) NSTimer *timer;
 
 @end
@@ -50,6 +50,7 @@
 - (void)networkActivityDidEnd
 {
     NSAssert([NSThread isMainThread], @"Altering network activity indicator state can only be done on the main thread.");
+    NSAssert(self.activityCount > 0, @"networkActivityDidEnd before matching networkActivityDidStart");
     self.activityCount--;
     [self updateIndicatorVisibility];
     
