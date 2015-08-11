@@ -613,10 +613,10 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
         // Only execute completion block if task was not cancelled.
         if (error == nil || error.code != NSURLErrorCancelled) {
             data = downloadDictionary[DSAPIDataKey];
-            error = downloadDictionary[DSAPIErrorKey];
+            NSError *finalError = error ? error : downloadDictionary[DSAPIErrorKey];
             
             [queue addOperationWithBlock:^{
-                downloadCompletion(data, error);
+                downloadCompletion(data, finalError);
             }];
         }
         
