@@ -31,6 +31,7 @@
 #import "DSAPIClient.h"
 #import <DeskCommon/DSCHttpStatusCodes.h>
 #import <DeskCommon/NSURLRequest+DSC.h>
+#import "DSAPINetworkIndicatorController.h"
 
 typedef enum {
     DSAPIClientAuthTypeBasic,
@@ -316,6 +317,11 @@ static NSDictionary *ClassNames;
 {
     return [self.session dataTaskWithRequest:request
                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                               [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                                   [[DSAPINetworkIndicatorController sharedController] networkActivityDidEnd];
+                               }];
+                               
+                               // Only execute success/failure blocks if task was not cancelled.
                                if (error == nil || error.code != NSURLErrorCancelled) {
                                    [queue addOperationWithBlock:^{
                                        if (error) {
@@ -340,6 +346,15 @@ static NSDictionary *ClassNames;
                            }];
 }
 
+- (void)resumeTask:(NSURLSessionTask *)task
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [[DSAPINetworkIndicatorController sharedController] networkActivityDidStart];
+    }];
+
+    [task resume];
+}
+
 - (NSURLSessionDataTask *)GET:(NSString *)URLString
                    parameters:(id)parameters
                         queue:(NSOperationQueue *)queue
@@ -358,7 +373,7 @@ static NSDictionary *ClassNames;
                                                    success:success
                                                    failure:failure];
     
-    [task resume];
+    [self resumeTask:task];
     
     return task;
 }
@@ -380,7 +395,7 @@ static NSDictionary *ClassNames;
                                                    success:success
                                                    failure:failure];
     
-    [task resume];
+    [self resumeTask:task];
     
     return task;
 }
@@ -403,7 +418,7 @@ static NSDictionary *ClassNames;
                                                    success:success
                                                    failure:failure];
     
-    [task resume];
+    [self resumeTask:task];
     
     return task;
 }
@@ -426,7 +441,7 @@ static NSDictionary *ClassNames;
                                                    success:success
                                                    failure:failure];
     
-    [task resume];
+    [self resumeTask:task];
     
     return task;
 }
@@ -449,23 +464,38 @@ static NSDictionary *ClassNames;
                                                    success:success
                                                    failure:failure];
     
-    [task resume];
+    [self resumeTask:task];
     
     return task;
 }
 
-- (void)cancelAllDataTasks:(void (^)(void))completionHandler;
+- (void)cancelAllDataTasksWithQueue:(NSOperationQueue *)queue completionHandler:(void (^)(void))completionHandler
 {
     [self.session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
         for (NSURLSessionTask *task in dataTasks) {
             [task cancel];
         }
         if (completionHandler) {
-            completionHandler();
+            [queue addOperationWithBlock:^{
+                completionHandler();
+            }];
         }
     }];
 }
 
+- (void)cancelAllDownloadTasksWithQueue:(NSOperationQueue *)queue completionHandler:(void (^)(void))completionHandler
+{
+    [self.session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
+        for (NSURLSessionTask *task in downloadTasks) {
+            [task cancel];
+        }
+        if (completionHandler) {
+            [queue addOperationWithBlock:^{
+                completionHandler();
+            }];
+        }
+    }];
+}
 #pragma mark - Downloads
 
 - (NSURLSessionDownloadTask *)downloadTaskWithURL:(NSURL *)url
@@ -494,6 +524,8 @@ static NSDictionary *ClassNames;
         }
         [self.lock unlock];
         
+        [self resumeTask:task];
+        
         return task;
     }
 }
@@ -505,20 +537,6 @@ static NSDictionary *ClassNames;
                                    DSAPIBlockHandlerKey : blockHandler
                                    } mutableCopy];
     return dict;
-}
-
-- (void)cancelDownloadTask:(NSURLSessionDownloadTask *)downloadTask
-{
-    [downloadTask cancel];
-    [self.lock lock];
-    if (self.downloadProgressBlocks[@(downloadTask.taskIdentifier)]) {
-        [self.downloadProgressBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
-    }
-    
-    if (self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)]) {
-        [self.downloadCompletionBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
-    }
-    [self.lock unlock];
 }
 
 #pragma mark - NSURLSessionDelegate
@@ -547,10 +565,6 @@ didFinishDownloadingToURL:(NSURL *)location
     
     
     [self.lock lock];
-    if (self.downloadProgressBlocks[@(downloadTask.taskIdentifier)]) {
-        [self.downloadProgressBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
-    }
-    
     NSMutableDictionary *downloadDictionary;
     if ((downloadDictionary = self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)])) {
         if (error) {
@@ -581,7 +595,14 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)downloadTask didCompleteWithError:(NSError *)error
 {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [[DSAPINetworkIndicatorController sharedController] networkActivityDidEnd];
+    }];
+    
     [self.lock lock];
+    if (self.downloadProgressBlocks[@(downloadTask.taskIdentifier)]) {
+        [self.downloadProgressBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
+    }
     
     NSDictionary *downloadDictionary;
     if ((downloadDictionary = self.downloadCompletionBlocks[@(downloadTask.taskIdentifier)])) {
@@ -589,14 +610,16 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
         DSAPIDownloadCompletionHandler downloadCompletion = downloadDictionary[DSAPIBlockHandlerKey];
         
         NSData *data = nil;
-        if (!error) {
+        // Only execute completion block if task was not cancelled.
+        if (error == nil || error.code != NSURLErrorCancelled) {
             data = downloadDictionary[DSAPIDataKey];
-            error = downloadDictionary[DSAPIErrorKey];
+            NSError *finalError = error ? error : downloadDictionary[DSAPIErrorKey];
+            
+            [queue addOperationWithBlock:^{
+                downloadCompletion(data, finalError);
+            }];
         }
-        [queue addOperationWithBlock:^{
-            downloadCompletion(data, error);
-        }];
-
+        
         [self.downloadCompletionBlocks removeObjectForKey:@(downloadTask.taskIdentifier)];
     }
     [self.lock unlock];

@@ -32,6 +32,7 @@
 #import <objc/runtime.h>
 #import "DSAPIETagCache.h"
 #import <DeskCommon/DSCHttpStatusCodes.h>
+#import "DSAPINetworkIndicatorController.h"
 
 #define kETagHeader @"ETag"
 #define kIfNoneMatchHeader @"If-None-Match"
@@ -423,7 +424,11 @@
                                 }
                             }];
         
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [[DSAPINetworkIndicatorController sharedController] networkActivityDidStart];
+        }];
         [task resume];
+        
         return task;
     }
     return nil;
