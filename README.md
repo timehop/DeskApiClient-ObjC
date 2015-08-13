@@ -12,24 +12,23 @@ pod 'DeskAPIClient', :git => 'https://github.com/forcedotcom/DeskApiClient-ObjC.
 
 ## Usage
 
-Create a basic-auth api client as follows:
+Create an API Oauth2 token client as follows:
 
 ```
-DSAPIClient *client = [[DSAPIClient alloc] initWithHostname:@"mysite.desk.com"
-                                                   username:@"myUsername"
-                                                   password:@"myPassword"];
+DSAPIClient *client = [DSAPIClient sharedManager];
+[client setHostname:@“mysite.desk.com”
+           APIToken:@“my api token”];
 ```
 
-Create an OAuth1 api client as follows:
+Create an API OAuth1 client as follows:
 
 ```
-DSAPIClient *client = [[DSAPIClient alloc] initWithHostname:@"mysite.desk.com"
-                                                   consumerKey:@"yourConsumerKey"
-                                                consumerSecret:@"yourConsumerSecret"
-                                                   callbackURL:@"urlscheme://callback-url"];
+DSAPIClient *client = [DSAPIClient sharedManager];
+[client setHostname:@"mysite.desk.com"
+        consumerKey:@"yourConsumerKey"
+     consumerSecret:@"yourConsumerSecret"
+        callbackURL:@"urlscheme://callback-url"];
 ```
-
-As a convenience, there is a global client singleton available at `[DSAPIClient sharedManager]`.
 
 ## Copyright and license
 
