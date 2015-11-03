@@ -35,7 +35,7 @@
 #import "NSDictionary+DSAPI.h"
 
 typedef void (^DSAPIDownloadProgressHandler)(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
-typedef void (^DSAPIDownloadCompletionHandler)(NSData *data, NSError *error);
+typedef void (^DSAPIDownloadCompletionHandler)(NSData *data, NSHTTPURLResponse *response, NSError *error);
 
 extern NSString * const DSAPIDidErrorWithTooManyRequestsNotification;
 extern NSString * const DSAPIResponseKey;

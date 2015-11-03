@@ -39,8 +39,8 @@ typedef enum {
     DSAPIClientAuthTypeOAuth2Token
 } DSAPIClientAuthType;
 
-NSString *const DSAPIDidErrorWithTooManyRequestsNotification = @"DSAPIDidErrorWithTooManyRequestsNotification";
-NSString *const DSAPIResponseKey = @"response";
+NSString * const DSAPIDidErrorWithTooManyRequestsNotification = @"DSAPIDidErrorWithTooManyRequestsNotification";
+NSString * const DSAPIResponseKey = @"response";
 
 static NSString *const DSAPIOAuthCallbackKey = @"oauth_callback";
 static NSString *const DSAPIClientLockName = @"com.desk.networking.session.client.lock";
@@ -351,7 +351,7 @@ static NSDictionary *ClassNames;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [[DSAPINetworkIndicatorController sharedController] networkActivityDidStart];
     }];
-
+    
     [task resume];
 }
 
@@ -510,7 +510,7 @@ static NSDictionary *ClassNames;
                                                                 error:&error];
     
     if (error && completionHandler) {
-        completionHandler(nil, error);
+        completionHandler(nil, nil, error);
         return nil;
     } else {
         NSURLSessionDownloadTask *task = [self.session downloadTaskWithRequest:request];
@@ -537,6 +537,15 @@ static NSDictionary *ClassNames;
                                    DSAPIBlockHandlerKey : blockHandler
                                    } mutableCopy];
     return dict;
+}
+
+- (NSError *)consolidatedDownloadingError:(NSError *)downloadingError completeError:(NSError *)completeError
+{
+    NSError *error = downloadingError;
+    if (completeError) {
+        error = completeError;
+    }
+    return error;
 }
 
 #pragma mark - NSURLSessionDelegate
@@ -613,10 +622,11 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
         // Only execute completion block if task was not cancelled.
         if (error == nil || error.code != NSURLErrorCancelled) {
             data = downloadDictionary[DSAPIDataKey];
-            NSError *finalError = error ? error : downloadDictionary[DSAPIErrorKey];
+            NSError *finalError = [self consolidatedDownloadingError:downloadDictionary[DSAPIErrorKey]
+                                                       completeError:error];
             
             [queue addOperationWithBlock:^{
-                downloadCompletion(data, finalError);
+                downloadCompletion(data, (NSHTTPURLResponse *)downloadTask.response, finalError);
             }];
         }
         

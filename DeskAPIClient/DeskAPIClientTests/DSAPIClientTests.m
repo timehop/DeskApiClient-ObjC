@@ -144,7 +144,7 @@
     [_client downloadTaskWithURL:url
                            queue:self.APICallbackQueue
                  progressHandler:nil
-               completionHandler:^(NSData *data, NSError *error) {
+               completionHandler:^(NSData *data, NSHTTPURLResponse *response, NSError *error) {
                    expect(data).toNot.beNil();
                    expect([[_client downloadProgressBlocks] count]).to.equal(0);
                    [exp fulfill];
@@ -189,7 +189,7 @@
                         progressHandler:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
                             // dummy block
                         }
-                      completionHandler:^(NSData *data, NSError *error) {
+                      completionHandler:^(NSData *data, NSHTTPURLResponse *response, NSError *error) {
                           // Completion should not be called if cancelled.
                           XCTFail(@"Completion called.");
                           [expectation fulfill];
