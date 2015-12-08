@@ -81,7 +81,7 @@
 
 - (void)loadETagCache
 {
-    NSDictionary *eTagCache = [[NSDictionary dictionaryWithContentsOfURL:self.eTagPlistURL] mutableCopy];
+    NSDictionary *eTagCache = [NSDictionary dictionaryWithContentsOfURL:self.eTagPlistURL];
     
     if (![eTagCache.allKeys containsObject:kVersionKey]) {
         // clear out old cache
