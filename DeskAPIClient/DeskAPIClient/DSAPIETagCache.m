@@ -93,12 +93,14 @@
 
 - (void)setETag:(NSString *)eTag forURL:(NSURL *)url nextPageURL:(NSURL *)nextPageURL
 {
-    if (!self.eTagCache) {
-        self.eTagCache = [self newETagCache];
+    @synchronized(self) {
+        if (!self.eTagCache) {
+            self.eTagCache = [self newETagCache];
+        }
+        NSDictionary *valueDictionary = @{kETagKey:eTag, kNextPageURLKey: nextPageURL.absoluteString ? nextPageURL.absoluteString : kNullValue};
+        [self.eTagCache setValue:valueDictionary forKey:url.absoluteString];
+        [self saveETagCache];
     }
-    NSDictionary *valueDictionary = @{kETagKey:eTag, kNextPageURLKey: nextPageURL.absoluteString ? nextPageURL.absoluteString : kNullValue};
-    [self.eTagCache setValue:valueDictionary forKey:url.absoluteString];
-    [self saveETagCache];
 }
 
 - (NSString *)eTagForURL:(NSURL *)url
