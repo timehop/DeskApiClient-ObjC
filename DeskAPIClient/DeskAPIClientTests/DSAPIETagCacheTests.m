@@ -294,4 +294,25 @@
     [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout handler:nil];
 }
 
+- (void)testConcurrentSaveDoesNotCrash
+{
+    [[DSAPIETagCache sharedManager] clearCache];
+    
+    NSOperationQueue *queue = [NSOperationQueue new];
+    NSUInteger n = 100;
+    __block NSMutableArray *operations = [NSMutableArray arrayWithCapacity:n];
+    NSOperation *operation;
+    for (int i = 0; i < n; i++) {
+        operation = [NSBlockOperation blockOperationWithBlock:^{
+            NSString *etag = [NSString stringWithFormat:@"etag %@", @(i)];
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://test%@.com", @(i)]];
+            NSURL *nextURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://test%@.com", @(i+1)]];
+            [[DSAPIETagCache sharedManager] setETag:etag forURL:url nextPageURL:nextURL];
+        }];
+        operations[i] = operation;
+    }
+    
+    [queue addOperations:operations waitUntilFinished:YES];
+}
+
 @end
