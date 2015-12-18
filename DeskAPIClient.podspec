@@ -10,7 +10,4 @@ Pod::Spec.new do |s|
   s.source_files = 'DeskAPIClient/DeskAPIClient/*.{h,m}', 'DeskAPIClient/DeskAPIClient/**/*.{h,m}'
   s.requires_arc = true
   s.dependency 'DeskCommon', '~> 1.0.4'
-  s.dependency 'DeskCommonTest', '~> 1.0.2'
-  s.dependency 'Expecta', '~> 0.3.1'
-  s.dependency 'OCMock', '~> 3.0.2'
 end
