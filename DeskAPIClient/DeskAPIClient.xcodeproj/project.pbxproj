@@ -182,6 +182,7 @@
 		3E223CA44C6A4C4380497DB7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B9E55B55FA489EA70BB35A /* libPods.a */; };
 		C748B8B31B7A4D3600AF400A /* DSAPINetworkIndicatorController.h in Headers */ = {isa = PBXBuildFile; fileRef = C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */; };
 		C748B8B41B7A4D3600AF400A /* DSAPINetworkIndicatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */; };
+		C7A6B1A61C51624B00D8B83F /* DSAPIResource+Testing.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A6B1A51C51624B00D8B83F /* DSAPIResource+Testing.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -370,6 +371,8 @@
 		B2B9E55B55FA489EA70BB35A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C748B8B11B7A4D3600AF400A /* DSAPINetworkIndicatorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAPINetworkIndicatorController.h; sourceTree = "<group>"; };
 		C748B8B21B7A4D3600AF400A /* DSAPINetworkIndicatorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAPINetworkIndicatorController.m; sourceTree = "<group>"; };
+		C7A6B1A41C51624B00D8B83F /* DSAPIResource+Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DSAPIResource+Testing.h"; sourceTree = "<group>"; };
+		C7A6B1A51C51624B00D8B83F /* DSAPIResource+Testing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DSAPIResource+Testing.m"; sourceTree = "<group>"; };
 		DF67CF8B90604791B3D698D4 /* libPods-DeskAPIClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeskAPIClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7111867EB10C4223E408AFD /* Pods-DeskAPIClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeskAPIClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DeskAPIClientTests/Pods-DeskAPIClientTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -504,6 +507,8 @@
 				1C4575761922B5F500C08B7A /* Models */,
 				1C28762417F0CE04004B4CBF /* DSAPITestUtils.h */,
 				1C28762517F0CE04004B4CBF /* DSAPITestUtils.m */,
+				C7A6B1A41C51624B00D8B83F /* DSAPIResource+Testing.h */,
+				C7A6B1A51C51624B00D8B83F /* DSAPIResource+Testing.m */,
 				1C316D8F17E9533900ACA543 /* DSAPIClientTests.m */,
 				1CE54205180C475200550D35 /* DSAPIOAuthClientTests.m */,
 				1C4DA76A180A338A00E3B7B2 /* DSAPIRequestSerializerTests.m */,
@@ -1075,6 +1080,7 @@
 				1C399FA71A648C20004366DF /* DSAPIJobsTests.m in Sources */,
 				1C399FA81A648C20004366DF /* DSAPICompanyTests.m in Sources */,
 				1C399FA91A648C20004366DF /* DSAPITopicsTests.m in Sources */,
+				C7A6B1A61C51624B00D8B83F /* DSAPIResource+Testing.m in Sources */,
 				1C399FAA1A648C20004366DF /* DSAPIArticleTests.m in Sources */,
 				1C399FAB1A648C20004366DF /* DSAPISiteTests.m in Sources */,
 				1C399FAC1A648C20004366DF /* DSAPIBrandTests.m in Sources */,

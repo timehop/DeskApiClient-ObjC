@@ -607,14 +607,5 @@
     return [[[self linkToSelf] URL] lastPathComponent];
 }
 
-#pragma mark - For Testing Only
-
-- (instancetype)initWithTestDictionary:(NSDictionary *)dictionary
-{
-    DSAPIClient *dummyClient = [DSAPIClient new];
-    dummyClient.baseURL = [NSURL URLWithString:@"http://google.com"];
-    return [self initWithDictionary:dictionary client:dummyClient];
-}
-
 
 @end

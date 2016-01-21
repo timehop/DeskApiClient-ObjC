@@ -95,13 +95,6 @@ CGFloat const DSAPIDefaultTimeout = 1.f;
     return client;
 }
 
-+ (void)setupSharedAPIClient
-{
-    [[DSAPIClient sharedManager] setHostname:[DSAPITestUtils authSettings][@"Hostname"]
-                                    username:(NSString *)[DSAPITestUtils authSettings][@"BasicAuthUsername"]
-                                    password:(NSString *)[DSAPITestUtils authSettings][@"BasicAuthPassword"]];
-}
-
 + (NSTimeInterval)timeSinceEpoch
 {
     return [NSDate timeIntervalSinceReferenceDate];

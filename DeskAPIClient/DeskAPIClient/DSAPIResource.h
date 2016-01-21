@@ -376,6 +376,4 @@
 
 - (NSString *)idFromSelfLink;
 
-- (instancetype)initWithTestDictionary:(NSDictionary *)dictionary;
-
 @end

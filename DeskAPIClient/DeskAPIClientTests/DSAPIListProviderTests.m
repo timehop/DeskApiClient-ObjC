@@ -30,6 +30,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "DSAPIResource+Testing.h"
 #import "DSAPIListProvider.h"
 
 static NSUInteger const DSAPIResourcesPerPageTest = 25;
@@ -264,7 +265,7 @@ static NSUInteger const DSAPIResourcesPerPageTest = 25;
 - (DSAPIPage *)testPage
 {
     NSDictionary *dictionary = [DSAPITestUtils dictionaryFromJSONFile:@"topics"];
-    return [[DSAPIPage alloc] initTestPageWithDictionary:dictionary];
+    return [[DSAPIPage alloc] initWithTestDictionary:dictionary];
 }
 
 @end

@@ -11,6 +11,7 @@
 @interface DSAPITestCase()
 
 @property (nonatomic) BOOL isDone;
+@property (nonatomic, readonly) DSAPIClient *client;
 
 - (void)start;
 
@@ -20,7 +21,7 @@
 
 - (void)setUp {
     [super setUp];
-    [DSAPITestUtils setupSharedAPIClient];
+    _client = [DSAPITestUtils APIClientBasicAuth];
     _APICallbackQueue = [NSOperationQueue new];
     _APICallbackQueue.name = @"APICallbackQueue";
     [self start];

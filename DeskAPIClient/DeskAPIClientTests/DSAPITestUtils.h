@@ -41,7 +41,6 @@ extern CGFloat const DSAPIDefaultTimeout;
 + (DSAPIClient *)APIClientBasicAuth;
 + (DSAPIClient *)APIClientOAuthUnauthorized;
 + (DSAPIClient *)APIClient;
-+ (void)setupSharedAPIClient;
 + (NSTimeInterval)timeSinceEpoch;
 + (NSString *)epochTimeAsString;
 + (NSString *)uuid;
