@@ -266,7 +266,6 @@
  
  @param resource A `DSAPIResource` instance that wraps a dictionary defining the new resource.
  @param link The link for the `DSAPIResource`
- @param parameters The querystring parameters to be sent with the GET request
  @param client The client to use for making the network request.
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the resource (`DSAPIResource`) created and returned by the POST request.
