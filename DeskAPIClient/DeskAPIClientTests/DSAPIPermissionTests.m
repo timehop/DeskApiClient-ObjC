@@ -12,16 +12,24 @@
 
 @interface DSAPIPermissionTests : DSAPITestCase
 
+@property (nonatomic, strong) DSAPIClient *client;
+
 @end
 
 @implementation DSAPIPermissionTests
+
+- (void)setUp
+{
+    [super setUp];;
+    _client = [DSAPITestUtils APIClientBasicAuth];
+}
 
 - (void)testListPermissions
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Should GET permissions"];
     
     [[DSAPIETagCache sharedManager] clearCache];
-    [DSAPIPermission listPermissionsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *permissionsPage) {
+    [DSAPIPermission listPermissionsWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *permissionsPage) {
         expect(permissionsPage.entries.count).to.beGreaterThanOrEqualTo(35);
         DSAPIPermission *permission = permissionsPage.entries.firstObject;
         expect(permission).to.beKindOf([DSAPIPermission class]);
@@ -43,7 +51,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Should GET a permission"];
     
     [[DSAPIETagCache sharedManager] clearCache];
-    [DSAPIPermission listPermissionsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *permissionsPage) {
+    [DSAPIPermission listPermissionsWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *permissionsPage) {
         DSAPIPermission *permission = permissionsPage.entries.firstObject;
         [permission showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPermission *permissionResponse) {
             expect(permissionResponse).to.beKindOf([DSAPIPermission class]);

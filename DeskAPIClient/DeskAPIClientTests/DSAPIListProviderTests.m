@@ -264,7 +264,7 @@ static NSUInteger const DSAPIResourcesPerPageTest = 25;
 - (DSAPIPage *)testPage
 {
     NSDictionary *dictionary = [DSAPITestUtils dictionaryFromJSONFile:@"topics"];
-    return [[DSAPIPage alloc] initWithDictionary:dictionary];
+    return [[DSAPIPage alloc] initTestPageWithDictionary:dictionary];
 }
 
 @end

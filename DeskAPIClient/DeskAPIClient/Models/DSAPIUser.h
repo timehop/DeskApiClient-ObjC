@@ -37,19 +37,21 @@
  
  @return `DSAPILink` for user
  */
-+ (DSAPILink *)linkForLoggedInUser;
-+ (DSAPILink *)linkForLoggedInUsersMobileDevices;
++ (DSAPILink *)linkForLoggedInUserWithClient:(DSAPIClient *)client;
++ (DSAPILink *)linkForLoggedInUsersMobileDevicesWithClient:(DSAPIClient *)client;
 
 /**
  Lists users by calling a GET to the /api/v2/users endpoint of the Desk.com API.
  
  @param parameters The querystring parameters to be sent with the GET request (including 'embed' to embed a resource in the response, and 'page' and 'per_page' for pagination).
+ @param client The client to use for making the network request.
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the page (`DSAPIPage`) of resources returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
  @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 + (NSURLSessionDataTask *)listUsersWithParameters:(NSDictionary *)parameters
+                                           client:(DSAPIClient *)client
                                             queue:(NSOperationQueue *)queue
                                           success:(DSAPIPageSuccessBlock)success
                                           failure:(DSAPIFailureBlock)failure;
@@ -58,6 +60,7 @@
  Lists users by calling a GET to the /api/v2/users endpoint of the Desk.com API. Supports ETag caching
  
  @param parameters The querystring parameters to be sent with the GET request (including 'embed' to embed a resource in the response, and 'page' and 'per_page' for pagination).
+ @param client The client to use for making the network request.
  @param queue The queue on which to execute the success, failure and notModified blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the page (`DSAPIPage`) of resources returned by the GET request.
  @param notModified A block object to be executed if the web service returns a response of not modified (HTTP status code 304). This is called when the response at this endpoint hasn't changed since the last request (via ETags). This block has no return value and takes one argument: a page (`DSAPIPage`) whose notModified property is set to YES.
@@ -65,6 +68,7 @@
  @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 + (NSURLSessionDataTask *)listUsersWithParameters:(NSDictionary *)parameters
+                                           client:(DSAPIClient *)client
                                             queue:(NSOperationQueue *)queue
                                           success:(DSAPIPageSuccessBlock)success
                                       notModified:(DSAPIPageSuccessBlock)notModified
@@ -75,12 +79,14 @@
  Shows the current user by calling a GET to the /api/v2/users/me endpoint of the Desk.com API.
  
  @param parameters The querystring parameters to be sent with the GET request (including 'embed' to embed a resource in the response, and 'page' and 'per_page' for pagination).
+ @param client The client to use for making the network request.
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the user (`DSAPIUser`) returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
  @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 + (NSURLSessionDataTask *)showCurrentUserWithParameters:(NSDictionary *)parameters
+                                                 client:(DSAPIClient *)client
                                                   queue:(NSOperationQueue *)queue
                                                 success:(void (^)(DSAPIUser *user))success
                                                 failure:(DSAPIFailureBlock)failure;
@@ -89,14 +95,16 @@
 /**
  Logs out the current user by calling a POST to the /api/v2/users/me/logout endpoint of the Desk.com API.
  
+ @param client The client to use for making the network request.
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and no argument.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
  @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
-+ (NSURLSessionDataTask *)logoutCurrentUserWithQueue:(NSOperationQueue *)queue
-                                             success:(void (^)(void))success
-                                             failure:(DSAPIFailureBlock)failure;
++ (NSURLSessionDataTask *)logoutCurrentUserWithClient:(DSAPIClient *)client
+                                                queue:(NSOperationQueue *)queue
+                                              success:(void (^)(void))success
+                                              failure:(DSAPIFailureBlock)failure;
 
 
 /**
@@ -238,6 +246,7 @@
  Lists the mobile devices for an individual user by calling a GET to the user's "mobile_devices" link. Supports ETag caching.
  
  @param parameters The querystring parameters to be sent with the GET request
+ @param client The client to use for making the network request.
  @param queue The queue on which to execute the success, failure and notModified blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the page (`DSAPIPage`) of resources returned by the GET request.
  @param notModified A block object to be executed if the web service returns a response of not modified (HTTP status code 304). This is called when the response at this endpoint hasn't changed since the last request (via ETags). This block has no return value and takes one argument: a page (`DSAPIPage`) whose notModified property is set to YES.
@@ -245,6 +254,7 @@
  @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
 + (NSURLSessionDataTask *)listMyMobileDevicesWithParameters:(NSDictionary *)parameters
+                                                     client:(DSAPIClient *)client
                                                       queue:(NSOperationQueue *)queue
                                                     success:(DSAPIPageSuccessBlock)success
                                                 notModified:(DSAPIPageSuccessBlock)notModified

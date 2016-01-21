@@ -49,7 +49,7 @@
 {
     __block NSArray *_resources = nil;
 
-    [DSAPIBrand listBrandsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIBrand listBrandsWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _resources = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -66,7 +66,7 @@
 {
     __block DSAPIBrand *_brand = nil;
 
-    [DSAPIBrand listBrandsWithParameters:@{kPerPageKey : @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIBrand listBrandsWithParameters:@{kPerPageKey : @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIBrand *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIBrand *brand) {
             _brand = brand;
             [self done];
@@ -87,7 +87,7 @@
 - (void)testListTopics
 {
     __block NSArray *_topics = nil;
-    [DSAPIBrand listBrandsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIBrand listBrandsWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIBrand *)page.entries[0] listTopicsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *topicsPage) {
             _topics = topicsPage.entries;
             [self done];
@@ -109,7 +109,7 @@
 - (void)testListArticles
 {
     __block NSArray *_articles = nil;
-    [DSAPIBrand listBrandsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIBrand listBrandsWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIBrand *)page.entries[0] listArticlesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *articlesPage) {
             _articles = articlesPage.entries;
             [self done];

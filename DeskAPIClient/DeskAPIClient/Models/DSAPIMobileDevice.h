@@ -36,6 +36,7 @@
  Creates a mobile device by calling a POST to the /api/v2/users/me/mobile_devices endpoint of the Desk.com API.
  
  @param mobileDeviceDict A dictionary defining the new mobile device.
+ @param client The client to use for making the network request.
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the new mobile device (`DSAPIMobileDevice`) created and returned by the POST request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
@@ -43,6 +44,7 @@
  */
 
 + (NSURLSessionDataTask *)createMobileDevice:(NSDictionary *)mobileDeviceDict
+                                      client:(DSAPIClient *)client
                                        queue:(NSOperationQueue *)queue
                                      success:(void (^)(DSAPIMobileDevice *newMobileDevice))success
                                      failure:(DSAPIFailureBlock)failure;

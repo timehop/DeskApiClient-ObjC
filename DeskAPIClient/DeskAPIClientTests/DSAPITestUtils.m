@@ -41,10 +41,10 @@ CGFloat const DSAPIDefaultTimeout = 1.f;
     return [NSJSONSerialization JSONObjectWithData:requestBody options:0 error:nil];
 }
 
-+ (DSAPIResource *)resourceFromJSONFile:(NSString *)filename
++ (DSAPIResource *)resourceFromJSONFile:(NSString *)filename client:(DSAPIClient *)client
 {
     NSDictionary *resourceDict = [self dictionaryFromJSONFile:filename];
-    return [resourceDict DSAPIResourceWithSelf];
+    return [resourceDict DSAPIResourceWithClient:client];
 }
 
 + (NSDictionary *)authSettings

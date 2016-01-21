@@ -32,6 +32,7 @@
 
 #import "DSAPICustomer.h"
 #import "DSAPICase.h"
+#import "DSAPIClient.h"
 
 @implementation DSAPICustomer
 
@@ -44,11 +45,13 @@
 #pragma mark - Class Methods
 
 + (NSURLSessionDataTask *)listCustomersWithParameters:(NSDictionary *)parameters
+                                               client:(DSAPIClient *)client
                                                 queue:(NSOperationQueue *)queue
                                               success:(DSAPIPageSuccessBlock)success
                                               failure:(DSAPIFailureBlock)failure
 {
     return [self listCustomersWithParameters:parameters
+                                      client:client
                                        queue:queue
                                      success:success
                                  notModified:nil
@@ -56,38 +59,44 @@
 }
 
 + (NSURLSessionDataTask *)listCustomersWithParameters:(NSDictionary *)parameters
+                                               client:(DSAPIClient *)client
                                                 queue:(NSOperationQueue *)queue
                                               success:(DSAPIPageSuccessBlock)success
                                           notModified:(DSAPIPageSuccessBlock)notModified
                                               failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPICustomer classLink]
+    return [super listResourcesAt:[DSAPICustomer classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                           failure:failure];
 }
 
 + (NSURLSessionDataTask *)searchCustomersWithParameters:(NSDictionary *)parameters
+                                                 client:(DSAPIClient *)client
                                                   queue:(NSOperationQueue *)queue
                                                 success:(DSAPIPageSuccessBlock)success
                                                 failure:(DSAPIFailureBlock)failure
 {
-    return [super searchResourcesAt:[DSAPICustomer classLink]
+    return [super searchResourcesAt:[DSAPICustomer classLinkWithBaseURL:client.baseURL]
                          parameters:parameters
+                             client:client
                               queue:queue
                             success:success
                             failure:failure];
 }
 
 + (NSURLSessionDataTask *)searchCustomersWithParameters:(NSDictionary *)parameters
+                                                 client:(DSAPIClient *)client
                                                   queue:(NSOperationQueue *)queue
                                                 success:(DSAPIPageSuccessBlock)success
                                             notModified:(DSAPIPageSuccessBlock)notModified
                                                 failure:(DSAPIFailureBlock)failure
 {
-    return [super searchResourcesAt:[DSAPICustomer classLink]
+    return [super searchResourcesAt:[DSAPICustomer classLinkWithBaseURL:client.baseURL]
                          parameters:parameters
+                             client:client
                               queue:queue
                             success:success
                         notModified:notModified
@@ -96,12 +105,14 @@
 
 
 + (NSURLSessionDataTask *)createCustomer:(NSDictionary *)customerDictionary
+                                  client:(DSAPIClient *)client
                                    queue:(NSOperationQueue *)queue
                                  success:(void (^)(DSAPICustomer *))success
                                  failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:customerDictionary
-                          link:[DSAPICustomer classLink]
+                            link:[DSAPICustomer classLinkWithBaseURL:client.baseURL]
+                          client:client
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {

@@ -33,6 +33,7 @@
 
 #import "DSAPITopic.h"
 #import "DSAPIArticle.h"
+#import "DSAPIClient.h"
 
 @implementation DSAPITopic
 
@@ -49,11 +50,13 @@
 }
 
 + (NSURLSessionDataTask *)listTopicsWithParameters:(NSDictionary *)parameters
+                                            client:(DSAPIClient *)client
                                              queue:(NSOperationQueue *)queue
                                            success:(DSAPIPageSuccessBlock)success
                                            failure:(DSAPIFailureBlock)failure
 {
     return [self listTopicsWithParameters:parameters
+                                   client:client
                                     queue:queue
                                   success:success
                               notModified:nil
@@ -61,25 +64,29 @@
 }
 
 + (NSURLSessionDataTask *)listTopicsWithParameters:(NSDictionary *)parameters
+                                            client:(DSAPIClient *)client
                                              queue:(NSOperationQueue *)queue
                                            success:(DSAPIPageSuccessBlock)success
                                        notModified:(DSAPIPageSuccessBlock)notModified
                                            failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPITopic classLink]
+    return [super listResourcesAt:[DSAPITopic classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                           failure:failure];
 }
 
 + (NSURLSessionDataTask *)createTopic:(NSDictionary *)dictionary
+                               client:(DSAPIClient *)client
                                 queue:(NSOperationQueue *)queue
                               success:(void (^)(DSAPITopic *topic))success
                               failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:dictionary
-                          link:[DSAPITopic classLink]
+                            link:[DSAPITopic classLinkWithBaseURL:client.baseURL]
+                          client:client
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {

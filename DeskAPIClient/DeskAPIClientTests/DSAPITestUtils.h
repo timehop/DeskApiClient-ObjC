@@ -35,7 +35,7 @@ extern CGFloat const DSAPIDefaultTimeout;
 @interface DSAPITestUtils : NSObject
 
 + (NSDictionary *)dictionaryFromJSONFile:(NSString *)filename;
-+ (DSAPIResource *)resourceFromJSONFile:(NSString *)filename;
++ (DSAPIResource *)resourceFromJSONFile:(NSString *)filename client:(DSAPIClient *)client;
 + (NSDictionary *)authSettings;
 + (DSAPIClient *)APIClientTokenAuth;
 + (DSAPIClient *)APIClientBasicAuth;

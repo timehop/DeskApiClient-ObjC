@@ -48,7 +48,7 @@
 - (void)testShowNote
 {
     __block DSAPINote *_note = nil;
-    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICase listCasesWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [page.entries[0] listNotesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *notesPage) {
             [(DSAPINote *)notesPage.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPINote *note) {
                 _note = note;

@@ -29,6 +29,7 @@
 //
 
 #import "DSAPILabel.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"label"
 
@@ -43,11 +44,13 @@
 #pragma mark - Class Methods
 
 + (NSURLSessionDataTask *)listLabelsWithParameters:(NSDictionary *)parameters
+                                            client:(DSAPIClient *)client
                                              queue:(NSOperationQueue *)queue
                                            success:(DSAPIPageSuccessBlock)success
                                            failure:(DSAPIFailureBlock)failure
 {
     return [self listLabelsWithParameters:parameters
+                                   client:client
                                     queue:queue
                                   success:success
                               notModified:nil
@@ -55,13 +58,15 @@
 }
 
 + (NSURLSessionDataTask *)listLabelsWithParameters:(NSDictionary *)parameters
+                                            client:(DSAPIClient *)client
                                              queue:(NSOperationQueue *)queue
                                            success:(DSAPIPageSuccessBlock)success
                                        notModified:(DSAPIPageSuccessBlock)notModified
                                            failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPILabel classLink]
+    return [super listResourcesAt:[DSAPILabel classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                       notModified:notModified
@@ -69,25 +74,29 @@
 }
 
 + (NSURLSessionDataTask *)searchLabelsWithParameters:(NSDictionary *)parameters
+                                              client:(DSAPIClient *)client
                                                queue:(NSOperationQueue *)queue
                                              success:(DSAPIPageSuccessBlock)success
                                              failure:(DSAPIFailureBlock)failure
 {
-    return [super searchResourcesAt:[DSAPILabel classLink]
+    return [super searchResourcesAt:[DSAPILabel classLinkWithBaseURL:client.baseURL]
                          parameters:parameters
+                             client:client
                               queue:queue
                             success:success
                             failure:failure];
 }
 
 + (NSURLSessionDataTask *)searchLabelsWithParameters:(NSDictionary *)parameters
+                                              client:(DSAPIClient *)client
                                                queue:(NSOperationQueue *)queue
                                              success:(DSAPIPageSuccessBlock)success
                                          notModified:(DSAPIPageSuccessBlock)notModified
                                              failure:(DSAPIFailureBlock)failure
 {
-    return [super searchResourcesAt:[DSAPILabel classLink]
+    return [super searchResourcesAt:[DSAPILabel classLinkWithBaseURL:client.baseURL]
                          parameters:parameters
+                             client:client
                               queue:queue
                             success:success
                         notModified:notModified
@@ -95,12 +104,14 @@
 }
 
 + (NSURLSessionDataTask *)createLabel:(NSDictionary *)labelDict
+                               client:(DSAPIClient *)client
                                 queue:(NSOperationQueue *)queue
                               success:(void (^)(DSAPILabel *))success
                               failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:labelDict
-                          link:[DSAPILabel classLink]
+                            link:[DSAPILabel classLinkWithBaseURL:client.baseURL]
+                          client:client
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {

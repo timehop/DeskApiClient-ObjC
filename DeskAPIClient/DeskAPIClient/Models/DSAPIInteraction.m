@@ -55,10 +55,12 @@
 {
     DSAPILink *linkToAttachments = [self linkForRelation:[DSAPIAttachment classNamePlural]];
     if (!linkToAttachments) {
-        linkToAttachments = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, [DSAPIAttachment classNamePlural]], kClassKey:[DSAPIAttachment className]}];
+        linkToAttachments = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, [DSAPIAttachment classNamePlural]], kClassKey:[DSAPIAttachment className]}
+                                                          baseURL:self.client.baseURL];
     }
     return [DSAPIResource createResource:attachmentDict
-                                  link:linkToAttachments
+                                    link:linkToAttachments
+                                  client:self.client
                                    queue:queue
                                  success:^(DSAPIResource *resource) {
                                      if (success) {

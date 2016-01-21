@@ -29,6 +29,7 @@
 //
 
 #import "DSAPIMacro.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"macro"
 #define kMacroActionsKey @"actions"
@@ -44,11 +45,13 @@
 
 
 + (NSURLSessionDataTask *)listMacrosWithParameters:(NSDictionary *)parameters
+                                            client:(DSAPIClient *)client
                                              queue:(NSOperationQueue *)queue
                                            success:(DSAPIPageSuccessBlock)success
                                            failure:(DSAPIFailureBlock)failure
 {
     return [self listMacrosWithParameters:parameters
+                                   client:client
                                     queue:queue
                                   success:success
                               notModified:nil
@@ -57,13 +60,15 @@
 
 
 + (NSURLSessionDataTask *)listMacrosWithParameters:(NSDictionary *)parameters
+                                            client:(DSAPIClient *)client
                                              queue:(NSOperationQueue *)queue
                                            success:(DSAPIPageSuccessBlock)success
                                        notModified:(DSAPIPageSuccessBlock)notModified
                                            failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPIMacro classLink]
+    return [super listResourcesAt:[DSAPIMacro classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                       notModified:notModified
@@ -72,13 +77,15 @@
 
 
 + (NSURLSessionDataTask *)createMacro:(NSDictionary *)macroDict
+                               client:(DSAPIClient *)client
                                 queue:(NSOperationQueue *)queue
                               success:(void (^)(DSAPIMacro *))success
                               failure:(DSAPIFailureBlock)failure
 {
     
     return [super createResource:macroDict
-                          link:[DSAPIMacro classLink]
+                            link:[DSAPIMacro classLinkWithBaseURL:client.baseURL]
+                          client:client
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {

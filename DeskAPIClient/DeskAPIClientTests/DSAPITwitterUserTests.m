@@ -50,7 +50,7 @@
 {
     __block NSArray *_twitterUsers = nil;
     
-    [DSAPITwitterUser listTwitterUsersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPITwitterUser listTwitterUsersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _twitterUsers = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -68,7 +68,7 @@
 {
     __block NSArray *_twitterUsers = nil;
     
-    [DSAPITwitterUser listTwitterUsersWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPITwitterUser listTwitterUsersWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _twitterUsers = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -85,9 +85,9 @@
 {
     __block DSAPILink *previousLink = nil;
     
-    [DSAPITwitterUser listTwitterUsersWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPITwitterUser listTwitterUsersWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPILink *nextLink = page.links[@"next"][0];
-        [DSAPITwitterUser listTwitterUsersWithParameters:nextLink.parameters queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
+        [DSAPITwitterUser listTwitterUsersWithParameters:nextLink.parameters client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
             previousLink = nextPage.links[@"previous"][0];
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -108,7 +108,7 @@
 - (void)testShowTwitterUser
 {
     __block DSAPIResource *_twitterUser = nil;
-    [DSAPITwitterUser listTwitterUsersWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPITwitterUser listTwitterUsersWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPITwitterUser *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPITwitterUser *twitterUser) {
             _twitterUser = twitterUser;
             [self done];

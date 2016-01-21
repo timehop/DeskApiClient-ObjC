@@ -40,28 +40,15 @@
     NSDictionary *_parameters;
 }
 
-+ (instancetype)linkWithHref:(NSString *)href className:(NSString *)className
-{
-    return [self linkWithHref:href className:className baseURL:nil];
-}
-
 + (instancetype)linkWithHref:(NSString *)href className:(NSString *)className baseURL:(NSURL *)baseURL
 {
     return [[self alloc] initWithDictionary:@{kHrefKey:href, kClassKey:className} baseURL:baseURL];
-}
-
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary
-{
-    return [self initWithDictionary:dictionary baseURL:nil];
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary baseURL:(NSURL *)baseURL
 {
     self = [super init];
     if (self) {
-        if (!baseURL) {
-            baseURL = [DSAPIClient sharedManager].baseURL;
-        }
         [self extractFieldsFromDictionary:dictionary];
         _baseURL = baseURL;
         _dictionary = dictionary;
@@ -70,9 +57,9 @@
     return self;
 }
 
-- (DSAPIResource *)resourceWithSelf
+- (DSAPIResource *)resourceWithClient:(DSAPIClient *)client
 {
-    return [DSAPIResource resourceWithHref:self.href className:self.className];
+    return [DSAPIResource resourceWithHref:self.href client:client className:self.className];
 }
 
 
@@ -82,7 +69,7 @@
     NSDictionary *linkDictionary = @{kHrefKey:linkHref,
                                      kClassKey:[relatedClass className]};
     
-    return [[DSAPILink alloc] initWithDictionary:linkDictionary];
+    return [[DSAPILink alloc] initWithDictionary:linkDictionary baseURL:self.baseURL];
 }
 
 - (NSString *)description

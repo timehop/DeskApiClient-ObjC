@@ -29,6 +29,7 @@
 //
 
 #import "DSAPIMailbox.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"mailbox"
 #define kClassNamePlural @"mailboxes"
@@ -58,12 +59,14 @@ NSString *const DSAPIMailboxTypeInbound = @"inbound";
 
 + (NSURLSessionDataTask *)listMailboxesOfType:(NSString *)mailboxType
                                    parameters:(NSDictionary *)parameters
+                                       client:(DSAPIClient *)client
                                         queue:(NSOperationQueue *)queue
                                       success:(DSAPIPageSuccessBlock)success
                                       failure:(DSAPIFailureBlock)failure
 {
     return [self listMailboxesOfType:mailboxType
                           parameters:parameters
+                              client:client
                                queue:queue
                              success:success
                          notModified:nil
@@ -72,17 +75,20 @@ NSString *const DSAPIMailboxTypeInbound = @"inbound";
 
 + (NSURLSessionDataTask *)listMailboxesOfType:(NSString *)mailboxType
                                    parameters:(NSDictionary *)parameters
+                                       client:(DSAPIClient *)client
                                         queue:(NSOperationQueue *)queue
                                       success:(DSAPIPageSuccessBlock)success
                                   notModified:(DSAPIPageSuccessBlock)notModified
                                       failure:(DSAPIFailureBlock)failure
 {
     if ([self isValidMailboxType:mailboxType]) {
-        NSString *modifiedHref = [NSString stringWithFormat:@"%@/%@", [DSAPIMailbox classLink].href, mailboxType];
+        NSString *modifiedHref = [NSString stringWithFormat:@"%@/%@", [DSAPIMailbox classLinkWithBaseURL:client.baseURL].href, mailboxType];
         DSAPILink *link = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:modifiedHref,
-                                                                  kClassKey:self.className}];
+                                                                  kClassKey:self.className}
+                                                        baseURL:client.baseURL];
         return [super listResourcesAt:link
                            parameters:parameters
+                               client:client
                                 queue:queue
                               success:success
                           notModified:notModified

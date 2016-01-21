@@ -29,6 +29,7 @@
 //
 
 #import "DSAPITwitterUser.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"twitter_user"
 
@@ -43,11 +44,13 @@
 #pragma mark - Class Methods
 
 + (NSURLSessionDataTask *)listTwitterUsersWithParameters:(NSDictionary *)parameters
+                                                  client:(DSAPIClient *)client
                                                    queue:(NSOperationQueue *)queue
                                                  success:(DSAPIPageSuccessBlock)success
                                                  failure:(DSAPIFailureBlock)failure
 {
     return [self listTwitterUsersWithParameters:parameters
+                                         client:client
                                           queue:queue
                                         success:success
                                     notModified:nil
@@ -55,13 +58,15 @@
 }
 
 + (NSURLSessionDataTask *)listTwitterUsersWithParameters:(NSDictionary *)parameters
+                                                  client:(DSAPIClient *)client
                                                    queue:(NSOperationQueue *)queue
                                                  success:(DSAPIPageSuccessBlock)success
                                              notModified:(DSAPIPageSuccessBlock)notModified
                                                  failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPITwitterUser classLink]
+    return [super listResourcesAt:[DSAPITwitterUser classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                       notModified:notModified

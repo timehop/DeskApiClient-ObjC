@@ -32,6 +32,7 @@
 #define kClassNamePlural @"articles"
 
 #import "DSAPIArticle.h"
+#import "DSAPIClient.h"
 
 @implementation DSAPIArticle
 
@@ -48,11 +49,13 @@
 }
 
 + (NSURLSessionDataTask *)listArticlesWithParameters:(NSDictionary *)parameters
+                                              client:(DSAPIClient *)client
                                                queue:(NSOperationQueue *)queue
                                              success:(DSAPIPageSuccessBlock)success
                                              failure:(DSAPIFailureBlock)failure
 {
     return [self listArticlesWithParameters:parameters
+                                     client:client
                                       queue:queue
                                     success:success
                                 notModified:nil
@@ -60,25 +63,29 @@
 }
 
 + (NSURLSessionDataTask *)listArticlesWithParameters:(NSDictionary *)parameters
+                                              client:(DSAPIClient *)client
                                                queue:(NSOperationQueue *)queue
                                              success:(DSAPIPageSuccessBlock)success
                                          notModified:(DSAPIPageSuccessBlock)notModified
                                              failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPIArticle classLink]
+    return [super listResourcesAt:[DSAPIArticle classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                           failure:failure];
 }
 
 + (NSURLSessionDataTask *)createArticle:(NSDictionary *)dictionary
+                                 client:(DSAPIClient *)client
                                   queue:(NSOperationQueue *)queue
                                 success:(void (^)(DSAPIArticle *article))success
                                 failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:dictionary
-                          link:[DSAPIArticle classLink]
+                            link:[DSAPIArticle classLinkWithBaseURL:client.baseURL]
+                          client:client
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {
@@ -89,25 +96,29 @@
 }
 
 + (NSURLSessionDataTask *)searchArticlesWithParameters:(NSDictionary *)parameters
+                                                client:(DSAPIClient *)client
                                                  queue:(NSOperationQueue *)queue
                                                success:(DSAPIPageSuccessBlock)success
                                                failure:(DSAPIFailureBlock)failure
 {
-    return [super searchResourcesAt:[DSAPIArticle classLink]
+    return [super searchResourcesAt:[DSAPIArticle classLinkWithBaseURL:client.baseURL]
                          parameters:parameters
+                             client:client
                               queue:queue
                             success:success
                             failure:failure];
 }
 
 + (NSURLSessionDataTask *)searchArticlesWithParameters:(NSDictionary *)parameters
+                                                client:(DSAPIClient *)client
                                                  queue:(NSOperationQueue *)queue
                                                success:(DSAPIPageSuccessBlock)success
                                            notModified:(DSAPIPageSuccessBlock)notModified
                                                failure:(DSAPIFailureBlock)failure
 {
-    return [super searchResourcesAt:[DSAPIArticle classLink]
+    return [super searchResourcesAt:[DSAPIArticle classLinkWithBaseURL:client.baseURL]
                          parameters:parameters
+                             client:client
                               queue:queue
                             success:success
                         notModified:notModified

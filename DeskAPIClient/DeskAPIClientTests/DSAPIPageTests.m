@@ -34,6 +34,8 @@
 
 @interface DSAPIPageTests : DSAPITestCase
 
+@property (nonatomic, strong) DSAPIClient *client;
+
 @end
 
 @implementation DSAPIPageTests
@@ -41,7 +43,7 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
+    _client = [DSAPITestUtils APIClientBasicAuth];
 }
 
 - (void)tearDown
@@ -52,71 +54,71 @@
 
 - (void)testThatRepliesHasAPropertyForEntries
 {
-    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41replies"];
+    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41replies" client:self.client];
     expect(((DSAPIPage *)replies).entries.count).to.equal(2);
 }
 
 - (void)testThatRepliesHasAPropertyForTotalEntries
 {
-    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41replies"];
+    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41replies" client:self.client];
     expect([((DSAPIPage *)replies).totalEntries integerValue]).to.equal(2);
 }
 
 - (void)testFirstPageLink
 {
-    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone"];
+    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone" client:self.client];
     expect(((DSAPIPage *)replies).linkToFirstPage.href).to.equal(@"/api/v2/cases/41/replies?page=1&per_page=1");
     expect(((DSAPIPage *)replies).linkToFirstPage.className).to.equal(@"page");
 }
 
 - (void)testLastPageLink
 {
-    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone"];
+    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone" client:self.client];
     expect(((DSAPIPage *)replies).linkToLastPage.href).to.equal(@"/api/v2/cases/41/replies?page=2&per_page=1");
     expect(((DSAPIPage *)replies).linkToLastPage.className).to.equal(@"page");
 }
 
 - (void)testPreviousPageLink
 {
-    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone"];
+    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone" client:self.client];
     expect(((DSAPIPage *)replies).linkToPreviousPage.href).to.beNil();
 }
 
 - (void)testNextPageLink
 {
-    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone"];
+    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone" client:self.client];
     expect(((DSAPIPage *)replies).linkToNextPage.href).to.equal(@"/api/v2/cases/41/replies?page=2&per_page=1");
     expect(((DSAPIPage *)replies).linkToNextPage.className).to.equal(@"page");
 }
 
 - (void)testShouldLoadNextPage
 {
-    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone"];
+    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone" client:self.client];
     expect(((DSAPIPage *)replies).shouldLoadNextPage).to.beTruthy();
 }
 
 - (void)testShouldNotLoadNextPage
 {
-    DSAPIPage *page = [DSAPIPage pageFromPageHref:nil withNextPageHref:nil];
+    DSAPIPage *page = [DSAPIPage pageFromPageHref:nil withNextPageHref:nil client:self.client];
     expect(page.shouldLoadNextPage).toNot.beTruthy();
 }
 
 - (void)testPageNumber
 {
-    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone"];
+    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone" client:self.client];
     expect(((DSAPIPage *)replies).pageNumber).to.equal(1);
 }
 
 - (void)testPerPage
 {
-    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone"];
+    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone" client:self.client];
     expect(((DSAPIPage *)replies).perPage).to.equal(1);
 }
 
 - (void)testPageNumberForNotModifiedPage
 {
-    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone"];
-    DSAPIPage *page = [DSAPIPage pageFromPageHref:replies.linkToSelf.href withNextPageHref:nil];
+    DSAPIResource *replies = [DSAPITestUtils resourceFromJSONFile:@"case41repliespageone" client:self.client];
+    DSAPIPage *page = [DSAPIPage pageFromPageHref:replies.linkToSelf.href withNextPageHref:nil client:self.client];
     expect(page.pageNumber).to.equal(1);
 }
 

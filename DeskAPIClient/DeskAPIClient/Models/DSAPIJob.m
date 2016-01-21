@@ -29,6 +29,7 @@
 //
 
 #import "DSAPIJob.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"job"
 
@@ -40,11 +41,13 @@
 }
 
 + (NSURLSessionDataTask *)listJobsWithParameters:(NSDictionary *)parameters
+                                          client:(DSAPIClient *)client
                                            queue:(NSOperationQueue *)queue
                                          success:(DSAPIPageSuccessBlock)success
                                          failure:(DSAPIFailureBlock)failure
 {
     return [self listJobsWithParameters:parameters
+                                 client:client
                                   queue:queue
                                 success:success
                             notModified:nil
@@ -52,13 +55,15 @@
 }
 
 + (NSURLSessionDataTask *)listJobsWithParameters:(NSDictionary *)parameters
+                                          client:(DSAPIClient *)client
                                            queue:(NSOperationQueue *)queue
                                          success:(DSAPIPageSuccessBlock)success
                                      notModified:(DSAPIPageSuccessBlock)notModified
                                          failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[self classLink]
+    return [super listResourcesAt:[self classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                       notModified:notModified
@@ -66,12 +71,14 @@
 }
 
 + (NSURLSessionDataTask *)createJob:(NSDictionary *)jobDict
+                             client:(DSAPIClient *)client
                               queue:(NSOperationQueue *)queue
                             success:(void (^)(DSAPIJob *))success
                             failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:jobDict
-                          link:[DSAPIJob classLink]
+                            link:[DSAPIJob classLinkWithBaseURL:client.baseURL]
+                          client:client
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {

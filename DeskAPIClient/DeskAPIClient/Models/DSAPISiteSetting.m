@@ -29,6 +29,7 @@
 //
 
 #import "DSAPISiteSetting.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"site_setting"
 
@@ -42,11 +43,13 @@
 #pragma mark - Class Methods
 
 + (NSURLSessionDataTask *)listSiteSettingsWithParameters:(NSDictionary *)parameters
+                                                  client:(DSAPIClient *)client
                                                    queue:(NSOperationQueue *)queue
                                                  success:(DSAPIPageSuccessBlock)success
                                                  failure:(DSAPIFailureBlock)failure
 {
     return [self listSiteSettingsWithParameters:parameters
+                                         client:client
                                           queue:queue
                                         success:success
                                     notModified:nil
@@ -54,13 +57,15 @@
 }
 
 + (NSURLSessionDataTask *)listSiteSettingsWithParameters:(NSDictionary *)parameters
+                                                  client:(DSAPIClient *)client
                                                    queue:(NSOperationQueue *)queue
                                                  success:(DSAPIPageSuccessBlock)success
                                              notModified:(DSAPIPageSuccessBlock)notModified
                                                  failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPISiteSetting classLink]
+    return [super listResourcesAt:[DSAPISiteSetting classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                       notModified:notModified
@@ -71,18 +76,18 @@
 #pragma mark - Instance Methods
 
 - (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPISiteSetting *))success
-                   failure:(DSAPIFailureBlock)failure
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPISiteSetting *))success
+                                     failure:(DSAPIFailureBlock)failure
 {
     return [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPISiteSetting *)resource);
-                          }
-                      }
-                      failure:failure];
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPISiteSetting *)resource);
+                                 }
+                             }
+                             failure:failure];
 }
 
 @end

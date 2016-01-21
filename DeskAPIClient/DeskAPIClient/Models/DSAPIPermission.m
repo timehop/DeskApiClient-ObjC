@@ -29,6 +29,7 @@
 //
 
 #import "DSAPIPermission.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"permission"
 
@@ -40,11 +41,13 @@
 }
 
 + (NSURLSessionDataTask *)listPermissionsWithParameters:(NSDictionary *)parameters
+                                                 client:(DSAPIClient *)client
                                                   queue:(NSOperationQueue *)queue
                                                 success:(DSAPIPageSuccessBlock)success
                                                 failure:(DSAPIFailureBlock)failure
 {
     return [DSAPIPermission listPermissionsWithParameters:parameters
+                                                   client:client
                                                     queue:queue
                                                   success:success
                                               notModified:nil
@@ -52,13 +55,15 @@
 }
 
 + (NSURLSessionDataTask *)listPermissionsWithParameters:(NSDictionary *)parameters
+                                                 client:(DSAPIClient *)client
                                                   queue:(NSOperationQueue *)queue
                                                 success:(DSAPIPageSuccessBlock)success
                                             notModified:(DSAPIPageSuccessBlock)notModified
                                                 failure:(DSAPIFailureBlock)failure
 {
-    return [DSAPIResource listResourcesAt:[DSAPIPermission classLink]
+    return [DSAPIResource listResourcesAt:[DSAPIPermission classLinkWithBaseURL:client.baseURL]
                                parameters:parameters
+                                   client:client
                                     queue:queue
                                   success:success
                               notModified:notModified

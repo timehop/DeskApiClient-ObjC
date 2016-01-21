@@ -64,16 +64,6 @@ static NSString *const DSAPIErrorKey = @"error";
 
 static NSDictionary *ClassNames;
 
-+ (instancetype)sharedManager
-{
-    static dispatch_once_t once;
-    static DSAPIClient *sharedInstance;
-    dispatch_once(&once, ^{
-        sharedInstance = [[DSAPIClient alloc] init];
-    });
-    return sharedInstance;
-}
-
 - (instancetype)init
 {
     self = [super init];

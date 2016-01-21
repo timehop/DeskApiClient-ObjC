@@ -37,6 +37,7 @@
 #define kPerPageKey @"per_page"
 
 @class DSAPIResource;
+@class DSAPIClient;
 
 @interface DSAPILink : NSObject
 
@@ -45,18 +46,6 @@
 @property (nonatomic, strong, readonly) NSURL *URL;
 @property (nonatomic, strong, readonly) NSDictionary *parameters;
 @property (nonatomic, readonly) NSDictionary *dictionary;
-
-
-/**
- Creates a `DSAPILink` given an href relative to a base URL, and a class name from the API (uses the base URL from the shared DSAPIClient)
- 
- @param href The href of the link, relative to the base URL
- @param className The class name of the resource at the link, per the API
- 
- @return The `DSAPILink`
- */
-+ (instancetype)linkWithHref:(NSString *)href className:(NSString *)className;
-
 
 /**
  Creates a `DSAPILink` given a relative href, a class name from the API, and a base URL
@@ -68,15 +57,6 @@
  @return The `DSAPILink`
  */
 + (instancetype)linkWithHref:(NSString *)href className:(NSString *)className baseURL:(NSURL *)baseURL;
-
-/**
- Initializes a `DSAPILink` given a dictionary.
- 
- @param dictionary The dictionary that describes the link
- 
- @return The `DSAPILink`
- */
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 /**
  Initializes a `DSAPILink` given a dictionary and baseURL.
@@ -103,8 +83,10 @@
 /**
  Allocates and initializes a `DSAPIResource` from the link, treating the link as the resource's link @"self".
  
+ @param client The client to use for making network requests.
+ 
  @return The `DSAPIResource`
  */
-- (DSAPIResource *)resourceWithSelf;
+- (DSAPIResource *)resourceWithClient:(DSAPIClient *)client;
 
 @end

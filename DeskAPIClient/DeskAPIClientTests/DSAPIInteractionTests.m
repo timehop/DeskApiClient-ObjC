@@ -49,7 +49,7 @@
 - (void)testInteractionClass
 {
     __block DSAPIInteraction *_interaction = nil;
-    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICase listCasesWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [page.entries[0] listRepliesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *repliesPage) {
             _interaction = repliesPage.entries[0];
             [self done];
@@ -70,7 +70,7 @@
 - (void)testShowInteraction
 {
     __block DSAPIInteraction *_interaction = nil;
-    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICase listCasesWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [page.entries[0] listRepliesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *repliesPage) {
             [(DSAPIInteraction *)repliesPage.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIInteraction *interaction) {
                 _interaction = interaction;
@@ -97,7 +97,8 @@
 - (void)testShowProperInteractionSubclass
 {
     __block DSAPITweet *tweet = nil;
-    DSAPICase *twitterCase = (DSAPICase *)[[[DSAPILink alloc] initWithDictionary:@{kHrefKey:@"/api/v2/cases/11", kClassKey:@"case"}] resourceWithSelf];
+    DSAPICase *twitterCase = (DSAPICase *)[[[DSAPILink alloc] initWithDictionary:@{kHrefKey:@"/api/v2/cases/11", kClassKey:@"case"}
+                                                                         baseURL:self.client.baseURL] resourceWithClient:self.client];
     
     [twitterCase showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPICase *theCase) {
         [theCase listRepliesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {

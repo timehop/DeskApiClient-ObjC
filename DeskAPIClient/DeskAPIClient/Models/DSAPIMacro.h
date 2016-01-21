@@ -38,6 +38,7 @@
  Lists macros by calling a GET to the /api/v2/macros endpoint of the Desk.com API.
  
  @param parameters The querystring parameters to be sent with the GET request (including 'page' and 'per_page' for pagination).
+ @param client The client to use for making the network request.
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the page (`DSAPIPage`) of resources returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
@@ -45,6 +46,7 @@
  */
 
 + (NSURLSessionDataTask *)listMacrosWithParameters:(NSDictionary *)parameters
+                                            client:(DSAPIClient *)client
                                              queue:(NSOperationQueue *)queue
                                            success:(DSAPIPageSuccessBlock)success
                                            failure:(DSAPIFailureBlock)failure;
@@ -54,6 +56,7 @@
  Lists macros by calling a GET to the /api/v2/macros endpoint of the Desk.com API. Supports ETag caching.
  
  @param parameters The querystring parameters to be sent with the GET request (including 'page' and 'per_page' for pagination).
+ @param client The client to use for making the network request.
  @param queue The queue on which to execute the success, failure and notModified blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the page (`DSAPIPage`) of resources returned by the GET request.
  @param notModified A block object to be executed if the web service returns a response of not modified (HTTP status code 304). This is called when the response at this endpoint hasn't changed since the last request (via ETags). This block has no return value and takes one argument: a page (`DSAPIPage`) whose notModified property is set to YES.
@@ -62,6 +65,7 @@
  */
 
 + (NSURLSessionDataTask *)listMacrosWithParameters:(NSDictionary *)parameters
+                                            client:(DSAPIClient *)client
                                              queue:(NSOperationQueue *)queue
                                            success:(DSAPIPageSuccessBlock)success
                                        notModified:(DSAPIPageSuccessBlock)notModified
@@ -72,6 +76,7 @@
  Creates a macro by calling a POST to the /api/v2/macros endpoint of the Desk.com API.
  
  @param macroDict A dictionary defining the new macro.
+ @param client The client to use for making the network request.
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the new macro (`DSAPIMacro`) created and returned by the POST request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
@@ -79,6 +84,7 @@
  */
 
 + (NSURLSessionDataTask *)createMacro:(NSDictionary *)macroDict
+                               client:(DSAPIClient *)client
                                 queue:(NSOperationQueue *)queue
                               success:(void (^)(DSAPIMacro *newMacro))success
                               failure:(DSAPIFailureBlock)failure;

@@ -49,6 +49,8 @@
 @property (nonatomic, readonly) BOOL shouldLoadNextPage;
 @property (nonatomic) BOOL notModified;
 
-+ (DSAPIPage *)pageFromPageHref:(NSString *)currentPageHref withNextPageHref:(NSString *)nextPageHref;
++ (DSAPIPage *)pageFromPageHref:(NSString *)currentPageHref
+               withNextPageHref:(NSString *)nextPageHref
+                         client:(DSAPIClient *)client;
 
 @end
