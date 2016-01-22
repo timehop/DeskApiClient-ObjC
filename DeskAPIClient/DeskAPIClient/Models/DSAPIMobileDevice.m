@@ -60,7 +60,7 @@
                                      failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:mobileDeviceDict
-                            link:[DSAPIUser linkForLoggedInUsersMobileDevicesWithClient:client]
+                            link:[DSAPIUser linkForLoggedInUsersMobileDevicesWithBaseURL:client.baseURL]
                           client:client
                            queue:queue
                          success:^(DSAPIResource *resource) {

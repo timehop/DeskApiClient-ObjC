@@ -41,19 +41,19 @@
     return kClassName;
 }
 
-+ (DSAPILink *)linkForLoggedInUserWithClient:(DSAPIClient *)client
++ (DSAPILink *)linkForLoggedInUserWithBaseURL:(NSURL *)baseURL
 {
     NSString *href = [NSString stringWithFormat:kAPIPrefix, [NSString stringWithFormat:@"%@/%@", [DSAPIUser classNamePlural], kCurrentUserEndpoint]];
     NSDictionary *linkDictionary = @{kHrefKey:href,
                                      kClassKey:[DSAPIUser className]};
     
-    return [[DSAPILink alloc] initWithDictionary:linkDictionary baseURL:client.baseURL];
+    return [[DSAPILink alloc] initWithDictionary:linkDictionary baseURL:baseURL];
 }
 
 
-+ (DSAPILink *)linkForLoggedInUsersMobileDevicesWithClient:(DSAPIClient *)client
++ (DSAPILink *)linkForLoggedInUsersMobileDevicesWithBaseURL:(NSURL *)baseURL
 {
-    return [[DSAPIUser linkForLoggedInUserWithClient:client] linkFromRelationWithClass:[DSAPIMobileDevice class]];
+    return [[DSAPIUser linkForLoggedInUserWithBaseURL:baseURL] linkFromRelationWithClass:[DSAPIMobileDevice class]];
 }
 
 + (NSURLSessionDataTask *)listUsersWithParameters:(NSDictionary *)parameters
@@ -95,7 +95,7 @@
                                                 failure:(DSAPIFailureBlock)failure
 {
     
-    return [client GET:[self linkForLoggedInUserWithClient:client].href
+    return [client GET:[self linkForLoggedInUserWithBaseURL:client.baseURL].href
             parameters:parameters
                  queue:queue
                success:^(NSHTTPURLResponse *response, id responseObject) {
@@ -117,7 +117,7 @@
                                               success:(void (^)(void))success
                                               failure:(DSAPIFailureBlock)failure
 {
-    NSString *logoutLink = [NSString stringWithFormat:@"%@/logout", [self linkForLoggedInUserWithClient:client].href];
+    NSString *logoutLink = [NSString stringWithFormat:@"%@/logout", [self linkForLoggedInUserWithBaseURL:client.baseURL].href];
     return [client POST:logoutLink
              parameters:nil
                   queue:queue
@@ -142,7 +142,7 @@
                                                 notModified:(DSAPIPageSuccessBlock)notModified
                                                     failure:(DSAPIFailureBlock)failure
 {
-    return [DSAPIResource listResourcesAt:[self linkForLoggedInUsersMobileDevicesWithClient:client]
+    return [DSAPIResource listResourcesAt:[self linkForLoggedInUsersMobileDevicesWithBaseURL:client.baseURL]
                                parameters:parameters
                                    client:client
                                     queue:queue

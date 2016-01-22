@@ -37,8 +37,8 @@
  
  @return `DSAPILink` for user
  */
-+ (DSAPILink *)linkForLoggedInUserWithClient:(DSAPIClient *)client;
-+ (DSAPILink *)linkForLoggedInUsersMobileDevicesWithClient:(DSAPIClient *)client;
++ (DSAPILink *)linkForLoggedInUserWithBaseURL:(NSURL *)baseURL;
++ (DSAPILink *)linkForLoggedInUsersMobileDevicesWithBaseURL:(NSURL *)baseURL;
 
 /**
  Lists users by calling a GET to the /api/v2/users endpoint of the Desk.com API.
