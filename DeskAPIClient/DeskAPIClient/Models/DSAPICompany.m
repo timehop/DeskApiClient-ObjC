@@ -34,6 +34,7 @@
 
 #import "DSAPICompany.h"
 #import "DSAPICase.h"
+#import "DSAPIClient.h"
 
 @implementation DSAPICompany
 
@@ -50,11 +51,13 @@
 #pragma mark - Class Methods
 
 + (NSURLSessionDataTask *)listCompaniesWithParameters:(NSDictionary *)parameters
+                                               client:(DSAPIClient *)client
                                                 queue:(NSOperationQueue *)queue
                                               success:(DSAPIPageSuccessBlock)success
                                               failure:(DSAPIFailureBlock)failure
 {
     return [self listCompaniesWithParameters:parameters
+                                      client:client
                                        queue:queue
                                      success:success
                                  notModified:nil
@@ -62,25 +65,29 @@
 }
 
 + (NSURLSessionDataTask *)listCompaniesWithParameters:(NSDictionary *)parameters
+                                               client:(DSAPIClient *)client
                                                 queue:(NSOperationQueue *)queue
                                               success:(DSAPIPageSuccessBlock)success
                                           notModified:(DSAPIPageSuccessBlock)notModified
                                               failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPICompany classLink]
+    return [super listResourcesAt:[DSAPICompany classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                           failure:failure];
 }
 
 + (NSURLSessionDataTask *)createCompany:(NSDictionary *)companyDict
+                                 client:(DSAPIClient *)client
                                   queue:(NSOperationQueue *)queue
                                 success:(void (^)(DSAPICompany *newCase))success
                                 failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:companyDict
-                          link:[DSAPICompany classLink]
+                            link:[DSAPICompany classLinkWithBaseURL:client.baseURL]
+                          client:client
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {
@@ -91,25 +98,29 @@
 }
 
 + (NSURLSessionDataTask *)searchCompaniesWithParameters:(NSDictionary *)parameters
+                                                 client:(DSAPIClient *)client
                                                   queue:(NSOperationQueue *)queue
                                                 success:(DSAPIPageSuccessBlock)success
                                                 failure:(DSAPIFailureBlock)failure
 {
-    return [super searchResourcesAt:[DSAPICompany classLink]
+    return [super searchResourcesAt:[DSAPICompany classLinkWithBaseURL:client.baseURL]
                          parameters:parameters
+                             client:client
                               queue:queue
                             success:success
                             failure:failure];
 }
 
 + (NSURLSessionDataTask *)searchCompaniesWithParameters:(NSDictionary *)parameters
+                                                 client:(DSAPIClient *)client
                                                   queue:(NSOperationQueue *)queue
                                                 success:(DSAPIPageSuccessBlock)success
                                             notModified:(DSAPIPageSuccessBlock)notModified
                                                 failure:(DSAPIFailureBlock)failure
 {
-    return [super searchResourcesAt:[DSAPICompany classLink]
+    return [super searchResourcesAt:[DSAPICompany classLinkWithBaseURL:client.baseURL]
                          parameters:parameters
+                             client:client
                               queue:queue
                             success:success
                         notModified:notModified

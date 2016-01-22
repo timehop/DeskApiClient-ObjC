@@ -31,6 +31,7 @@
 #import "DSAPIGroup.h"
 #import "DSAPIFilter.h"
 #import "DSAPIUser.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"group"
 
@@ -45,11 +46,13 @@
 #pragma mark - Class Methods
 
 + (NSURLSessionDataTask *)listGroupsWithParameters:(NSDictionary *)parameters
+                                            client:(DSAPIClient *)client
                                              queue:(NSOperationQueue *)queue
                                            success:(DSAPIPageSuccessBlock)success
                                            failure:(DSAPIFailureBlock)failure
 {
     return [self listGroupsWithParameters:parameters
+                                   client:client
                                     queue:queue
                                   success:success
                               notModified:nil
@@ -57,13 +60,15 @@
 }
 
 + (NSURLSessionDataTask *)listGroupsWithParameters:(NSDictionary *)parameters
+                                            client:(DSAPIClient *)client
                                              queue:(NSOperationQueue *)queue
                                            success:(DSAPIPageSuccessBlock)success
                                        notModified:(DSAPIPageSuccessBlock)notModified
                                            failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPIGroup classLink]
+    return [super listResourcesAt:[DSAPIGroup classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                       notModified:notModified

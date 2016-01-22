@@ -30,7 +30,10 @@
 
 #import <Foundation/Foundation.h>
 @class DSAPIResource;
+@class DSAPIClient;
 
 @interface NSDictionary (DSAPI)
-- (DSAPIResource *)DSAPIResourceWithSelf;
+
+- (DSAPIResource *)DSAPIResourceWithClient:(DSAPIClient *)client;
+
 @end

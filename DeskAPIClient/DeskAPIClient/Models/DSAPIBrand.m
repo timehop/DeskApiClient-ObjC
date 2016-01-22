@@ -33,6 +33,7 @@
 #import "DSAPIBrand.h"
 #import "DSAPITopic.h"
 #import "DSAPIArticle.h"
+#import "DSAPIClient.h"
 
 @interface DSAPIBrand ()
 
@@ -48,11 +49,13 @@
 }
 
 + (NSURLSessionDataTask *)listBrandsWithParameters:(NSDictionary *)parameters
+                                            client:(DSAPIClient *)client
                                              queue:(NSOperationQueue *)queue
                                            success:(DSAPIPageSuccessBlock)success
                                            failure:(DSAPIFailureBlock)failure
 {
     return [self listBrandsWithParameters:parameters
+                                   client:client
                                     queue:queue
                                   success:success
                               notModified:nil
@@ -60,13 +63,15 @@
 }
 
 + (NSURLSessionDataTask *)listBrandsWithParameters:(NSDictionary *)parameters
+                                            client:(DSAPIClient *)client
                                              queue:(NSOperationQueue *)queue
                                            success:(DSAPIPageSuccessBlock)success
                                        notModified:(DSAPIPageSuccessBlock)notModified
                                            failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPIBrand classLink]
+    return [super listResourcesAt:[DSAPIBrand classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                           failure:failure];
@@ -115,6 +120,7 @@
 {
     return [DSAPIResource listResourcesAt:self.linkToTopics
                                parameters:parameters
+                                   client:self.client
                                     queue:queue
                                   success:success
                               notModified:notModified

@@ -37,16 +37,19 @@
  Shows the current site by calling a GET to the default site's show url.
  
  @param parameters The querystring parameters to be sent with the GET request (including 'embed' to embed a resource in the response)
+ @param client The client to use for making the network request.
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the site (`DSAPISite`) returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
  @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
-+ (NSURLSessionDataTask *)showCurrentSiteWithQueue:(NSOperationQueue *)queue
-                                           success:(void (^)(DSAPISite *site))success
-                                           failure:(DSAPIFailureBlock)failure;
++ (NSURLSessionDataTask *)showCurrentSiteWithClient:(DSAPIClient *)client
+                                              queue:(NSOperationQueue *)queue
+                                            success:(void (^)(DSAPISite *apiSite))success
+                                            failure:(DSAPIFailureBlock)failure;
 
 + (NSURLSessionDataTask *)showCurrentSiteWithParameters:(NSDictionary *)parameters
+                                                 client:(DSAPIClient *)client
                                                   queue:(NSOperationQueue *)queue
                                                 success:(void (^)(DSAPISite *site))success
                                                 failure:(DSAPIFailureBlock)failure;
@@ -55,16 +58,19 @@
  Shows the current site's billing information by calling a GET to the default site's "billing" url.
  
  @param parameters The querystring parameters to be sent with the GET request (including 'embed' to embed a resource in the response)
+ @param client The client to use for making the network request.
  @param queue The queue on which to execute the success and failure blocks.
  @param success A block object to be executed when the task finishes successfully. This block has no return value and takes one argument: the billing (`DSAPIBilling`) returned by the GET request.
  @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the `NSHTTPURLResponse` from the server, and an `NSError` describing the network or parsing error that occurred.
  @return A resumed NSURLSessionDataTask. If an error occurred this return value is nil and the failure block is executed.
  */
-+ (NSURLSessionDataTask *)showCurrentSiteBillingWithQueue:(NSOperationQueue *)queue
-                                                  success:(void (^)(DSAPIBilling *billing))success
-                                                  failure:(DSAPIFailureBlock)failure;
++ (NSURLSessionDataTask *)showCurrentSiteBillingWithClient:(DSAPIClient *)client
+                                                     queue:(NSOperationQueue *)queue
+                                                   success:(void (^)(DSAPIBilling *billing))success
+                                                   failure:(DSAPIFailureBlock)failure;
 
 + (NSURLSessionDataTask *)showCurrentSiteBillingWithParameters:(NSDictionary *)parameters
+                                                        client:(DSAPIClient *)client
                                                          queue:(NSOperationQueue *)queue
                                                        success:(void (^)(DSAPIBilling *billing))success
                                                        failure:(DSAPIFailureBlock)failure;

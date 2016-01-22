@@ -29,6 +29,7 @@
 //
 
 #import "DSAPIFacebookUser.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"facebook_user"
 
@@ -43,11 +44,13 @@
 #pragma mark - Class Methods
 
 + (NSURLSessionDataTask *)listFacebookUsersWithParameters:(NSDictionary *)parameters
+                                                   client:(DSAPIClient *)client
                                                     queue:(NSOperationQueue *)queue
                                                   success:(DSAPIPageSuccessBlock)success
                                                   failure:(DSAPIFailureBlock)failure
 {
     return [self listFacebookUsersWithParameters:parameters
+                                          client:client
                                            queue:queue
                                          success:success
                                      notModified:nil
@@ -55,13 +58,15 @@
 }
 
 + (NSURLSessionDataTask *)listFacebookUsersWithParameters:(NSDictionary *)parameters
+                                                   client:(DSAPIClient *)client
                                                     queue:(NSOperationQueue *)queue
                                                   success:(DSAPIPageSuccessBlock)success
                                               notModified:(DSAPIPageSuccessBlock)notModified
                                                   failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPIFacebookUser classLink]
+    return [super listResourcesAt:[DSAPIFacebookUser classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                       notModified:notModified

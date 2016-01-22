@@ -50,7 +50,7 @@
 {
     __block NSArray *_facebookUsers = nil;
     
-    [DSAPIFacebookUser listFacebookUsersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIFacebookUser listFacebookUsersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _facebookUsers = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -68,7 +68,7 @@
 {
     __block NSArray *_facebookUsers = nil;
     
-    [DSAPIFacebookUser listFacebookUsersWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIFacebookUser listFacebookUsersWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _facebookUsers = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -84,7 +84,7 @@
 - (void)testShowFacebookUser
 {
     __block DSAPIResource *_facebookUser = nil;
-    [DSAPIFacebookUser listFacebookUsersWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIFacebookUser listFacebookUsersWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIFacebookUser *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIFacebookUser *facebookUser) {
             _facebookUser = facebookUser;
             [self done];

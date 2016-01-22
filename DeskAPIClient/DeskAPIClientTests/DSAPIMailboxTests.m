@@ -50,6 +50,7 @@
     __block NSArray *_outboundMailboxes = nil;
     [DSAPIMailbox listMailboxesOfType:DSAPIMailboxTypeOutbound
                            parameters:nil
+                               client:self.client
                                 queue:self.APICallbackQueue
                               success:^(DSAPIPage *page) {
                                   _outboundMailboxes = page.entries;
@@ -68,6 +69,7 @@
     __block NSArray *_inboundMailboxes = nil;
     [DSAPIMailbox listMailboxesOfType:DSAPIMailboxTypeInbound
                            parameters:nil
+                               client:self.client
                                 queue:self.APICallbackQueue
                               success:^(DSAPIPage *page) {
                                   _inboundMailboxes = page.entries;
@@ -84,7 +86,7 @@
 - (void)testShowOutboundMailbox
 {
     __block DSAPIMailbox *_mailbox = nil;
-    [DSAPIMailbox listMailboxesOfType:DSAPIMailboxTypeOutbound parameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIMailbox listMailboxesOfType:DSAPIMailboxTypeOutbound parameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIMailbox *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIMailbox *mailbox) {
             _mailbox = mailbox;
             [self done];
@@ -107,7 +109,7 @@
 - (void)testShowInboundMailbox
 {
     __block DSAPIMailbox *_mailbox = nil;
-    [DSAPIMailbox listMailboxesOfType:DSAPIMailboxTypeInbound parameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIMailbox listMailboxesOfType:DSAPIMailboxTypeInbound parameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIMailbox *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIMailbox *mailbox) {
             _mailbox = mailbox;
             [self done];

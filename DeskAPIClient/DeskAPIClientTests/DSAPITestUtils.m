@@ -41,10 +41,10 @@ CGFloat const DSAPIDefaultTimeout = 1.f;
     return [NSJSONSerialization JSONObjectWithData:requestBody options:0 error:nil];
 }
 
-+ (DSAPIResource *)resourceFromJSONFile:(NSString *)filename
++ (DSAPIResource *)resourceFromJSONFile:(NSString *)filename client:(DSAPIClient *)client
 {
     NSDictionary *resourceDict = [self dictionaryFromJSONFile:filename];
-    return [resourceDict DSAPIResourceWithSelf];
+    return [resourceDict DSAPIResourceWithClient:client];
 }
 
 + (NSDictionary *)authSettings
@@ -93,13 +93,6 @@ CGFloat const DSAPIDefaultTimeout = 1.f;
     client.accessToken = token;
     
     return client;
-}
-
-+ (void)setupSharedAPIClient
-{
-    [[DSAPIClient sharedManager] setHostname:[DSAPITestUtils authSettings][@"Hostname"]
-                                    username:(NSString *)[DSAPITestUtils authSettings][@"BasicAuthUsername"]
-                                    password:(NSString *)[DSAPITestUtils authSettings][@"BasicAuthPassword"]];
 }
 
 + (NSTimeInterval)timeSinceEpoch

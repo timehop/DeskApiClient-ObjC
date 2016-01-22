@@ -41,27 +41,29 @@
     return kClassName;
 }
 
-+ (DSAPILink *)linkForLoggedInUser
++ (DSAPILink *)linkForLoggedInUserWithBaseURL:(NSURL *)baseURL
 {
     NSString *href = [NSString stringWithFormat:kAPIPrefix, [NSString stringWithFormat:@"%@/%@", [DSAPIUser classNamePlural], kCurrentUserEndpoint]];
     NSDictionary *linkDictionary = @{kHrefKey:href,
                                      kClassKey:[DSAPIUser className]};
     
-    return [[DSAPILink alloc] initWithDictionary:linkDictionary];
+    return [[DSAPILink alloc] initWithDictionary:linkDictionary baseURL:baseURL];
 }
 
 
-+ (DSAPILink *)linkForLoggedInUsersMobileDevices
++ (DSAPILink *)linkForLoggedInUsersMobileDevicesWithBaseURL:(NSURL *)baseURL
 {
-    return [[DSAPIUser linkForLoggedInUser] linkFromRelationWithClass:[DSAPIMobileDevice class]];
+    return [[DSAPIUser linkForLoggedInUserWithBaseURL:baseURL] linkFromRelationWithClass:[DSAPIMobileDevice class]];
 }
 
 + (NSURLSessionDataTask *)listUsersWithParameters:(NSDictionary *)parameters
+                                           client:(DSAPIClient *)client
                                             queue:(NSOperationQueue *)queue
                                           success:(DSAPIPageSuccessBlock)success
                                           failure:(DSAPIFailureBlock)failure
 {
     return [self listUsersWithParameters:parameters
+                                  client:client
                                    queue:queue
                                  success:success
                              notModified:nil
@@ -70,13 +72,15 @@
 
 
 + (NSURLSessionDataTask *)listUsersWithParameters:(NSDictionary *)parameters
+                                           client:(DSAPIClient *)client
                                             queue:(NSOperationQueue *)queue
                                           success:(DSAPIPageSuccessBlock)success
                                       notModified:(DSAPIPageSuccessBlock)notModified
                                           failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPIUser classLink]
+    return [super listResourcesAt:[DSAPIUser classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                       notModified:notModified
@@ -85,17 +89,18 @@
 
 
 + (NSURLSessionDataTask *)showCurrentUserWithParameters:(NSDictionary *)parameters
+                                                 client:(DSAPIClient *)client
                                                   queue:(NSOperationQueue *)queue
                                                 success:(void (^)(DSAPIUser *))success
                                                 failure:(DSAPIFailureBlock)failure
 {
-    DSAPIClient *client = [DSAPIClient sharedManager];
-    return [client GET:[self linkForLoggedInUser].href
+    
+    return [client GET:[self linkForLoggedInUserWithBaseURL:client.baseURL].href
             parameters:parameters
                  queue:queue
                success:^(NSHTTPURLResponse *response, id responseObject) {
                    if (success) {
-                       success((DSAPIUser *)[responseObject DSAPIResourceWithSelf]);
+                       success((DSAPIUser *)[responseObject DSAPIResourceWithClient:client]);
                    }
                }
                failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -107,12 +112,12 @@
 }
 
 
-+ (NSURLSessionDataTask *)logoutCurrentUserWithQueue:(NSOperationQueue *)queue
-                                             success:(void (^)(void))success
-                                             failure:(DSAPIFailureBlock)failure
++ (NSURLSessionDataTask *)logoutCurrentUserWithClient:(DSAPIClient *)client
+                                                queue:(NSOperationQueue *)queue
+                                              success:(void (^)(void))success
+                                              failure:(DSAPIFailureBlock)failure
 {
-    DSAPIClient *client = [DSAPIClient sharedManager];
-    NSString *logoutLink = [NSString stringWithFormat:@"%@/logout", [self linkForLoggedInUser].href];
+    NSString *logoutLink = [NSString stringWithFormat:@"%@/logout", [self linkForLoggedInUserWithBaseURL:client.baseURL].href];
     return [client POST:logoutLink
              parameters:nil
                   queue:queue
@@ -131,13 +136,15 @@
 
 
 + (NSURLSessionDataTask *)listMyMobileDevicesWithParameters:(NSDictionary *)parameters
+                                                     client:(DSAPIClient *)client
                                                       queue:(NSOperationQueue *)queue
                                                     success:(DSAPIPageSuccessBlock)success
                                                 notModified:(DSAPIPageSuccessBlock)notModified
                                                     failure:(DSAPIFailureBlock)failure
 {
-    return [DSAPIResource listResourcesAt:self.linkForLoggedInUsersMobileDevices
+    return [DSAPIResource listResourcesAt:[self linkForLoggedInUsersMobileDevicesWithBaseURL:client.baseURL]
                                parameters:parameters
+                                   client:client
                                     queue:queue
                                   success:success
                               notModified:notModified
@@ -208,6 +215,7 @@
 {
     return [DSAPIResource listResourcesAt:[self.linkToSelf linkFromRelationWithClass:[DSAPIFilter class]]
                                parameters:parameters
+                                   client:self.client
                                     queue:queue
                                   success:success
                               notModified:notModified

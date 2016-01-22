@@ -63,21 +63,20 @@
 {
     NSString *actionsHref = [NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, kActionsKey];
     
-    DSAPIClient *client = [DSAPIClient sharedManager];
-    return [client POST:actionsHref
-             parameters:parameters
-                  queue:queue
-                success:^(NSHTTPURLResponse *response, id responseObject) {
-                    if (success) {
-                        success((DSAPITweet *)[responseObject DSAPIResourceWithSelf]);
-                    }
-                }
-                failure:^(NSHTTPURLResponse *response, NSError *error) {
-                    [client postRateLimitingNotificationIfNecessary:response];
-                    if (failure) {
-                        failure(response, error);
-                    }
-                }];
+    return [self.client POST:actionsHref
+                  parameters:parameters
+                       queue:queue
+                     success:^(NSHTTPURLResponse *response, id responseObject) {
+                         if (success) {
+                             success((DSAPITweet *)[responseObject DSAPIResourceWithClient:self.client]);
+                         }
+                     }
+                     failure:^(NSHTTPURLResponse *response, NSError *error) {
+                         [self.client postRateLimitingNotificationIfNecessary:response];
+                         if (failure) {
+                             failure(response, error);
+                         }
+                     }];
 }
 
 @end

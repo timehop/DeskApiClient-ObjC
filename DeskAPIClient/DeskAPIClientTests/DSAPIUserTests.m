@@ -49,7 +49,7 @@
 - (void)testListUsersReturnsAtLeastOneCase
 {
     __block NSArray *_users = nil;
-    [DSAPIUser listUsersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIUser listUsersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _users = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -65,7 +65,7 @@
 - (void)testListUsersCanSetPerPage
 {
     __block NSArray *_users = nil;
-    [DSAPIUser listUsersWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIUser listUsersWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _users = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -81,7 +81,7 @@
 - (void)testShowUser
 {
     __block DSAPIUser *_user = nil;
-    [DSAPIUser listUsersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIUser listUsersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIUser *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIUser *user) {
             _user = user;
             [self done];
@@ -104,7 +104,7 @@
 - (void)testListPreferences
 {
     __block NSArray *_preferences = nil;
-    [DSAPIUser showCurrentUserWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIUser *authenticatedUser) {
+    [DSAPIUser showCurrentUserWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIUser *authenticatedUser) {
         [authenticatedUser listPreferencesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *preferencesPage) {
             _preferences = preferencesPage.entries;
             [self done];
@@ -128,7 +128,7 @@
 {
     
     __block NSArray *_filters = nil;
-    [DSAPIUser listUsersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIUser listUsersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPIUser *user = page.entries[0];
         [user listFiltersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *filtersPage) {
             _filters = filtersPage.entries;
@@ -151,7 +151,7 @@
 - (void)testListGroups
 {
     __block NSArray *_groups = nil;
-    [DSAPIUser listUsersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIUser listUsersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPIUser *user = page.entries[0];
         [user listGroupsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *groupsPage) {
             _groups = groupsPage.entries;
@@ -175,7 +175,7 @@
 {
     [[DSAPIETagCache sharedManager] clearCache];
     __block NSArray *_macros = nil;
-    [DSAPIUser listUsersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIUser listUsersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPIUser *user = page.entries[0];
         [user listMacrosWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *macrosPage) {
             _macros = macrosPage.entries;
@@ -200,7 +200,7 @@
 - (void)testShowCurrentUser
 {
     __block DSAPIUser *_user = nil;
-    [DSAPIUser showCurrentUserWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIUser *user) {
+    [DSAPIUser showCurrentUserWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIUser *user) {
         _user = user;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -219,7 +219,7 @@
 {
     [[DSAPIETagCache sharedManager] clearCache];
     __block NSArray *_devices = nil;
-    [DSAPIUser listMyMobileDevicesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *devicesPage) {
+    [DSAPIUser listMyMobileDevicesWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *devicesPage) {
         _devices = devicesPage.entries;
         [self done];
     } notModified:^(DSAPIPage *page) {
@@ -237,7 +237,7 @@
 
 - (void)testLogout
 {
-    [DSAPIUser logoutCurrentUserWithQueue:self.APICallbackQueue success:^{
+    [DSAPIUser logoutCurrentUserWithClient:self.client queue:self.APICallbackQueue success:^{
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
         EXPFail(self, __LINE__, __FILE__, [error description]);

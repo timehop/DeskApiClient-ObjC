@@ -51,6 +51,7 @@
     __block DSAPIMobileDevice *device = nil;
     [DSAPIMobileDevice createMobileDevice:@{@"type":@"ios",
                                             @"device_token":@"0a209749df4ad0236767474dba6f08d3d02b91bed60258abb33f11af56a92eb6"}
+                                   client:self.client
                                     queue:self.APICallbackQueue
                                   success:^(DSAPIMobileDevice *newMobileDevice) {
                                       device = newMobileDevice;
@@ -67,6 +68,7 @@
 {
     [DSAPIMobileDevice createMobileDevice:@{@"type":@"ios",
                                             @"device_token":@"1a209749df4ad0236767474dba6f08d3d02b91bed60258abb33f11af56a92eb6"}
+                                   client:self.client
                                     queue:self.APICallbackQueue
                                   success:^(DSAPIMobileDevice *newMobileDevice) {
                                       [newMobileDevice deleteWithParameters:nil queue:self.APICallbackQueue success:^(void) {
@@ -88,9 +90,10 @@
     __block DSAPIMobileDevice *device = nil;
     [DSAPIMobileDevice createMobileDevice:@{@"type":@"ios",
                                             @"device_token":@"2a209749df4ad0236767474dba6f08d3d02b91bed60258abb33f11af56a92eb6"}
+                                   client:self.client
                                     queue:self.APICallbackQueue
                                   success:^(DSAPIMobileDevice *newMobileDevice) {
-                                      [DSAPIUser listMyMobileDevicesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+                                      [DSAPIUser listMyMobileDevicesWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
                                           [(DSAPIMobileDevice *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIMobileDevice *mobileDevice) {
                                               device = mobileDevice;
                                               [self done];
@@ -116,7 +119,7 @@
     [[DSAPIETagCache sharedManager] clearCache];
     
     __block NSArray *settings = nil;
-    [DSAPIUser listMyMobileDevicesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIUser listMyMobileDevicesWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIMobileDevice *)page.entries[0] listSettingsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             settings = page.entries;
             [self done];
@@ -145,7 +148,7 @@
     [[DSAPIETagCache sharedManager] clearCache];
     
     __block DSAPIMobileDeviceSetting *_updatedSetting = nil;
-    [DSAPIUser listMyMobileDevicesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIUser listMyMobileDevicesWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIMobileDevice *)page.entries[0] listSettingsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             [(DSAPIMobileDeviceSetting *)page.entries[0] updateWithDictionary:@{@"value":@YES} queue:self.APICallbackQueue success:^(DSAPIMobileDeviceSetting *updatedSetting) {
                 _updatedSetting = updatedSetting;

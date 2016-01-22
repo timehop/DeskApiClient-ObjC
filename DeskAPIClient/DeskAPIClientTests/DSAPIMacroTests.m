@@ -49,7 +49,7 @@
 - (void)testListMacrosReturnsAtLeastOneMacro
 {
     __block NSArray *_macros = nil;
-    [DSAPIMacro listMacrosWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIMacro listMacrosWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _macros = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -66,7 +66,7 @@
 - (void)testListMacrosCanSetPerPage
 {
     __block NSArray *_macros = nil;
-    [DSAPIMacro listMacrosWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIMacro listMacrosWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _macros = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -82,9 +82,9 @@
 - (void)testListMacrosCanRetrieveNextPage
 {
     __block DSAPILink *previousLink = nil;
-    [DSAPIMacro listMacrosWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIMacro listMacrosWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPILink *nextLink = page.links[@"next"][0];
-        [DSAPIGroup listGroupsWithParameters:nextLink.parameters queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
+        [DSAPIGroup listGroupsWithParameters:nextLink.parameters client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
             previousLink = nextPage.links[@"previous"][0];
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -105,7 +105,7 @@
 - (void)testShowMacro
 {
     __block DSAPIMacro *_macro = nil;
-    [DSAPIMacro listMacrosWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIMacro listMacrosWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIMacro *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIMacro *macro) {
             _macro = macro;
             [self done];
@@ -131,7 +131,7 @@
     NSMutableDictionary *newMacro = [[DSAPITestUtils dictionaryFromJSONFile:@"newMacro"] mutableCopy];
     newMacro[@"name"] = [DSAPITestUtils uuid];
     
-    [DSAPIMacro createMacro:newMacro queue:self.APICallbackQueue success:^(DSAPIMacro *newMacro) {
+    [DSAPIMacro createMacro:newMacro client:self.client queue:self.APICallbackQueue success:^(DSAPIMacro *newMacro) {
         responseMacro = newMacro;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -151,7 +151,7 @@
     NSMutableDictionary *newMacroDictionary = [[DSAPITestUtils dictionaryFromJSONFile:@"newMacro"] mutableCopy];
     newMacroDictionary[@"name"] = [DSAPITestUtils uuid];
     
-    [DSAPIMacro createMacro:newMacroDictionary queue:self.APICallbackQueue success:^(DSAPIMacro *newMacro) {
+    [DSAPIMacro createMacro:newMacroDictionary client:self.client queue:self.APICallbackQueue success:^(DSAPIMacro *newMacro) {
         [newMacro updateWithDictionary:@{@"name":@"Test Update"} queue:self.APICallbackQueue success:^(DSAPIMacro *updatedMacro) {
             _updatedMacro = updatedMacro;
             [self done];
@@ -175,7 +175,7 @@
     NSMutableDictionary *newMacro = [[DSAPITestUtils dictionaryFromJSONFile:@"newMacro"] mutableCopy];
     newMacro[@"name"] = [DSAPITestUtils uuid];
     
-    [DSAPIMacro createMacro:newMacro queue:self.APICallbackQueue success:^(DSAPIMacro *newMacro) {
+    [DSAPIMacro createMacro:newMacro client:self.client queue:self.APICallbackQueue success:^(DSAPIMacro *newMacro) {
         [newMacro deleteWithParameters:nil queue:self.APICallbackQueue success:^(void) {
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -195,7 +195,7 @@
 {
     __block DSAPIMacroAction *macroAction = nil;
     
-    [DSAPIMacro listMacrosWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIMacro listMacrosWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIMacro *)page.entries[0] listActionsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             macroAction = page.entries[0];
             [self done];
@@ -217,7 +217,7 @@
 {
     __block DSAPIMacroAction *_macroAction = nil;
     
-    [DSAPIMacro listMacrosWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIMacro listMacrosWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIMacro *)page.entries[0] listActionsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             [(DSAPIMacroAction *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIMacroAction *macroAction) {
                 _macroAction = macroAction;

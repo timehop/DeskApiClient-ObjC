@@ -50,7 +50,7 @@
 {
     __block NSArray *_customFields = nil;
     
-    [DSAPICustomField listCustomFieldsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICustomField listCustomFieldsWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _customFields = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -68,7 +68,7 @@
 {
     __block NSArray *_customFields = nil;
     
-    [DSAPICustomField listCustomFieldsWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICustomField listCustomFieldsWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _customFields = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -85,9 +85,9 @@
 {
     __block DSAPILink *previousLink = nil;
     
-    [DSAPICustomField listCustomFieldsWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICustomField listCustomFieldsWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPILink *nextLink = page.links[@"next"][0];
-        [DSAPICustomField listCustomFieldsWithParameters:nextLink.parameters queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
+        [DSAPICustomField listCustomFieldsWithParameters:nextLink.parameters client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
             previousLink = nextPage.links[@"previous"][0];
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -108,7 +108,7 @@
 - (void)testShowCustomField
 {
     __block DSAPIResource *_customField = nil;
-    [DSAPICustomField listCustomFieldsWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICustomField listCustomFieldsWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPICustomField *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPICustomField *customField) {
             _customField = customField;
             [self done];

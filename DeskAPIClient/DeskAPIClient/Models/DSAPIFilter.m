@@ -29,9 +29,11 @@
 //
 
 #import "DSAPIFilter.h"
-#import <objc/runtime.h>
 #import "DSAPICase.h"
 #import "DSAPIPage.h"
+#import "DSAPIClient.h"
+
+#import <objc/runtime.h>
 
 #define kClassName @"filter"
 #define kCaseIdsParam @"cids"
@@ -47,11 +49,13 @@
 
 
 + (NSURLSessionDataTask *)listFiltersWithParameters:(NSDictionary *)parameters
+                                             client:(DSAPIClient *)client
                                               queue:(NSOperationQueue *)queue
                                             success:(DSAPIPageSuccessBlock)success
                                             failure:(DSAPIFailureBlock)failure
 {
     return [self listFiltersWithParameters:parameters
+                                    client:client
                                      queue:queue
                                    success:success
                                notModified:nil
@@ -60,13 +64,15 @@
 
 
 + (NSURLSessionDataTask *)listFiltersWithParameters:(NSDictionary *)parameters
+                                             client:(DSAPIClient *)client
                                               queue:(NSOperationQueue *)queue
                                             success:(DSAPIPageSuccessBlock)success
                                         notModified:(DSAPIPageSuccessBlock)notModified
                                             failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPIFilter classLink]
+    return [super listResourcesAt:[DSAPIFilter classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                       notModified:notModified
@@ -128,7 +134,8 @@
     DSAPILink *linkToCaseChanges = [[DSAPILink alloc] initWithDictionary:@{
                                                                            kClassKey: kClassName,
                                                                            kHrefKey: caseChangesHref
-                                                                           }];
+                                                                           }
+                                                                 baseURL:self.client.baseURL];
     
     NSMutableDictionary *updatedParameters = parameters ? [parameters mutableCopy] : [NSMutableDictionary new];
     updatedParameters[kCaseIdsParam] = [caseIds componentsJoinedByString:@","];
@@ -136,6 +143,7 @@
     
     return [[self class] listResourcesAt:linkToCaseChanges
                               parameters:updatedParameters
+                                  client:self.client
                                    queue:queue
                                  success:^(DSAPIPage *page) {
                                      object_setClass(page, [DSAPIPage class]);

@@ -50,7 +50,7 @@
 {
     __block NSArray *_customers = nil;
     
-    [DSAPICustomer listCustomersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICustomer listCustomersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _customers = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -68,7 +68,7 @@
 {
     __block NSArray *_customers = nil;
     
-    [DSAPICustomer listCustomersWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICustomer listCustomersWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _customers = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -85,9 +85,9 @@
 {
     __block DSAPILink *previousLink = nil;
     
-    [DSAPICustomer listCustomersWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICustomer listCustomersWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPILink *nextLink = page.links[@"next"][0];
-        [DSAPICustomer listCustomersWithParameters:nextLink.parameters queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
+        [DSAPICustomer listCustomersWithParameters:nextLink.parameters client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
             previousLink = nextPage.links[@"previous"][0];
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -108,7 +108,7 @@
 - (void)testShowCustomer
 {
     __block DSAPIResource *_customer = nil;
-    [DSAPICustomer listCustomersWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICustomer listCustomersWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPICustomer *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPICustomer *customer) {
             _customer = customer;
             [self done];
@@ -131,7 +131,7 @@
 - (void)testCreateCustomer
 {
     __block DSAPIResource *responseResource = nil;
-    [DSAPICustomer createCustomer:[DSAPITestUtils dictionaryFromJSONFile:@"newCustomer"] queue:self.APICallbackQueue success:^(DSAPIResource *newCase) {
+    [DSAPICustomer createCustomer:[DSAPITestUtils dictionaryFromJSONFile:@"newCustomer"] client:self.client queue:self.APICallbackQueue success:^(DSAPIResource *newCase) {
         responseResource = newCase;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -150,7 +150,7 @@
     __block DSAPIResource *randomCustomer = nil;
     __block NSString *firstName = nil;
     
-    [DSAPICustomer searchCustomersWithParameters:@{@"first_name": @"amzad"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICustomer searchCustomersWithParameters:@{@"first_name": @"amzad"} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         NSUInteger randomIndex = arc4random() % page.entries.count;
         randomCustomer = page.entries[randomIndex];
         firstName = randomCustomer[@"first_name"];
@@ -194,7 +194,7 @@
 
 - (void)testUpdateCustomer
 {
-    DSAPICustomer *customerToUpdate = (DSAPICustomer *)[[[DSAPILink alloc] initWithDictionary:@{kHrefKey:@"/api/v2/customers/14", kClassKey:@"customer"}] resourceWithSelf];
+    DSAPICustomer *customerToUpdate = (DSAPICustomer *)[[[DSAPILink alloc] initWithDictionary:@{kHrefKey:@"/api/v2/customers/14", kClassKey:@"customer"} baseURL:self.client.baseURL] resourceWithClient:self.client];
     __block DSAPIResource *_updatedCustomer = nil;
     
     NSDictionary *updateCustomerDict = [DSAPITestUtils dictionaryFromJSONFile:@"updateCustomer"];
@@ -219,7 +219,7 @@
 - (void)testListCustomers
 {
     __block NSArray *_cases = nil;
-    [DSAPICustomer listCustomersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICustomer listCustomersWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPICustomer *)page.entries[0] listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *casesPage) {
             _cases = casesPage.entries;
             [self done];

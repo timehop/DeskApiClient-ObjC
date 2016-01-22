@@ -30,11 +30,12 @@
 
 #import "NSDictionary+DSAPI.h"
 #import "DSAPIResource.h"
+#import "DSAPIClient.h"
 
 @implementation NSDictionary (DSAPI)
 
-- (DSAPIResource *)DSAPIResourceWithSelf {
-    return [[DSAPIResource alloc] initWithDictionary:self];
+- (DSAPIResource *)DSAPIResourceWithClient:(DSAPIClient *)client {
+    return [[DSAPIResource alloc] initWithDictionary:self client:client];
 }
 
 @end

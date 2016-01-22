@@ -49,7 +49,7 @@
 {
     __block DSAPIAttachment *_attachment = nil;
     
-    [DSAPICase searchCasesWithParameters:@{@"attachments":@"png"} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICase searchCasesWithParameters:@{@"attachments":@"png"} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPICase *caseWithAttachments = page.entries.firstObject;
         
         [caseWithAttachments showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPICase *theCase) {

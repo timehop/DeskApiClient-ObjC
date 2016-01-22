@@ -30,6 +30,7 @@
 
 #import "DSAPITwitterAccount.h"
 #import "DSAPILink.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"twitter_account"
 #define kFollowsKey @"follows"
@@ -45,133 +46,140 @@
 
 
 + (NSURLSessionDataTask *)listTwitterAccountsWithParameters:(NSDictionary *)parameters
-                                    queue:(NSOperationQueue *)queue
-                                  success:(DSAPIPageSuccessBlock)success
-                                  failure:(DSAPIFailureBlock)failure
+                                                     client:(DSAPIClient *)client
+                                                      queue:(NSOperationQueue *)queue
+                                                    success:(DSAPIPageSuccessBlock)success
+                                                    failure:(DSAPIFailureBlock)failure
 {
     return [self listTwitterAccountsWithParameters:parameters
-                                      queue:queue
-                                    success:success
-                                notModified:nil
-                                    failure:failure];
+                                            client:client
+                                             queue:queue
+                                           success:success
+                                       notModified:nil
+                                           failure:failure];
 }
 
 
 + (NSURLSessionDataTask *)listTwitterAccountsWithParameters:(NSDictionary *)parameters
-                                    queue:(NSOperationQueue *)queue
-                                  success:(DSAPIPageSuccessBlock)success
-                              notModified:(DSAPIPageSuccessBlock)notModified
-                                  failure:(DSAPIFailureBlock)failure
+                                                     client:(DSAPIClient *)client
+                                                      queue:(NSOperationQueue *)queue
+                                                    success:(DSAPIPageSuccessBlock)success
+                                                notModified:(DSAPIPageSuccessBlock)notModified
+                                                    failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPITwitterAccount classLink]
-                parameters:parameters
-                     queue:queue
-                   success:success
-               notModified:notModified
-                   failure:failure];
-}
-
-
-- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
-                     queue:(NSOperationQueue *)queue
-                   success:(void (^)(DSAPITwitterAccount *filter))success
-                   failure:(DSAPIFailureBlock)failure
-{
-    return [super showWithParameters:parameters
-                        queue:queue
-                      success:^(DSAPIResource *resource) {
-                          if (success) {
-                              success((DSAPITwitterAccount *)resource);
-                          }
-                      }
-                      failure:failure];
-}
-
-
-- (NSURLSessionDataTask *)listTweetsWithParameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                         failure:(DSAPIFailureBlock)failure
-{
-    return [self listTweetsWithParameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:nil
-                           failure:failure];
-}
-
-
-- (NSURLSessionDataTask *)listTweetsWithParameters:(NSDictionary *)parameters
-                           queue:(NSOperationQueue *)queue
-                         success:(DSAPIPageSuccessBlock)success
-                     notModified:(DSAPIPageSuccessBlock)notModified
-                         failure:(DSAPIFailureBlock)failure
-{
-    return [self listResourcesForRelation:[DSAPITweet classNamePlural]
-                        parameters:parameters
-                             queue:queue
-                           success:success
-                       notModified:notModified
-                           failure:failure];
-}
-
-
-- (NSURLSessionDataTask *)createTweet:(NSDictionary *)tweetDict
-              queue:(NSOperationQueue *)queue
-            success:(void (^)(DSAPITweet *))success
-            failure:(DSAPIFailureBlock)failure
-{
-    DSAPILink *linkToTweets = [self linkForRelation:[DSAPITweet classNamePlural]];
-    return [DSAPIResource createResource:tweetDict
-                           link:linkToTweets
+    return [super listResourcesAt:[DSAPITwitterAccount classLinkWithBaseURL:client.baseURL]
+                       parameters:parameters
+                           client:client
                             queue:queue
-                          success:^(DSAPIResource *resource) {
-                              if (success) {
-                                  success((DSAPITweet *)resource);
-                              }
-                          }
+                          success:success
+                      notModified:notModified
                           failure:failure];
 }
 
 
+- (NSURLSessionDataTask *)showWithParameters:(NSDictionary *)parameters
+                                       queue:(NSOperationQueue *)queue
+                                     success:(void (^)(DSAPITwitterAccount *filter))success
+                                     failure:(DSAPIFailureBlock)failure
+{
+    return [super showWithParameters:parameters
+                               queue:queue
+                             success:^(DSAPIResource *resource) {
+                                 if (success) {
+                                     success((DSAPITwitterAccount *)resource);
+                                 }
+                             }
+                             failure:failure];
+}
+
+
+- (NSURLSessionDataTask *)listTweetsWithParameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                           failure:(DSAPIFailureBlock)failure
+{
+    return [self listTweetsWithParameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:nil
+                                  failure:failure];
+}
+
+
+- (NSURLSessionDataTask *)listTweetsWithParameters:(NSDictionary *)parameters
+                                             queue:(NSOperationQueue *)queue
+                                           success:(DSAPIPageSuccessBlock)success
+                                       notModified:(DSAPIPageSuccessBlock)notModified
+                                           failure:(DSAPIFailureBlock)failure
+{
+    return [self listResourcesForRelation:[DSAPITweet classNamePlural]
+                               parameters:parameters
+                                    queue:queue
+                                  success:success
+                              notModified:notModified
+                                  failure:failure];
+}
+
+
+- (NSURLSessionDataTask *)createTweet:(NSDictionary *)tweetDict
+                                queue:(NSOperationQueue *)queue
+                              success:(void (^)(DSAPITweet *))success
+                              failure:(DSAPIFailureBlock)failure
+{
+    DSAPILink *linkToTweets = [self linkForRelation:[DSAPITweet classNamePlural]];
+    return [DSAPIResource createResource:tweetDict
+                                    link:linkToTweets
+                                  client:self.client
+                                   queue:queue
+                                 success:^(DSAPIResource *resource) {
+                                     if (success) {
+                                         success((DSAPITweet *)resource);
+                                     }
+                                 }
+                                 failure:failure];
+}
+
+
 - (NSURLSessionDataTask *)showFollowWithUsername:(NSString *)username
-                    parameters:(NSDictionary *)parameters
-                         queue:(NSOperationQueue *)queue
-                       success:(void (^)(DSAPITwitterFollow *))success
-                       failure:(DSAPIFailureBlock)failure
+                                      parameters:(NSDictionary *)parameters
+                                           queue:(NSOperationQueue *)queue
+                                         success:(void (^)(DSAPITwitterFollow *))success
+                                         failure:(DSAPIFailureBlock)failure
 {
     NSString *href = [NSString stringWithFormat:@"%@/%@/%@", self.linkToSelf, kFollowsKey, username];
     DSAPILink *linkToFollow = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:href,
-                                                                      kClassKey:[DSAPITwitterFollow className]}];
+                                                                      kClassKey:[DSAPITwitterFollow className]} baseURL:self.client.baseURL];
     return [DSAPIResource showResourceAtLink:linkToFollow
-                           parameters:parameters
-                                queue:queue
-                              success:^(DSAPIResource *resource) {
-                                  if (success) {
-                                      success((DSAPITwitterFollow *)resource);
-                                  }
-                              }
-                              failure:failure];
+                                  parameters:parameters
+                                      client:self.client
+                                       queue:queue
+                                     success:^(DSAPIResource *resource) {
+                                         if (success) {
+                                             success((DSAPITwitterFollow *)resource);
+                                         }
+                                     }
+                                     failure:failure];
 }
 
 
 - (NSURLSessionDataTask *)createFollow:(NSDictionary *)followDict
-               queue:(NSOperationQueue *)queue
-             success:(void (^)(DSAPITwitterFollow *))success
-             failure:(DSAPIFailureBlock)failure
+                                 queue:(NSOperationQueue *)queue
+                               success:(void (^)(DSAPITwitterFollow *))success
+                               failure:(DSAPIFailureBlock)failure
 {
     NSString *href = [NSString stringWithFormat:@"%@/%@", self.linkToSelf, kFollowsKey];
     DSAPILink *linkToFollows = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:href,
-                                                                       kClassKey:[DSAPITwitterFollow className]}];
+                                                                       kClassKey:[DSAPITwitterFollow className]} baseURL:self.client.baseURL];
     
     return [DSAPIResource createResource:followDict
-                           link:linkToFollows
-                            queue:queue
-                          success:^(DSAPIResource *resource) {
-                              if (success) {
-                                  success((DSAPITwitterFollow *)resource);
-                              }
-                          } failure:failure];
+                                    link:linkToFollows
+                                  client:self.client
+                                   queue:queue
+                                 success:^(DSAPIResource *resource) {
+                                     if (success) {
+                                         success((DSAPITwitterFollow *)resource);
+                                     }
+                                 } failure:failure];
 }
 
 @end

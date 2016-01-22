@@ -28,11 +28,14 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "DSAPIResource.h"
 #import "DSAPIClient.h"
-#import <objc/runtime.h>
 #import "DSAPIETagCache.h"
-#import <DeskCommon/DSCHttpStatusCodes.h>
 #import "DSAPINetworkIndicatorController.h"
+
+#import <objc/runtime.h>
+#import <DeskCommon/DSCHttpStatusCodes.h>
+
 
 #define kETagHeader @"ETag"
 #define kIfNoneMatchHeader @"If-None-Match"
@@ -45,7 +48,6 @@
 @interface DSAPIResource ()
 
 @property (nonatomic, strong) NSMutableDictionary *embedded;
-@property (nonatomic, strong) NSURL *baseURL;
 
 @end
 
@@ -54,39 +56,30 @@
     NSMutableDictionary *_dictionary;
 }
 
-+ (DSAPIResource *)resourceWithHref:(NSString *)href className:(NSString *)className
++ (DSAPIResource *)resourceWithHref:(NSString *)href client:(DSAPIClient *)client className:(NSString *)className
 {
     return [[self alloc] initWithDictionary:@{kLinksKey :
                                                   @{kSelfKey :
                                                         @{kHrefKey : href,
-                                                          kClassKey : className}}}];
+                                                          kClassKey : className}}}
+                                     client:client];
 }
 
-+ (DSAPIResource *)resourceWithId:(NSString *)resourceId className:(NSString *)className
++ (DSAPIResource *)resourceWithId:(NSString *)resourceId client:(DSAPIClient *)client className:(NSString *)className
 {
-    NSString *classNamePlural = [[[DSAPIClient sharedManager] classForClassName:className] classNamePlural];
+    NSString *classNamePlural = [[client classForClassName:className] classNamePlural];
     NSString *href = [[NSString stringWithFormat:kAPIPrefix, classNamePlural] stringByAppendingPathComponent:resourceId];
-    return [self resourceWithHref:href className:className];
+    return [self resourceWithHref:href client:client className:className];
 }
 
-- (id)initWithDictionary:(NSDictionary *)dictionary
-{
-    NSURL *baseURL;
-    if (!(baseURL = [DSAPIClient sharedManager].baseURL)) {
-        baseURL = [NSURL URLWithString:@""];
-    }
-    return [self initWithDictionary:dictionary baseURL:baseURL];
-}
-
-- (id)initWithDictionary:(NSDictionary *)dictionary
-                 baseURL:(NSURL *)baseURL
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary client:(DSAPIClient *)client
 {
     self = [super init];
     if (self) {
         _linksArrays = [NSMutableDictionary new];
         _embedded = [NSMutableDictionary new];
         _dictionary = [dictionary mutableCopy];
-        _baseURL = baseURL;
+        _client = client;
         
         // If we can't parse the dictionary, just return nil
         if (![self parseResource]) {
@@ -94,7 +87,7 @@
         }
         
         // Set the class of the object to the class returned by the web service for self
-        object_setClass(self, [[DSAPIClient sharedManager] classForClassName:_dictionary[kLinksKey][kSelfKey][kClassKey]]);
+        object_setClass(self, [self.client classForClassName:_dictionary[kLinksKey][kSelfKey][kClassKey]]);
     }
     return self;
 }
@@ -116,7 +109,7 @@
     if (![NSJSONSerialization isValidJSONObject:_dictionary]) {
         return NO;
     }
-    if (!_baseURL) {
+    if (!self.client.baseURL) {
         return NO;
     }
     if (![self parseLinks]) {
@@ -169,7 +162,7 @@
 {
     NSMutableArray *links = [NSMutableArray new];
     for (id dictionary in linkArray) {
-        DSAPILink *link = [[DSAPILink alloc] initWithDictionary:dictionary baseURL:self.baseURL];
+        DSAPILink *link = [[DSAPILink alloc] initWithDictionary:dictionary baseURL:self.client.baseURL];
         if (!link) {
             return nil;
         }
@@ -246,7 +239,7 @@
 {
     NSMutableArray *resources = [NSMutableArray new];
     for (id dictionary in resourceArray) {
-        DSAPIResource *resource = [[DSAPIResource alloc] initWithDictionary:dictionary];
+        DSAPIResource *resource = [[DSAPIResource alloc] initWithDictionary:dictionary client:self.client];
         if (!resource) {
             return nil;
         }
@@ -303,9 +296,9 @@
     return [self linkForRelation:kSelfKey];
 }
 
-+ (DSAPILink *)classLink
++ (DSAPILink *)classLinkWithBaseURL:(NSURL *)baseURL
 {
-    return [[DSAPILink alloc] initWithDictionary:@{kHrefKey : [NSString stringWithFormat:kAPIPrefix, self.classNamePlural], kClassKey : self.className}];
+    return [[DSAPILink alloc] initWithDictionary:@{kHrefKey : [NSString stringWithFormat:kAPIPrefix, self.classNamePlural], kClassKey : self.className} baseURL:baseURL];
 }
 
 + (NSString *)className
@@ -358,12 +351,14 @@
 
 + (NSURLSessionDataTask *)listResourcesAt:(DSAPILink *)link
                                parameters:(NSDictionary *)parameters
+                                   client:(DSAPIClient *)client
                                     queue:(NSOperationQueue *)queue
                                   success:(DSAPIPageSuccessBlock)success
                                   failure:(DSAPIFailureBlock)failure
 {
     return [self listResourcesAt:link
                       parameters:parameters
+                          client:client
                            queue:(NSOperationQueue *)queue
                          success:success
                      notModified:nil
@@ -372,12 +367,12 @@
 
 + (NSURLSessionDataTask *)listResourcesAt:(DSAPILink *)link
                                parameters:(NSDictionary *)parameters
+                                   client:(DSAPIClient *)client
                                     queue:(NSOperationQueue *)queue
                                   success:(DSAPIPageSuccessBlock)success
                               notModified:(DSAPIPageSuccessBlock)notModified
                                   failure:(DSAPIFailureBlock)failure
 {
-    DSAPIClient *client = [DSAPIClient sharedManager];
     NSString *urlString = [[NSURL URLWithString:link.href relativeToURL:client.baseURL] absoluteString];
     NSError *error = nil;
     NSMutableURLRequest *request = [client.requestSerializer requestWithMethod:@"GET"
@@ -400,7 +395,7 @@
         [client dataTaskWithRequest:request
                               queue:queue
                             success:^(NSHTTPURLResponse *response, id responseObject) {
-                                DSAPIResource *resource = [responseObject DSAPIResourceWithSelf];
+                                DSAPIResource *resource = [responseObject DSAPIResourceWithClient:client];
                                 NSString *etag = [[response allHeaderFields] objectForKey:kETagHeader];
                                 if (etag) {
                                     [[DSAPIETagCache sharedManager] setETag:etag forURL:request.URL nextPageURL:[resource linkForRelation:kNextKey].URL];
@@ -411,7 +406,7 @@
                             }
                             failure:^(NSHTTPURLResponse *response, NSError *error) {
                                 if (notModified && [response statusCode] == DSC_HTTP_STATUS_NOT_MODIFIED) {
-                                    DSAPIPage *page = [DSAPIPage pageFromPageHref:[[DSAPIETagCache sharedManager] pageURLForURL:request.URL].relativeString withNextPageHref:[[DSAPIETagCache sharedManager] nextPageURLForURL:request.URL].relativeString];
+                                    DSAPIPage *page = [DSAPIPage pageFromPageHref:[[DSAPIETagCache sharedManager] pageURLForURL:request.URL].relativeString withNextPageHref:[[DSAPIETagCache sharedManager] nextPageURLForURL:request.URL].relativeString client:client];
                                     page.notModified = YES;
                                     if (notModified) {
                                         notModified(page);
@@ -436,12 +431,14 @@
 
 + (NSURLSessionDataTask *)searchResourcesAt:(DSAPILink *)link
                                  parameters:(NSDictionary *)parameters
+                                     client:(DSAPIClient *)client
                                       queue:(NSOperationQueue *)queue
                                     success:(DSAPIPageSuccessBlock)success
                                     failure:(DSAPIFailureBlock)failure
 {
     return [self searchResourcesAt:link
                         parameters:parameters
+                            client:client
                              queue:queue
                            success:success
                        notModified:nil
@@ -450,39 +447,42 @@
 
 + (NSURLSessionDataTask *)searchResourcesAt:(DSAPILink *)link
                                  parameters:(NSDictionary *)parameters
+                                     client:(DSAPIClient *)client
                                       queue:queue
                                     success:(DSAPIPageSuccessBlock)success
                                 notModified:(DSAPIPageSuccessBlock)notModified
                                     failure:(DSAPIFailureBlock)failure
 {
-    return [self listResourcesAt:[self searchEndpointForClassLink:link]
+    return [self listResourcesAt:[self searchEndpointForClassLink:link client:client]
                       parameters:parameters
+                          client:client
                            queue:queue
                          success:success
                      notModified:notModified
                          failure:failure];
 }
 
-+ (DSAPILink *)searchEndpointForClassLink:(DSAPILink *)classLink
++ (DSAPILink *)searchEndpointForClassLink:(DSAPILink *)classLink client:(DSAPIClient *)client
 {
     NSString *searchURL = [NSString stringWithFormat:@"%@/%@", classLink.href, kSearchEndpoint];
     return [[DSAPILink alloc] initWithDictionary:@{kHrefKey : searchURL,
-                                                   kClassKey : classLink.className}];
+                                                   kClassKey : classLink.className}
+                                         baseURL:client.baseURL];
 }
 
 + (NSURLSessionDataTask *)createResource:(NSDictionary *)resourceDict
-                                  link:(DSAPILink *)link
+                                    link:(DSAPILink *)link
+                                  client:(DSAPIClient *)client
                                    queue:queue
                                  success:(DSAPIResourceSuccessBlock)success
                                  failure:(DSAPIFailureBlock)failure
 {
-    DSAPIClient *client = [DSAPIClient sharedManager];
     return [client POST:link.href
              parameters:resourceDict
                   queue:queue
                 success:^(NSHTTPURLResponse *response, id responseObject) {
                     if (success) {
-                        success([responseObject DSAPIResourceWithSelf]);
+                        success([responseObject DSAPIResourceWithClient:client]);
                     }
                 }
                 failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -495,17 +495,17 @@
 
 + (NSURLSessionDataTask *)showResourceAtLink:(DSAPILink *)linkToResource
                                   parameters:(NSDictionary *)parameters
+                                      client:(DSAPIClient *)client
                                        queue:(NSOperationQueue *)queue
                                      success:(DSAPIResourceSuccessBlock)success
                                      failure:(DSAPIFailureBlock)failure
 {
-    DSAPIClient *client = [DSAPIClient sharedManager];
     return [client GET:linkToResource.href
             parameters:parameters
                  queue:queue
                success:^(NSHTTPURLResponse *response, id responseObject) {
                    if (success) {
-                       success([responseObject DSAPIResourceWithSelf]);
+                       success([responseObject DSAPIResourceWithClient:client]);
                    }
                }
                failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -523,6 +523,7 @@
 {
     return [[self class] showResourceAtLink:self.linkToSelf
                                  parameters:parameters
+                                     client:self.client
                                       queue:queue
                                     success:success
                                     failure:failure];
@@ -533,21 +534,20 @@
                                        success:(DSAPIResourceSuccessBlock)success
                                        failure:(DSAPIFailureBlock)failure
 {
-    DSAPIClient *client = [DSAPIClient sharedManager];
-    return [client PATCH:self.linkToSelf.href
-              parameters:dictionary
-                   queue:queue
-                 success:^(NSHTTPURLResponse *response, id responseObject) {
-                     if (success) {
-                         success([responseObject DSAPIResourceWithSelf]);
-                     }
-                 }
-                 failure:^(NSHTTPURLResponse *response, NSError *error) {
-                     [client postRateLimitingNotificationIfNecessary:response];
-                     if (failure) {
-                         failure(response, error);
-                     }
-                 }];
+    return [self.client PATCH:self.linkToSelf.href
+                   parameters:dictionary
+                        queue:queue
+                      success:^(NSHTTPURLResponse *response, id responseObject) {
+                          if (success) {
+                              success([responseObject DSAPIResourceWithClient:self.client]);
+                          }
+                      }
+                      failure:^(NSHTTPURLResponse *response, NSError *error) {
+                          [self.client postRateLimitingNotificationIfNecessary:response];
+                          if (failure) {
+                              failure(response, error);
+                          }
+                      }];
 }
 
 - (NSURLSessionDataTask *)listResourcesForRelation:(NSString *)relation
@@ -574,6 +574,7 @@
     DSAPILink *linkToRelation = [self linkForRelation:relation];
     return [DSAPIResource listResourcesAt:linkToRelation
                                parameters:parameters
+                                   client:self.client
                                     queue:queue
                                   success:success
                               notModified:notModified
@@ -585,41 +586,26 @@
                                        success:(void (^)(void))success
                                        failure:(DSAPIFailureBlock)failure
 {
-    DSAPIClient *client = [DSAPIClient sharedManager];
-    return [client DELETE:self.linkToSelf.href
-               parameters:parameters
-                    queue:queue
-                  success:^(NSHTTPURLResponse *response, id responseObject) {
-                      if (success) {
-                          success();
-                      }
-                  }
-                  failure:^(NSHTTPURLResponse *response, NSError *error) {
-                      [client postRateLimitingNotificationIfNecessary:response];
-                      if (failure) {
-                          failure(response, error);
-                      }
-                  }];
-}
-
-#pragma mark - NSCoding
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    NSDictionary *dictionary = [aDecoder decodeObjectForKey:kEncoderKeyDictionary];
-    NSURL *baseURL = [aDecoder decodeObjectForKey:kEncoderKeyBaseURL];
-    return [self initWithDictionary:dictionary baseURL:baseURL];
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [aCoder encodeObject:self.dictionary forKey:kEncoderKeyDictionary];
-    [aCoder encodeObject:self.baseURL forKey:kEncoderKeyBaseURL];
+    return [self.client DELETE:self.linkToSelf.href
+                    parameters:parameters
+                         queue:queue
+                       success:^(NSHTTPURLResponse *response, id responseObject) {
+                           if (success) {
+                               success();
+                           }
+                       }
+                       failure:^(NSHTTPURLResponse *response, NSError *error) {
+                           [self.client postRateLimitingNotificationIfNecessary:response];
+                           if (failure) {
+                               failure(response, error);
+                           }
+                       }];
 }
 
 - (NSString *)idFromSelfLink
 {
     return [[[self linkToSelf] URL] lastPathComponent];
 }
+
 
 @end

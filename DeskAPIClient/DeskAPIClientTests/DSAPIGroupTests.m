@@ -50,7 +50,7 @@
 - (void)testListGroupsReturnsAtLeastOneGroup
 {
     __block NSArray *_groups = nil;
-    [DSAPIGroup listGroupsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIGroup listGroupsWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _groups = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -67,7 +67,7 @@
 - (void)testListGroupsCanSetPerPage
 {
     __block NSArray *_groups = nil;
-    [DSAPIGroup listGroupsWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIGroup listGroupsWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         _groups = page.entries;
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -83,9 +83,9 @@
 - (void)testListGroupsCanRetrieveNextPage
 {
     __block DSAPILink *previousLink = nil;
-    [DSAPIGroup listGroupsWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIGroup listGroupsWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         DSAPILink *nextLink = page.links[@"next"][0];
-        [DSAPIGroup listGroupsWithParameters:nextLink.parameters queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
+        [DSAPIGroup listGroupsWithParameters:nextLink.parameters client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *nextPage) {
             previousLink = nextPage.links[@"previous"][0];
             [self done];
         } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -106,7 +106,7 @@
 - (void)testShowGroup
 {
     __block DSAPIResource *_group = nil;
-    [DSAPIGroup listGroupsWithParameters:@{@"per_page": @1} queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIGroup listGroupsWithParameters:@{@"per_page": @1} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIGroup *)page.entries[0] showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIGroup *group) {
             _group = group;
             [self done];
@@ -129,7 +129,7 @@
 - (void)testListGroupFilters
 {
     __block NSArray *_filters = nil;
-    [DSAPIGroup listGroupsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIGroup listGroupsWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIGroup *)page.entries[0] listFiltersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *filtersPage) {
             _filters = filtersPage.entries;
             [self done];
@@ -152,7 +152,7 @@
 - (void)testListUsers
 {
     __block NSArray *_users = nil;
-    [DSAPIGroup listGroupsWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPIGroup listGroupsWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         [(DSAPIGroup *)page.entries[0] listUsersWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *usersPage) {
             _users = usersPage.entries;
             [self done];

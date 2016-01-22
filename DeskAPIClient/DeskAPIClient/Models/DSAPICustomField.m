@@ -29,6 +29,7 @@
 //
 
 #import "DSAPICustomField.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"custom_field";
 
@@ -42,11 +43,13 @@
 #pragma mark - Class Methods
 
 + (NSURLSessionDataTask *)listCustomFieldsWithParameters:(NSDictionary *)parameters
+                                                  client:(DSAPIClient *)client
                                                    queue:(NSOperationQueue *)queue
                                                  success:(DSAPIPageSuccessBlock)success
                                                  failure:(DSAPIFailureBlock)failure
 {
     return [self listCustomFieldsWithParameters:parameters
+                                         client:client
                                           queue:queue
                                         success:success
                                     notModified:nil
@@ -54,13 +57,15 @@
 }
 
 + (NSURLSessionDataTask *)listCustomFieldsWithParameters:(NSDictionary *)parameters
+                                                  client:(DSAPIClient *)client
                                                    queue:(NSOperationQueue *)queue
                                                  success:(DSAPIPageSuccessBlock)success
                                              notModified:(DSAPIPageSuccessBlock)notModified
                                                  failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPICustomField classLink]
+    return [super listResourcesAt:[DSAPICustomField classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                       notModified:notModified

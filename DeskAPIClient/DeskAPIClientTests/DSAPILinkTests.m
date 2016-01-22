@@ -34,6 +34,7 @@
 
 @property (nonatomic, strong) DSAPILink *link;
 @property (nonatomic, strong) NSDictionary *linkDict;
+@property (nonatomic, strong) DSAPIClient *client;
 
 @end
 
@@ -45,7 +46,8 @@
     NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"case6" ofType:@"json"];
     NSData *response = [NSData dataWithContentsOfFile:filePath];
     _linkDict = [NSJSONSerialization JSONObjectWithData:response options:0 error:nil][kLinksKey][kSelfKey];
-    _link = [[DSAPILink alloc] initWithDictionary:_linkDict];
+    _client = [DSAPITestUtils APIClientBasicAuth];
+    _link = [[DSAPILink alloc] initWithDictionary:_linkDict baseURL:self.client.baseURL];
 }
 - (void)testInitWithBaseURL
 {
@@ -74,7 +76,7 @@
 {
     __block DSAPILink *nextLink = nil;
     [DSAPITestUtils APIClientBasicAuth];
-    [DSAPICase listCasesWithParameters:nil queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICase listCasesWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         nextLink = page.links[@"next"][0];
         [self done];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
@@ -95,8 +97,8 @@
 
 - (void)testResourceFromLink
 {
-    DSAPILink *linkToSelf = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:@"/api/v2/cases/41", kClassKey:@"case"}];
-    DSAPIResource *resource = [linkToSelf resourceWithSelf];
+    DSAPILink *linkToSelf = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:@"/api/v2/cases/41", kClassKey:@"case"} baseURL:self.client.baseURL];
+    DSAPIResource *resource = [linkToSelf resourceWithClient:self.client];
     
     expect(resource).to.beKindOf([DSAPICase class]);
     expect(resource.linkToSelf.URL).to.equal(linkToSelf.URL);
@@ -104,7 +106,7 @@
 
 - (void)testLinkWithHrefAndClass
 {
-    DSAPILink *link = [DSAPILink linkWithHref:@"/api/v2/filters/185" className:@"filter"];
+    DSAPILink *link = [DSAPILink linkWithHref:@"/api/v2/filters/185" className:@"filter" baseURL:self.client.baseURL];
     expect(link.href).to.equal(@"/api/v2/filters/185");
     expect(link.className).to.equal(@"filter");
 }

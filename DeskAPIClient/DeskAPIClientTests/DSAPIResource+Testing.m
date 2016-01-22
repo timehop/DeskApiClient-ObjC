@@ -1,9 +1,9 @@
 //
-//  DSAPINetworkIndicatorController.h
+//  DSAPIResource+Testing.m
 //  DeskAPIClient
 //
-//  Created by Desk.com on 8/11/15.
-//  Copyright (c) 2015, Salesforce.com, Inc.
+//  Created by Desk.com on 1/21/16.
+//  Copyright (c) 2016, Salesforce.com, Inc.
 //  All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided
@@ -28,13 +28,16 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <UIKit/UIKit.h>
+#import "DSAPIResource+Testing.h"
 
-@interface DSAPINetworkIndicatorController : NSObject
+@implementation DSAPIResource (Testing)
 
-+ (DSAPINetworkIndicatorController *)sharedController;
+- (instancetype)initWithTestDictionary:(NSDictionary *)dictionary
+{
+    DSAPIClient *dummyClient = [DSAPIClient new];
+    dummyClient.baseURL = [NSURL URLWithString:@"http://google.com"];
+    return [self initWithDictionary:dictionary client:dummyClient];
+}
 
-- (void)networkActivityDidStart;
-- (void)networkActivityDidEnd;
 
 @end

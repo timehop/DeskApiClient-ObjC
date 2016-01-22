@@ -52,12 +52,6 @@ extern NSString * const DSAPIResponseKey;
 @property (nonatomic, strong) DSAPIHTTPResponseSerializer *responseSerializer;
 
 /**
- Creates or returns a singleton instance of `DSAPIClient`
- */
-
-+(instancetype)sharedManager;
-
-/**
  Sets the `DSAPIClient` object with the specified hostname and API token.
  
  @param hostname The hostname for a Desk.com site.

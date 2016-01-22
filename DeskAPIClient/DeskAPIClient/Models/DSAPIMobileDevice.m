@@ -31,6 +31,7 @@
 #import "DSAPIMobileDevice.h"
 #import "DSAPIMobileDeviceSetting.h"
 #import "DSAPIUser.h"
+#import "DSAPIClient.h"
 
 #define kClassName @"mobile_device"
 
@@ -53,12 +54,14 @@
 }
 
 + (NSURLSessionDataTask *)createMobileDevice:(NSDictionary *)mobileDeviceDict
+                                      client:(DSAPIClient *)client
                                        queue:(NSOperationQueue *)queue
                                      success:(void (^)(DSAPIMobileDevice *))success
                                      failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:mobileDeviceDict
-                          link:[DSAPIUser linkForLoggedInUsersMobileDevices]
+                            link:[DSAPIUser linkForLoggedInUsersMobileDevicesWithBaseURL:client.baseURL]
+                          client:client
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {
@@ -90,6 +93,7 @@
 {
     return [DSAPIResource listResourcesAt:self.linkToSettings
                                parameters:parameters
+                                   client:self.client
                                     queue:queue
                                   success:success
                               notModified:(DSAPIPageSuccessBlock)notModified

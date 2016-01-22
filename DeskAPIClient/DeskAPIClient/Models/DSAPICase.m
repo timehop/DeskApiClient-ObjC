@@ -50,11 +50,13 @@
 
 
 + (NSURLSessionDataTask *)listCasesWithParameters:(NSDictionary *)parameters
+                                           client:(DSAPIClient *)client
                                             queue:(NSOperationQueue *)queue
                                           success:(DSAPIPageSuccessBlock)success
                                           failure:(DSAPIFailureBlock)failure
 {
     return [self listCasesWithParameters:parameters
+                                  client:client
                                    queue:queue
                                  success:success
                              notModified:nil
@@ -63,13 +65,15 @@
 
 
 + (NSURLSessionDataTask *)listCasesWithParameters:(NSDictionary *)parameters
+                                           client:(DSAPIClient *)client
                                             queue:(NSOperationQueue *)queue
                                           success:(DSAPIPageSuccessBlock)success
                                       notModified:(DSAPIPageSuccessBlock)notModified
                                           failure:(DSAPIFailureBlock)failure
 {
-    return [super listResourcesAt:[DSAPICase classLink]
+    return [super listResourcesAt:[DSAPICase classLinkWithBaseURL:client.baseURL]
                        parameters:parameters
+                           client:client
                             queue:queue
                           success:success
                       notModified:notModified
@@ -78,25 +82,29 @@
 
 
 + (NSURLSessionDataTask *)searchCasesWithParameters:(NSDictionary *)parameters
+                                             client:(DSAPIClient *)client
                                               queue:(NSOperationQueue *)queue
                                             success:(DSAPIPageSuccessBlock)success
                                             failure:(DSAPIFailureBlock)failure
 {
-    return [super searchResourcesAt:[DSAPICase classLink]
+    return [super searchResourcesAt:[DSAPICase classLinkWithBaseURL:client.baseURL]
                          parameters:parameters
+                             client:client
                               queue:queue
                             success:success
                             failure:failure];
 }
 
 + (NSURLSessionDataTask *)searchCasesWithParameters:(NSDictionary *)parameters
+                                             client:(DSAPIClient *)client
                                               queue:(NSOperationQueue *)queue
                                             success:(DSAPIPageSuccessBlock)success
                                         notModified:(DSAPIPageSuccessBlock)notModified
                                             failure:(DSAPIFailureBlock)failure
 {
-    return [super searchResourcesAt:[DSAPICase classLink]
+    return [super searchResourcesAt:[DSAPICase classLinkWithBaseURL:client.baseURL]
                          parameters:parameters
+                             client:client
                               queue:queue
                             success:success
                         notModified:notModified
@@ -105,12 +113,14 @@
 
 
 + (NSURLSessionDataTask *)createCase:(NSDictionary *)caseDict
+                              client:(DSAPIClient *)client
                                queue:(NSOperationQueue *)queue
                              success:(void (^)(DSAPICase *newCase))success
                              failure:(DSAPIFailureBlock)failure
 {
     return [super createResource:caseDict
-                          link:[DSAPICase classLink]
+                            link:[DSAPICase classLinkWithBaseURL:client.baseURL]
+                          client:client
                            queue:queue
                          success:^(DSAPIResource *resource) {
                              if (success) {
@@ -123,14 +133,16 @@
 
 + (NSURLSessionDataTask *)showById:(NSNumber *)caseId
                         parameters:(NSDictionary *)parameters
+                            client:(DSAPIClient *)client
                              queue:(NSOperationQueue *)queue
                            success:(void (^)(DSAPICase *))success
                            failure:(DSAPIFailureBlock)failure
 {
-    NSString *href = [NSString stringWithFormat:@"%@/%@", [DSAPICase classLink], caseId];
+    NSString *href = [NSString stringWithFormat:@"%@/%@", [DSAPICase classLinkWithBaseURL:client.baseURL], caseId];
     DSAPILink *linkToCase = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:href,
-                                                                    kClassKey:[DSAPICase className]}];
-    DSAPICase *theCase = (DSAPICase *)[linkToCase resourceWithSelf];
+                                                                    kClassKey:[DSAPICase className]}
+                                                          baseURL:client.baseURL];
+    DSAPICase *theCase = (DSAPICase *)[linkToCase resourceWithClient:client];
     
     return [theCase showWithParameters:parameters
                                  queue:queue
@@ -179,7 +191,7 @@
                                             success:(void (^)(DSAPIInteraction *message))success
                                             failure:(DSAPIFailureBlock)failure
 {
-    DSAPIResource *message = [[self linkForRelation:kMessageKey] resourceWithSelf];
+    DSAPIResource *message = [[self linkForRelation:kMessageKey] resourceWithClient:self.client];
     return [message showWithParameters:parameters
                                  queue:queue
                                success:^(DSAPIResource *message) {
@@ -239,9 +251,10 @@
                                          failure:(DSAPIFailureBlock)failure
 {
     NSString *feedHref = [NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, kFeedKey];
-    DSAPILink *feedLink = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:feedHref}];
+    DSAPILink *feedLink = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:feedHref} baseURL:self.client.baseURL];
     return [DSAPIResource listResourcesAt:feedLink
                                parameters:parameters
+                                   client:self.client
                                     queue:queue
                                   success:success
                                   failure:failure];
@@ -255,7 +268,8 @@
 {
     DSAPILink *linkToReplies = [self linkForRelation:kRepliesKey];
     return [DSAPIResource createResource:replyDict
-                                  link:linkToReplies
+                                    link:linkToReplies
+                                  client:self.client
                                    queue:queue
                                  success:^(DSAPIResource *newReply) {
                                      if (success) {
@@ -273,7 +287,8 @@
 {
     DSAPILink *linkToReplies = [self linkForRelation:kDraftKey];
     return [DSAPIResource createResource:draftDict
-                                  link:linkToReplies
+                                    link:linkToReplies
+                                  client:self.client
                                    queue:queue
                                  success:^(DSAPIResource *newDraft) {
                                      if (success) {
@@ -289,7 +304,7 @@
                                           success:(void (^)(DSAPIInteraction *draft))success
                                           failure:(DSAPIFailureBlock)failure
 {
-    DSAPIResource *draft = [[self linkForRelation:kDraftKey] resourceWithSelf];
+    DSAPIResource *draft = [[self linkForRelation:kDraftKey] resourceWithClient:self.client];
     return [draft showWithParameters:parameters
                                queue:queue
                              success:^(DSAPIResource *draft) {
@@ -336,7 +351,8 @@
 {
     DSAPILink *linkToNotes = [self linkForRelation:[DSAPINote classNamePlural]];
     return [DSAPIResource createResource:noteDict
-                                  link:linkToNotes
+                                    link:linkToNotes
+                                  client:self.client
                                    queue:queue
                                  success:^(DSAPIResource *resource) {
                                      if (success) {
@@ -381,10 +397,12 @@
 {
     DSAPILink *linkToAttachments = [self linkForRelation:[DSAPIAttachment classNamePlural]];
     if (!linkToAttachments) {
-        linkToAttachments = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, [DSAPIAttachment classNamePlural]], kClassKey:[DSAPIAttachment className]}];
+        linkToAttachments = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, [DSAPIAttachment classNamePlural]], kClassKey:[DSAPIAttachment className]}
+                                                          baseURL:self.client.baseURL];
     }
     return [DSAPIResource createResource:attachmentDict
-                                  link:linkToAttachments
+                                    link:linkToAttachments
+                                  client:self.client
                                    queue:queue
                                  success:^(DSAPIResource *resource) {
                                      if (success) {
@@ -410,9 +428,10 @@
                                notModified:(DSAPIPageSuccessBlock)notModified
                                    failure:(DSAPIFailureBlock)failure
 {
-    DSAPILink *linkToHistory = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, kHistoryKey], kClassKey:kHistoryKey}];
+    DSAPILink *linkToHistory = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@", self.linkToSelf.href, kHistoryKey], kClassKey:kHistoryKey} baseURL:self.client.baseURL];
     return [DSAPIResource listResourcesAt:linkToHistory
                                parameters:nil
+                                   client:self.client
                                     queue:queue
                                   success:success
                               notModified:notModified
@@ -425,25 +444,26 @@
                                 failure:(DSAPIFailureBlock)failure
 {
     NSArray *macroLinks = [macros valueForKeyPath:@"@distinctUnionOfObjects.linkToSelf.dictionary"];
-    DSAPIResource *macrosPreviewResource = [[DSAPIResource alloc] initWithDictionary:@{kLinksKey: @{[DSAPIMacro classNamePlural]:macroLinks}}];
+    DSAPIResource *macrosPreviewResource = [[DSAPIResource alloc] initWithDictionary:@{kLinksKey: @{[DSAPIMacro classNamePlural]:macroLinks}}
+                                                                              client:self.client];
     
-    DSAPILink *linkToMacros = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@/%@", self.linkToSelf.href, [DSAPIMacro classNamePlural], kPreviewKey], kClassKey:[DSAPIMacro className]}];
+    DSAPILink *linkToMacros = [[DSAPILink alloc] initWithDictionary:@{kHrefKey:[NSString stringWithFormat:@"%@/%@/%@", self.linkToSelf.href, [DSAPIMacro classNamePlural], kPreviewKey], kClassKey:[DSAPIMacro className]}
+                                                            baseURL:self.client.baseURL];
     
-    DSAPIClient *client = [DSAPIClient sharedManager];
-    return [client POST:linkToMacros.href
-             parameters:macrosPreviewResource.dictionary
-                  queue:queue
-                success:^(NSHTTPURLResponse *response, id responseObject) {
-                    if (success) {
-                        success((DSAPIPage *)[responseObject DSAPIResourceWithSelf]);
-                    }
-                }
-                failure:^(NSHTTPURLResponse *response, NSError *error) {
-                    [client postRateLimitingNotificationIfNecessary:response];
-                    if (failure) {
-                        failure(response, error);
-                    }
-                }];
+    return [self.client POST:linkToMacros.href
+                  parameters:macrosPreviewResource.dictionary
+                       queue:queue
+                     success:^(NSHTTPURLResponse *response, id responseObject) {
+                         if (success) {
+                             success((DSAPIPage *)[responseObject DSAPIResourceWithClient:self.client]);
+                         }
+                     }
+                     failure:^(NSHTTPURLResponse *response, NSError *error) {
+                         [self.client postRateLimitingNotificationIfNecessary:response];
+                         if (failure) {
+                             failure(response, error);
+                         }
+                     }];
 }
 
 @end
