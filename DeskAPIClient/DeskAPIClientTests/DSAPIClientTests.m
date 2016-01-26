@@ -160,7 +160,7 @@
     XCTestExpectation *exp = [self expectationWithDescription:@"wait for completion"];
     
     // Launch and cancel 20 download tasks
-    for (int i = 1; i <= 20; i++) {
+    for (int i = 1; i <= 10; i++) {
         NSURLSessionDownloadTask *task = [self startDownloadTaskWithExpectation:exp];
         expect([[_client downloadProgressBlocks] count]).to.equal(i);
         expect([[_client downloadCompletionBlocks] count]).to.equal(i);

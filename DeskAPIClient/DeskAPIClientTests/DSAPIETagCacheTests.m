@@ -150,7 +150,7 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout handler:nil];
+    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout * 5.0 handler:nil];
 }
 
 - (void)testEtagCachingForLabels
@@ -174,7 +174,7 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout * 2.0 handler:nil];
+    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout * 5.0 handler:nil];
 }
 
 - (void)test304ReponseShouldLoadNextPage
@@ -225,7 +225,7 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout * 2.0 handler:nil];
+    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout * 5.0 handler:nil];
 }
 
 - (void)testEtagCachingForFilters
@@ -294,7 +294,7 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout * 3.0 handler:nil];
+    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout * 5.0 handler:nil];
 }
 
 - (void)testConcurrentSaveDoesNotCrash
