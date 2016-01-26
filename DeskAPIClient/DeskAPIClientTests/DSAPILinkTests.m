@@ -46,6 +46,7 @@
     NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"case6" ofType:@"json"];
     NSData *response = [NSData dataWithContentsOfFile:filePath];
     _linkDict = [NSJSONSerialization JSONObjectWithData:response options:0 error:nil][kLinksKey][kSelfKey];
+    [Expecta setAsynchronousTestTimeout:2.0];
     _client = [DSAPITestUtils APIClientBasicAuth];
     _link = [[DSAPILink alloc] initWithDictionary:_linkDict baseURL:self.client.baseURL];
 }
@@ -75,7 +76,6 @@
 - (void)testParameters
 {
     __block DSAPILink *nextLink = nil;
-    [DSAPITestUtils APIClientBasicAuth];
     [DSAPICase listCasesWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         nextLink = page.links[@"next"][0];
         [self done];

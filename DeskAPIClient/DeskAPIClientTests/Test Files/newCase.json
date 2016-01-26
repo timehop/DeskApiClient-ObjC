@@ -3,7 +3,7 @@
     "subject": "Creating a case via the API",
     "_links": {
         "customer": {
-            "href": "/api/v2/customers/10",
+            "href": "/api/v2/customers/6",
             "class": "customer"
         }
     },

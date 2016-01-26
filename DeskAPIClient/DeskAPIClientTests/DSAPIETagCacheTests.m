@@ -174,7 +174,7 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout handler:nil];
+    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout * 2.0 handler:nil];
 }
 
 - (void)test304ReponseShouldLoadNextPage
@@ -182,8 +182,8 @@
     [[DSAPIETagCache sharedManager] clearCache];
     XCTestExpectation *expectation = [self expectationWithDescription:@"should receive 304 response"];
     
-    [DSAPILabel listLabelsWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
-        [DSAPILabel listLabelsWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPILabel listLabelsWithParameters:@{@"per_page": @2} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+        [DSAPILabel listLabelsWithParameters:@{@"per_page": @2} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
             EXPFail(self, __LINE__, __FILE__, @"did not receive 304 response");
             [expectation fulfill];
         } notModified:^(DSAPIPage *page){
@@ -195,6 +195,7 @@
         }];
     } notModified:^(DSAPIPage *page) {
         EXPFail(self, __LINE__, __FILE__, @"Received an unexpected 304 response");
+        [expectation fulfill];
     } failure:^(NSHTTPURLResponse *response, NSError *error) {
         EXPFail(self, __LINE__, __FILE__, [error description]);
         [expectation fulfill];
@@ -224,7 +225,7 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout handler:nil];
+    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout * 2.0 handler:nil];
 }
 
 - (void)testEtagCachingForFilters
@@ -293,7 +294,7 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout handler:nil];
+    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout * 3.0 handler:nil];
 }
 
 - (void)testConcurrentSaveDoesNotCrash

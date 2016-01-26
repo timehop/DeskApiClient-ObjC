@@ -30,7 +30,7 @@
     
     [[DSAPIETagCache sharedManager] clearCache];
     [DSAPIPermission listPermissionsWithParameters:nil client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *permissionsPage) {
-        expect(permissionsPage.entries.count).to.beGreaterThanOrEqualTo(35);
+        expect(permissionsPage.entries.count).to.beGreaterThanOrEqualTo(34);
         DSAPIPermission *permission = permissionsPage.entries.firstObject;
         expect(permission).to.beKindOf([DSAPIPermission class]);
         expect(permission[@"name"]).to.equal(@"read_case");
@@ -43,7 +43,7 @@
         [expectation fulfill];
     }];
     
-    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout handler:nil];
+    [self waitForExpectationsWithTimeout:DSAPIDefaultTimeout * 2.0 handler:nil];
 }
 
 - (void)testShowPermission
