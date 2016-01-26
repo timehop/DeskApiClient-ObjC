@@ -22,11 +22,12 @@ DerivedData
 Pods
 
 #Auth Settings
-DeskAPIClientTests/DeskAPIAuth-Info.plist
+DeskAPIAuth-Info.plist
 
 # Ruby
 .bundle
 Gemfile.lock
 /vendor/bundle/*
 /bin/*
+
 
