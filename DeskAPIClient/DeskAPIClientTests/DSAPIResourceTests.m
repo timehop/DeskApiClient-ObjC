@@ -240,17 +240,6 @@
     expect(anUpdatedCase[@"subject"]).will.equal(@"Updated");
 }
 
-- (void)testNSCodingCompliance
-{
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_resourceFixture];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:data forKey:@"resource_fixture"];
-    [defaults synchronize];
-    NSData *restoredData = [defaults objectForKey:@"resource_fixture"];
-    DSAPIResource *resource = [NSKeyedUnarchiver unarchiveObjectWithData:restoredData];
-    expect(resource.dictionary).to.equal(_resourceFixture.dictionary);
-}
-
 - (void)testValueForKeyWhenDictionaryHasKey
 {
     DSAPIResource *newCase = [[DSAPICase alloc] initWithDictionary:[DSAPITestUtils dictionaryFromJSONFile:@"newCase"] client:self.client];

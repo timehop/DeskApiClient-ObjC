@@ -97,7 +97,7 @@
 - (void)testShowProperInteractionSubclass
 {
     __block DSAPITweet *tweet = nil;
-    DSAPICase *twitterCase = (DSAPICase *)[[[DSAPILink alloc] initWithDictionary:@{kHrefKey:@"/api/v2/cases/11", kClassKey:@"case"}
+    DSAPICase *twitterCase = (DSAPICase *)[[[DSAPILink alloc] initWithDictionary:@{kHrefKey:@"/api/v2/cases/55", kClassKey:@"case"}
                                                                          baseURL:self.client.baseURL] resourceWithClient:self.client];
     
     [twitterCase showWithParameters:nil queue:self.APICallbackQueue success:^(DSAPICase *theCase) {

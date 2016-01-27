@@ -150,7 +150,7 @@
     __block DSAPIResource *randomCustomer = nil;
     __block NSString *firstName = nil;
     
-    [DSAPICustomer searchCustomersWithParameters:@{@"first_name": @"amzad"} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICustomer searchCustomersWithParameters:@{@"first_name": @"leyla"} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         NSUInteger randomIndex = arc4random() % page.entries.count;
         randomCustomer = page.entries[randomIndex];
         firstName = randomCustomer[@"first_name"];
@@ -163,7 +163,7 @@
     expect([self isDone]).will.beTruthy();
     expect(randomCustomer).willNot.beNil();
     expect(randomCustomer).will.beKindOf([DSAPICustomer class]);
-    expect(firstName.lowercaseString).will.contain(@"amzad");
+    expect(firstName.lowercaseString).will.contain(@"leyla");
 }
 
 
@@ -194,7 +194,7 @@
 
 - (void)testUpdateCustomer
 {
-    DSAPICustomer *customerToUpdate = (DSAPICustomer *)[[[DSAPILink alloc] initWithDictionary:@{kHrefKey:@"/api/v2/customers/14", kClassKey:@"customer"} baseURL:self.client.baseURL] resourceWithClient:self.client];
+    DSAPICustomer *customerToUpdate = (DSAPICustomer *)[[[DSAPILink alloc] initWithDictionary:@{kHrefKey:@"/api/v2/customers/6", kClassKey:@"customer"} baseURL:self.client.baseURL] resourceWithClient:self.client];
     __block DSAPIResource *_updatedCustomer = nil;
     
     NSDictionary *updateCustomerDict = [DSAPITestUtils dictionaryFromJSONFile:@"updateCustomer"];

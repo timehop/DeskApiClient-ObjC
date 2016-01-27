@@ -125,7 +125,7 @@
 
 - (void)testUpdateLabel
 {
-    DSAPILabel *labelToUpdate = (DSAPILabel *)[[[DSAPILink alloc] initWithDictionary:@{kHrefKey:@"/api/v2/labels/50", kClassKey:@"label"} baseURL:self.client.baseURL] resourceWithClient:self.client];
+    DSAPILabel *labelToUpdate = (DSAPILabel *)[[[DSAPILink alloc] initWithDictionary:@{kHrefKey:@"/api/v2/labels/37", kClassKey:@"label"} baseURL:self.client.baseURL] resourceWithClient:self.client];
     __block DSAPIResource *_updatedLabel = nil;
     
     NSDictionary *updateLabelDict = [DSAPITestUtils dictionaryFromJSONFile:@"updateLabel"];

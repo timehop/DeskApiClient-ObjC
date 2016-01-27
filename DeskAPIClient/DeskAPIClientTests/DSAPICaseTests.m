@@ -204,7 +204,7 @@
 {
     __block NSString *randomCaseCustomerName = nil;
     __block DSAPICustomer *customer = nil;
-    [DSAPICase searchCasesWithParameters:@{@"name": @"amzad", @"embed": @"customer"} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
+    [DSAPICase searchCasesWithParameters:@{@"name": @"leyla", @"embed": @"customer"} client:self.client queue:self.APICallbackQueue success:^(DSAPIPage *page) {
         NSUInteger randomIndex = arc4random() % page.entries.count;
         customer = (DSAPICustomer *)[page.entries[randomIndex] resourceForRelation:@"customer"];
         randomCaseCustomerName = [customer objectForKeyedSubscript:@"first_name"];
@@ -217,7 +217,7 @@
     expect([self isDone]).will.beTruthy();
     expect(customer).willNot.beNil();
     expect(customer).will.beKindOf([DSAPICustomer class]);
-    expect([randomCaseCustomerName lowercaseString]).will.equal(@"amzad");
+    expect([randomCaseCustomerName lowercaseString]).will.equal(@"leyla");
 }
 
 - (void)testSearchCasesWithEtags
