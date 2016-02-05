@@ -30,6 +30,9 @@
 
 #import "DSAPIResource.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Woverriding-method-mismatch"
+
 @interface DSAPIUserPreference : DSAPIResource
 
 /**
@@ -61,3 +64,5 @@
                                        success:(void (^)(DSAPIUserPreference *preference))success
                                        failure:(DSAPIFailureBlock)failure;
 @end
+
+#pragma clang diagnostic pop

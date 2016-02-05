@@ -30,6 +30,9 @@
 
 #import "DSAPIResource.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Woverriding-method-mismatch"
+
 @interface DSAPIFilter : DSAPIResource
 
 /**
@@ -132,3 +135,5 @@
                                   success:(DSAPIPageSuccessBlock)success
                                   failure:(DSAPIFailureBlock)failure;
 @end
+
+#pragma clang diagnostic pop

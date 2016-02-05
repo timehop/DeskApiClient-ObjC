@@ -31,6 +31,9 @@
 #import "DSAPIResource.h"
 @class DSAPIBilling;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Woverriding-method-mismatch"
+
 @interface DSAPISite : DSAPIResource
 
 /**
@@ -119,4 +122,4 @@
 
 @end
 
-
+#pragma clang diagnostic pop

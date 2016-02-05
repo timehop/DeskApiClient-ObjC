@@ -1206,7 +1206,6 @@
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
-				WARNING_CFLAGS = "-Wno-overriding-method-mismatch";
 			};
 			name = Debug;
 		};
@@ -1223,7 +1222,6 @@
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
-				WARNING_CFLAGS = "-Wno-overriding-method-mismatch";
 			};
 			name = Release;
 		};

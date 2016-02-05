@@ -30,6 +30,9 @@
 
 #import "DSAPIResource.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Woverriding-method-mismatch"
+
 @interface DSAPIMobileDeviceSetting : DSAPIResource
 
 
@@ -48,3 +51,5 @@
                                        failure:(DSAPIFailureBlock)failure;
 
 @end
+
+#pragma clang diagnostic pop

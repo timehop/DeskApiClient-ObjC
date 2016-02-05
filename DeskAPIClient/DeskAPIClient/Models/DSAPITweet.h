@@ -30,6 +30,9 @@
 
 #import "DSAPIInteraction.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Woverriding-method-mismatch"
+
 @interface DSAPITweet : DSAPIInteraction
 
 /**
@@ -62,3 +65,5 @@
                              failure:(DSAPIFailureBlock)failure;
 
 @end
+
+#pragma clang diagnostic pop

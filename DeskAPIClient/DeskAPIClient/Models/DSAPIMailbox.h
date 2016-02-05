@@ -33,6 +33,9 @@
 extern NSString *const DSAPIMailboxTypeOutbound;
 extern NSString *const DSAPIMailboxTypeInbound;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Woverriding-method-mismatch"
+
 @interface DSAPIMailbox : DSAPIResource
 
 #pragma mark - Class Methods
@@ -106,3 +109,5 @@ extern NSString *const DSAPIMailboxTypeInbound;
                                      failure:(DSAPIFailureBlock)failure;
 
 @end
+
+#pragma clang diagnostic pop

@@ -30,6 +30,9 @@
 
 #import "DSAPIResource.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Woverriding-method-mismatch"
+
 @interface DSAPIMacroAction : DSAPIResource
 
 #pragma mark - Instance Methods
@@ -65,3 +68,5 @@
                                        failure:(DSAPIFailureBlock)failure;
 
 @end
+
+#pragma clang diagnostic pop

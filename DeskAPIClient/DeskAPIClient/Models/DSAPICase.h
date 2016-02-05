@@ -33,6 +33,9 @@
 @class DSAPIInteraction;
 @class DSAPIAttachment;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Woverriding-method-mismatch"
+
 @interface DSAPICase : DSAPIResource
 
 
@@ -440,3 +443,5 @@
                                 failure:(DSAPIFailureBlock)failure;
 
 @end
+
+#pragma clang diagnostic pop
